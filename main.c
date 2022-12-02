@@ -1,12 +1,28 @@
 #include "fdf.h"
 #include <stdio.h> // todo: printf -> ft_printf
 
-void	check_args(int argc)
+void	is_correct_extension(char *filepath)
 {
-	if (argc != 2)
+	const char	extension[] = ".fdf";
+	size_t		len_extension;
+	size_t		len_filepath;
+
+	len_extension = ft_strlen(extension);
+	len_filepath = ft_strlen(filepath);
+	if (len_filepath <= len_extension)
 	{
-		printf("%s\n", "Error: invalid arguments");
-		exit (1);
+		printf("Error: invalid filepath\n");
+		exit (errno);
+	}
+	while (len_extension)
+	{
+		len_extension--;
+		len_filepath--;
+		if (filepath[len_filepath] != extension[len_extension])
+		{
+			printf("Error: invalid file's extension\n");
+			exit (errno);
+		}
 	}
 }
 
@@ -14,6 +30,7 @@ int	check_filepath(char *filepath)
 {
 	int	fd;
 
+	is_correct_extension(filepath);
 	fd = open(filepath, O_RDWR);
 	if (errno)
 	{
@@ -23,7 +40,20 @@ int	check_filepath(char *filepath)
 	return (fd);
 }
 
-void	read_map(int fd, t_list **map)
+int	check_args(int argc, char *argv[])
+{
+	int	fd;
+
+	if (argc != 2)
+	{
+		printf("Error: invalid number of arguments\n");
+		exit (1);
+	}
+	fd = check_filepath(argv[1]);
+	return (fd);
+}
+
+size_t	read_map(int fd, t_list **data)
 {
 	char	*line;
 	t_list	*node;
@@ -35,44 +65,53 @@ void	read_map(int fd, t_list **map)
 		line = get_next_line(fd);
 		if (line == NULL) // errno
 			break ;
+		// remove '\n'
 		node = ft_lstnew(line);
 		// todo: check map malloc error
-		ft_lstadd_back(map, node);
+		ft_lstadd_back(data, node);
 		line_count++;
 	}
-	printf("%zu lines\n\n", line_count);
+	return (line_count);
 }
 
-void	del(void *content)
+static void	del(void *content)
 {
 	free(content);
 }
 
-void	clear_map(t_list **map)
+void	clear_data(t_list **data)
 {
-	ft_lstclear(map, del);
+	ft_lstclear(data, del);
 }
 
-void	print_lst_all(void *content)
+static void	print_list_content(void *content)
 {
 	printf("%s", content);
 }
 
-void	debug_lst(t_list *lst)
+void	debug_lst(t_list *lst, size_t line_count)
 {
-	ft_lstiter(lst, print_lst_all);
+	printf("%zu lines\n\n", line_count);
+	ft_lstiter(lst, print_list_content);
 }
 
 int	main(int argc, char *argv[])
 {
-	int		fd;
-	t_list	*map;
+	const int	fd = check_args(argc, argv);
+	t_list		*data;
+	size_t		line_count;
 
-	check_args(argc);
-	fd = check_filepath(argv[1]);
-	map = NULL;
-	read_map(fd, &map);
-	debug_lst(map);
-	clear_map(&map);
+	data = NULL;
+	line_count = read_map(fd, &data);
+	// debug_lst(data, line_count); // todo: erase
+	if (data == NULL)  // empty file
+		exit (0);
+	draw_map(&data, line_count);
 	return (0);
 }
+
+// __attribute__((destructor)) static void	destructor(void)
+// {
+// 	system("leaks ~");
+// 	exit (1);
+// }
