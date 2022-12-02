@@ -1,25 +1,26 @@
-SRCS	= $(wildcard *.c) # todo
-OBJDIR 	= ./obj/
-OBJS	= $(addprefix $(OBJDIR), $(SRCS:.c=.o))
+SRCS		= $(wildcard *.c) # todo
+OBJS_DIR	= ./objs/
+# OBJS		= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
+OBJS		= $(SRCS:%.c=$(OBJS_DIR)%.o)
 
-CC		= clang
-CFLAGS	= -Wall -Wextra -Werror
+CC			= clang
+CFLAGS		= -Wall -Wextra -Werror
 
-NAME	= fdf
+NAME		= fdf
 
-all: $(OBJDIR) $(NAME)
+all: $(OBJS_DIR) $(NAME)
 
-$(OBJDIR):
-	mkdir -p obj
+$(OBJS_DIR):
+	mkdir -p objs
 
-$(OBJDIR)%.o: %.c
+$(OBJS_DIR)%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 clean:
-	$(RM) -r $(OBJDIR)
+	$(RM) -r $(OBJS_DIR)
 
 fclean: clean
 	$(RM) $(NAME)

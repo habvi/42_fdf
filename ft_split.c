@@ -64,20 +64,19 @@ static void	free_all(char **list)
 	free(list);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, size_t *list_size)
 {
-	size_t	list_size;
 	char	**list;
 
 	if (s == NULL)
 		return (NULL);
-	list_size = count_words(s, c);
-	list = (char **)malloc(sizeof(char *) * (list_size + 1));
+	*list_size = count_words(s, c);
+	list = (char **)malloc(sizeof(char *) * (*list_size + 1));
 	if (list == NULL)
 		return (NULL);
 	if (set_split_str(s, c, list))
 	{
-		list[list_size] = NULL;
+		list[*list_size] = NULL;
 		return (list);
 	}
 	free_all(list);
