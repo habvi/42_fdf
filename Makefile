@@ -1,4 +1,4 @@
-SRCS	= $(wildcard *.c)
+SRCS	= $(wildcard *.c) # todo
 OBJDIR 	= ./obj/
 OBJS	= $(addprefix $(OBJDIR), $(SRCS:.c=.o))
 

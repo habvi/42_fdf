@@ -1,4 +1,6 @@
 obj/
 fdf
-minilibx/
+fdf_linux
 test_main/
+minilibx/
+__MACOSX/
