@@ -65,10 +65,12 @@ size_t	read_map(int fd, t_list **data)
 		line = get_next_line(fd);
 		if (line == NULL) // errno
 			break ;
-		// remove '\n'
+		// remove '\n' here?
 		node = ft_lstnew(line);
 		// todo: check map malloc error
+		// todo: add_back -> keep tail
 		ft_lstadd_back(data, node);
+		// todo: all node keeps head
 		line_count++;
 	}
 	return (line_count);
@@ -79,9 +81,9 @@ static void	del(void *content)
 	free(content);
 }
 
-void	clear_data(t_list **data)
+void	clear_data(t_list *data)
 {
-	ft_lstclear(data, del);
+	ft_lstclear(&data, del);
 }
 
 static void	print_list_content(void *content)
@@ -106,7 +108,7 @@ int	main(int argc, char *argv[])
 	// debug_lst(data, line_count); // todo: erase
 	if (data == NULL)  // empty file
 		exit (0);
-	draw_map(&data, line_count);
+	draw_map(data, line_count);
 	return (0);
 }
 
