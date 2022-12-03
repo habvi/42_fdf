@@ -7,7 +7,6 @@ typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
-	// struct s_list	*head;
 }	t_list;
 
 void	ft_lstadd_back(t_list **lst, t_list *new);

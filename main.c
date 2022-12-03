@@ -58,8 +58,10 @@ size_t	read_map(int fd, t_list **data)
 	char	*line;
 	t_list	*node;
 	size_t	line_count;
+	t_list	*head;
 
 	line_count = 0;
+	head = *data;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -67,8 +69,11 @@ size_t	read_map(int fd, t_list **data)
 			break ;
 		// remove '\n' here?
 		node = ft_lstnew(line);
-		// todo: check map malloc error
-		// todo: add_back -> keep tail
+		// todo: check data malloc error, free head ~ now
+		if (errno)
+			return (0);
+		if (line_count >= 2)
+			data = &((*data)->next);
 		ft_lstadd_back(data, node);
 		// todo: all node keeps head
 		line_count++;
@@ -105,6 +110,7 @@ int	main(int argc, char *argv[])
 
 	data = NULL;
 	line_count = read_map(fd, &data);
+	// if (errno) : malloc fail
 	// debug_lst(data, line_count); // todo: erase
 	if (data == NULL)  // empty file
 		exit (0);
@@ -114,6 +120,6 @@ int	main(int argc, char *argv[])
 
 // __attribute__((destructor)) static void	destructor(void)
 // {
-// 	system("leaks ~");
+// 	system("");
 // 	exit (1);
 // }
