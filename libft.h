@@ -5,7 +5,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
-bool	ft_atoi_with_bool(const char *str, size_t *num);
+bool	ft_atoi_with_bool(const char *str, int *num);
 bool	ft_isdigit(int c);
 char	**ft_split(char const *s, char c, size_t *list_size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

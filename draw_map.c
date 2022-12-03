@@ -12,7 +12,7 @@ void	exit_malloc_error(t_map *map, t_list *data)
 
 void	exit_map_error(void)
 {
-	printf("Error: invalid map\n");
+	printf(INVALID_MAP_MSG);
 	exit (1);
 }
 
@@ -48,7 +48,7 @@ void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
 	char	**list;
 	size_t	list_size;
 	size_t	j;
-	size_t	num;
+	int		num;
 	bool	is_invalid_num;
 
 	list = ft_split(data->content, ' ', &list_size);
@@ -67,6 +67,7 @@ void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
 	{
 		// exit_map_width_error(); free all
 		printf("Error: width\n");
+		printf(INVALID_MAP_MSG);
 		exit (1);
 	}
 	// todo: add color_map, error
@@ -77,7 +78,7 @@ void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
 	{
 		is_invalid_num &= ft_atoi_with_bool(list[j], &num);
 		map->height_map[i][j] = num;
-		printf("%s/%zu ", list[j], num);
+		printf("%s/%d ", list[j], num);
 		j++;
 	}
 	printf("\n");
@@ -85,7 +86,7 @@ void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
 	free(map->height_map[i]);
 	if (!is_invalid_num)
 	{
-		printf("Error: overflow\n");
+		printf(INVALID_MAP_MSG);
 		clear_data(head);
 		free(map->height_map);
 		free(map->color_map);

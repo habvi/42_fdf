@@ -13,6 +13,8 @@
 # include "list.h"
 # include "get_next_line.h"
 
+# define INVALID_MAP_MSG	"Error: invalid map\n"
+
 typedef struct s_map
 {
 	size_t	width;
