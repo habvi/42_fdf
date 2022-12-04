@@ -81,27 +81,6 @@ size_t	read_map(int fd, t_list **data)
 	return (line_count);
 }
 
-static void	del(void *content)
-{
-	free(content);
-}
-
-void	clear_data(t_list *data)
-{
-	ft_lstclear(&data, del);
-}
-
-static void	print_list_content(void *content)
-{
-	printf("%s", content);
-}
-
-void	debug_lst(t_list *lst, size_t line_count)
-{
-	printf("%zu lines\n\n", line_count);
-	ft_lstiter(lst, print_list_content);
-}
-
 int	main(int argc, char *argv[])
 {
 	const int	fd = check_args(argc, argv);
@@ -120,6 +99,6 @@ int	main(int argc, char *argv[])
 
 // __attribute__((destructor)) static void	destructor(void)
 // {
-// 	system("");
+// 	system("leaks ~");
 // 	exit (1);
 // }

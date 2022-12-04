@@ -1,6 +1,4 @@
 #include "libft.h"
-#include "fdf.h"
-#include <stdio.h>
 
 static bool	is_space(int c)
 {

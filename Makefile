@@ -17,7 +17,7 @@ $(OBJS_DIR)%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Lmlx_linux -lXext -lX11 -lm minilibx/libmlx_Linux.a
 
 clean:
 	$(RM) -r $(OBJS_DIR)

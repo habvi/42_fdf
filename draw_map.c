@@ -4,9 +4,8 @@
 void	exit_malloc_error(t_map *map, t_list *data)
 {
 	printf("Error no.%d : %s\n", errno, strerror(errno));
-	free(map->height_map);
-	free(map->color_map);
 	clear_data(data);
+	clear_map_to_n(map, 0);
 	exit (errno);
 }
 
@@ -14,33 +13,6 @@ void	exit_map_error(void)
 {
 	printf(INVALID_MAP_MSG);
 	exit (1);
-}
-
-void	debug_print_list(char **list)
-{
-	size_t	i;
-
-	i = 0;
-	while (list[i] != NULL)
-	{
-		printf("%s ", list[i]);
-		i++;
-	}
-	printf("\n");
-}
-
-void	free_all_list(char **list)
-{
-	size_t	i;
-
-	i = 0;
-	while (list[i] != NULL)
-	{
-		free(list[i]);
-		i++;
-	}
-	free(list);
-	list = NULL;
 }
 
 void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
@@ -56,6 +28,7 @@ void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
 		exit_malloc_error(map, head);
 	// todo: width error
 	map->height_map[i] = (int *)malloc(sizeof(int) * list_size);
+	map->color_map[i] = (int *)malloc(sizeof(int) * list_size);
 	if (errno)
 	{
 		// todo: free height_map[0 ~ now]
@@ -71,33 +44,25 @@ void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
 		exit (1);
 	}
 	// todo: add color_map, error
-	// debug_print_list(list);
+	// debug_split_list(list);
 	is_invalid_num = true;
 	j = 0;
 	while (list[j] != NULL)
 	{
 		is_invalid_num &= ft_atoi_with_bool(list[j], &num);
 		map->height_map[i][j] = num;
-		printf("%s/%d ", list[j], num);
+		// printf("%s/%d ", list[j], num);
 		j++;
 	}
-	printf("\n");
-	free_all_list(list);
-	free(map->height_map[i]);
+	// printf("\n");
+	clear_split_list(list);
 	if (!is_invalid_num)
 	{
 		printf(INVALID_MAP_MSG);
 		clear_data(head);
-		free(map->height_map);
-		free(map->color_map);
+		clear_map_to_n(map, i + 1);
 		exit (1);
 	}
-}
-
-void	clear_map(t_map *map)
-{
-	free(map->height_map);
-	free(map->color_map);
 }
 
 void	init_map(t_map *map, t_list *data, size_t line_count)
@@ -138,9 +103,9 @@ void	draw_map(t_list *data, size_t line_count)
 	init_map(&map, data, line_count);
 	// ↓↓↓ before exit: must free(map->height_map, map->color_map) ↓↓↓
 
-	// display_map(map);
+	// display_map(&map);
 
 	// ↑↑↑ before exit: must clear_data(data) ↑↑↑
 	clear_data(data);
-	clear_map(&map);
+	clear_map_to_n(&map, map.height);
 }
