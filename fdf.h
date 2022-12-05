@@ -17,6 +17,7 @@
 # define INVALID_MAP_MSG		"Error: invalid map\n"
 # define WINDOW_WIDTH			1200
 # define WINDOW_HEIGHT			800
+# define PI						(3.14159265358979323846264338327950288)
 # define START_MARGIN			50
 # define SHIFT_X				400
 # define SHIFT_Y				300

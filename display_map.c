@@ -20,14 +20,19 @@ void	calc_coordinates(t_point *point, size_t x, size_t y, size_t z)
 	point->z = z * HEIGHT_MAGNIFICATION;
 }
 
+double	degree_to_radian(int degree)
+{
+	return ((double)degree * PI / 180.0);
+}
+
 void	rotate_to_isometric_projection(t_point *point)
 {
-	const double	cos_degree = 0.37;
-	const double	sin_degree = 0.55;
+	const double	cos_radian = degree_to_radian(30);
+	const double	sin_radian = degree_to_radian(30);
 	t_point	tmp;
 
-	tmp.x = (point->x - point->y) * cos(cos_degree);
-	tmp.y = (point->x + point->y) * sin(sin_degree) - point->z;
+	tmp.x = (point->x - point->y) * cos(cos_radian);
+	tmp.y = (point->x + point->y) * sin(sin_radian) - point->z;
 	point->x = tmp.x + SHIFT_X;
 	point->y = tmp.y + SHIFT_Y;
 }
@@ -88,6 +93,8 @@ void	draw_line_to_right_and_down(t_map *map, t_img_data *img, size_t x, size_t y
 		rotate_to_isometric_projection(&to);
 		draw_line_by_bresenham(from, to, img);
 	}
+	if (y + 1 == map->height && x + 1 == map->width)
+		my_mlx_pixel_put(img, from.x, from.y, 0x0061ff76);
 }
 
 void	set_image(t_map *map, t_img_data *img)
