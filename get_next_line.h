@@ -7,8 +7,9 @@
 # include <limits.h>
 
 # define BUFFER_SIZE 1024
+# define MY_OPEN_MAX 1024
 # define LF         '\n'
-# define READ_ERROR -1 // todo: -> errno
+# define READ_ERROR -1
 
 // get_next_line.c
 char	*get_next_line(int fd);
