@@ -115,19 +115,22 @@ void	set_image(t_map *map, t_img_data *img)
 	}
 }
 
-void	display_map(t_map *map)
+void	display_map(t_map *map, t_for_exit *for_exit)
 {
-	void		*mlx_p;
-	void		*mlx_window_p;
+	t_display	display;
 	t_img_data	img;
 
 	debug_map(map);
-	mlx_p = mlx_init();
-	mlx_window_p = mlx_new_window(mlx_p, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx@hiabe");
-	img.img = mlx_new_image(mlx_p, WINDOW_WIDTH, WINDOW_HEIGHT);
+	display.mlx_p = mlx_init();
+	display.window_p = mlx_new_window(display.mlx_p, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx@hiabe");
+	for_exit->display = &display;
+
+	img.img = mlx_new_image(display.mlx_p, WINDOW_WIDTH, WINDOW_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	set_image(map, &img);
-	mlx_put_image_to_window(mlx_p, mlx_window_p, img.img, 0, 0);
-	mlx_loop(mlx_p);
-	// mlx_destroy_image(mlx_p, img.img);
+	for_exit->img = &img;
+
+	mlx_hook(display.window_p, 2, 1LL << 0, close_window, for_exit);
+	mlx_put_image_to_window(display.mlx_p, display.window_p, img.img, 0, 0);
+	mlx_loop(display.mlx_p);
 }

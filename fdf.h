@@ -6,7 +6,7 @@
 # include <stdlib.h> // malloc, free, exit
 // # include <stdio.h> // perror
 # include <string.h> // strerror
-# include <errno.h>
+# include <errno.h> // todo: fix
 # include <stdbool.h>
 
 # include "libft.h"
@@ -23,6 +23,14 @@
 # define SHIFT_Y				300
 # define PIXEL_SIZE				30
 # define HEIGHT_MAGNIFICATION	2
+
+# define EXIT_SUCCESS			0
+# define KEY_ESC				65307
+
+typedef struct s_display {
+	void	*mlx_p;
+	void	*window_p;
+}	t_display;
 
 typedef struct s_map
 {
@@ -49,6 +57,13 @@ typedef struct s_point
 	int	z;
 }	t_point;
 
+typedef struct s_for_exit {
+	t_display	*display;
+	t_map		*map;
+	t_list		*data;
+	t_img_data	*img;
+}	t_for_exit;
+
 // main.c
 void	is_correct_extension(char *filepath);
 int		check_filepath(char *filepath);
@@ -59,11 +74,12 @@ size_t	read_map(int fd, t_list **data);
 void	draw_map(t_list *data, size_t line_count);
 
 // display_map.c
-void	display_map(t_map *map);
+void	display_map(t_map *map, t_for_exit *for_exit);
 
 // clear.c
 void	clear_split_list(char **list);
 void	clear_data(t_list *data);
 void	clear_map_to_n(t_map *map, size_t n);
+int		close_window(int keycode, t_for_exit *for_exit);
 
 #endif
