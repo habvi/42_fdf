@@ -6,7 +6,7 @@
 # include <stdlib.h> // malloc, free, exit
 // # include <stdio.h> // perror
 # include <string.h> // strerror
-# include <errno.h> // todo: fix
+# include <errno.h> // to do: fix
 # include <stdbool.h>
 
 # include "libft.h"
@@ -15,8 +15,9 @@
 # include "minilibx/mlx.h"
 
 # define INVALID_MAP_MSG		"Error: invalid map\n"
-# define WINDOW_WIDTH			1200
-# define WINDOW_HEIGHT			800
+# define MALLOC_ERROR_MSG		"Error: malloc\n"
+# define WIN_WIDTH				1200
+# define WIN_HEIGHT				800
 # define PI						(3.14159265358979323846264338327950288)
 # define START_MARGIN			50
 # define SHIFT_X				400
@@ -25,6 +26,8 @@
 # define HEIGHT_MAGNIFICATION	2
 
 # define EXIT_SUCCESS			0
+# define EXIT_ERROR				1
+# define OPEN_ERROR				-1
 # define KEY_ESC				65307
 
 typedef struct s_display {
@@ -40,7 +43,7 @@ typedef struct s_map
 	int		**color_map;
 }	t_map;
 
-# include "debug.h" // todo: erase
+# include "debug.h" // to do: erase
 
 typedef struct s_img_data {
 	void	*img;
@@ -65,21 +68,21 @@ typedef struct s_for_exit {
 }	t_for_exit;
 
 // main.c
-void	is_correct_extension(char *filepath);
-int		check_filepath(char *filepath);
-int		check_args(int argc, char *argv[]);
 size_t	read_map(int fd, t_list **data);
+
+// args.c
+int		check_args(int argc, char *argv[]);
 
 // draw_map.c
 void	draw_map(t_list *data, size_t line_count);
-
-// display_map.c
-void	display_map(t_map *map, t_for_exit *for_exit);
 
 // clear.c
 void	clear_split_list(char **list);
 void	clear_data(t_list *data);
 void	clear_map_to_n(t_map *map, size_t n);
 int		close_window(int keycode, t_for_exit *for_exit);
+
+// display_map.c
+void	display_map(t_map *map, t_for_exit *for_exit);
 
 #endif

@@ -1,57 +1,5 @@
 #include "fdf.h"
-#include <stdio.h> // todo: printf -> ft_printf
-
-void	is_correct_extension(char *filepath)
-{
-	const char	extension[] = ".fdf";
-	size_t		len_extension;
-	size_t		len_filepath;
-
-	len_extension = ft_strlen(extension);
-	len_filepath = ft_strlen(filepath);
-	if (len_filepath <= len_extension)
-	{
-		printf("Error: invalid filepath\n");
-		exit (errno);
-	}
-	while (len_extension)
-	{
-		len_extension--;
-		len_filepath--;
-		if (filepath[len_filepath] != extension[len_extension])
-		{
-			printf("Error: invalid file's extension\n");
-			exit (errno);
-		}
-	}
-}
-
-int	check_filepath(char *filepath)
-{
-	int	fd;
-
-	is_correct_extension(filepath);
-	fd = open(filepath, O_RDWR);
-	if (errno)
-	{
-		printf("Error no.%d : %s\n", errno, strerror(errno));
-		exit (errno);
-	}
-	return (fd);
-}
-
-int	check_args(int argc, char *argv[])
-{
-	int	fd;
-
-	if (argc != 2)
-	{
-		printf("Error: invalid number of arguments\n");
-		exit (1);
-	}
-	fd = check_filepath(argv[1]);
-	return (fd);
-}
+#include <stdio.h> // to do: printf -> ft_printf
 
 size_t	read_map(int fd, t_list **data)
 {
@@ -62,20 +10,20 @@ size_t	read_map(int fd, t_list **data)
 
 	line_count = 0;
 	head = *data;
-	while (1)
+	while (true)
 	{
 		line = get_next_line(fd);
-		if (line == NULL) // errno
+		if (line == NULL)
 			break ;
 		// remove '\n' here?
 		node = ft_lstnew(line);
-		// todo: check data malloc error, free head ~ now
+		// to do: check data malloc error, free head ~ now
 		if (errno)
 			return (0);
 		if (line_count >= 2)
 			data = &((*data)->next);
 		ft_lstadd_back(data, node);
-		// todo: all node keeps head
+		// to do: all node keeps head
 		line_count++;
 	}
 	return (line_count);
@@ -89,9 +37,9 @@ int	main(int argc, char *argv[])
 
 	data = NULL;
 	line_count = read_map(fd, &data);
-	// if (errno) : malloc fail
-	// debug_lst(data, line_count); // todo: erase
-	if (data == NULL)  // empty file
+	// malloc fail
+	// debug_lst(data, line_count); // to do: erase
+	if (data == NULL) // empty file
 		exit (0);
 	draw_map(data, line_count);
 	return (0);
