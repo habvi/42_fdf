@@ -9,10 +9,14 @@
 # include <errno.h> // to do: fix
 # include <stdbool.h>
 
-# include "libft.h"
-# include "list.h"
-# include "get_next_line.h"
-# include "minilibx/mlx.h"
+// # include "libft.h"
+// # include "list.h"
+// # include "get_next_line.h"
+// # include "minilibx/mlx.h"
+# include "../libft/include/libft.h"
+# include "../libft/include/list.h"
+# include "../libft/include/get_next_line.h"
+# include "../minilibx/mlx.h"
 
 # define INVALID_MAP_MSG		"Error: invalid map\n"
 # define MALLOC_ERROR_MSG		"Error: malloc\n"

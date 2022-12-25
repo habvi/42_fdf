@@ -1,29 +1,43 @@
-SRCS		= $(wildcard *.c) # todo
-OBJS_DIR	= ./objs/
-# OBJS		= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
-OBJS		= $(SRCS:%.c=$(OBJS_DIR)%.o)
-
-CC			= clang
-CFLAGS		= -Wall -Wextra -Werror
-
 NAME		= fdf
 
-all: $(OBJS_DIR) $(NAME)
+SRC			=	args.c \
+				clear.c \
+				debug.c \
+				display_map.c \
+				draw_map.c \
+				main.c
 
-$(OBJS_DIR):
-	mkdir -p objs
+SRC_DIR		=	./src/
+OBJS_DIR	=	./obj/
+INCLUDE_DIR	=	./include/
+INCLUDES	=	-I $(INCLUDE_DIR)
 
-$(OBJS_DIR)%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+SRCS		=	$(addprefix $(SRC_DIR), $(SRC))
+OBJS		=	$(addprefix $(OBJS_DIR), $(SRC:%.c=%.o))
+LIBFT		=	libft.a
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Lmlx_linux -lXext -lX11 -lm minilibx/libmlx_Linux.a
+# -> cc
+CC			=	clang
+CFLAGS		=	-Wall -Wextra -Werror
+
+all: $(NAME)
+
+$(OBJS_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p obj
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) -Lmlx_linux -lXext -lX11 -lm minilibx/libmlx_Linux.a
+
+$(LIBFT):
+	$(MAKE) -C ./libft
+	cp libft/$(LIBFT) $@
 
 clean:
-	$(RM) -r $(OBJS_DIR)
+	$(RM) -r $(OBJS_DIR) libft/$(OBJS_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(LIBFT) libft/$(LIBFT)
 
 re: fclean all
 

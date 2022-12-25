@@ -1,4 +1,5 @@
-objs/
+obj/
+*.a
 fdf
 fdf_linux
 test_main/
