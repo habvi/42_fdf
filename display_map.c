@@ -1,7 +1,7 @@
 #include "fdf.h"
 #include <stdlib.h>
 #include <math.h>
-#include <stdio.h> // todo: printf -> ft_printf
+#include <stdio.h> // to do: printf -> ft_printf
 
 void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
 {
@@ -29,7 +29,7 @@ void	rotate_to_isometric_projection(t_point *point)
 {
 	const double	cos_radian = degree_to_radian(30);
 	const double	sin_radian = degree_to_radian(30);
-	t_point	tmp;
+	t_point			tmp;
 
 	tmp.x = (point->x - point->y) * cos(cos_radian);
 	tmp.y = (point->x + point->y) * sin(sin_radian) - point->z;
@@ -39,42 +39,40 @@ void	rotate_to_isometric_projection(t_point *point)
 
 void	draw_line_by_bresenham(t_point from, t_point to, t_img_data *img)
 {
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	err2;
+	t_xy	dxy;
+	t_xy	sxy;
+	int		err;
+	int		err2;
 
 	if (from.x < to.x)
-		sx = 1;
+		sxy.x = 1;
 	else
-		sx = -1;
+		sxy.x = -1;
 	if (from.y < to.y)
-		sy = 1;
+		sxy.y = 1;
 	else
-		sy = -1;
-	dx = abs(to.x - from.x);
-	dy = abs(to.y - from.y);
-	err = dx - dy;
+		sxy.y = -1;
+	dxy.x = abs(to.x - from.x);
+	dxy.y = abs(to.y - from.y);
+	err = dxy.x - dxy.y;
 	while (!(from.x == to.x && from.y == to.y))
 	{
 		my_mlx_pixel_put(img, from.x, from.y, 0x0061ff76);
 		err2 = 2 * err;
-		if (err2 > -dy)
+		if (err2 > -dxy.y)
 		{
-			err -= dy;
-			from.x += sx;
+			err -= dxy.y;
+			from.x += sxy.x;
 		}
-		if (err2 < dx)
+		if (err2 < dxy.x)
 		{
-			err += dx;
-			from.y += sy;
+			err += dxy.x;
+			from.y += sxy.y;
 		}
 	}
 }
 
-void	draw_line_to_right_and_down(t_map *map, t_img_data *img, size_t x, size_t y)
+void	draw_line_right_down(t_map *map, t_img_data *img, size_t x, size_t y)
 {
 	t_point	from;
 	t_point	to;
@@ -108,7 +106,7 @@ void	set_image(t_map *map, t_img_data *img)
 		x = 0;
 		while (x < map->width)
 		{
-			draw_line_to_right_and_down(map, img, x, y);
+			draw_line_right_down(map, img, x, y);
 			x++;
 		}
 		y++;
@@ -118,19 +116,23 @@ void	set_image(t_map *map, t_img_data *img)
 void	display_map(t_map *map, t_for_exit *for_exit)
 {
 	t_display	display;
+	char		*my_title;
 	t_img_data	img;
 
 	debug_map(map);
 	display.mlx_p = mlx_init();
-	display.window_p = mlx_new_window(display.mlx_p, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx@hiabe");
+	my_title = "mlx@hiabe";
+	display.win_p = mlx_new_window(\
+					display.mlx_p, WIN_WIDTH, WIN_HEIGHT, my_title);
 	for_exit->display = &display;
-
-	img.img = mlx_new_image(display.mlx_p, WINDOW_WIDTH, WINDOW_HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	// img
+	img.img = mlx_new_image(display.mlx_p, WIN_WIDTH, WIN_HEIGHT);
+	img.addr = mlx_get_data_addr(\
+				img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	set_image(map, &img);
 	for_exit->img = &img;
-
-	mlx_hook(display.window_p, 2, 1LL << 0, close_window, for_exit);
-	mlx_put_image_to_window(display.mlx_p, display.window_p, img.img, 0, 0);
+	// 
+	mlx_hook(display.win_p, 2, 1LL << 0, close_window, for_exit);
+	mlx_put_image_to_window(display.mlx_p, display.win_p, img.img, 0, 0);
 	mlx_loop(display.mlx_p);
 }

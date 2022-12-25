@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include <stdio.h> // todo: printf -> ft_printf
+#include <stdio.h> // to do: printf -> ft_printf
 
 void	exit_malloc_error(t_map *map, t_list *data)
 {
@@ -26,12 +26,12 @@ void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
 	list = ft_split(data->content, ' ', &list_size);
 	if (errno)
 		exit_malloc_error(map, head);
-	// todo: width error
+	// to do: width error
 	map->height_map[i] = (int *)malloc(sizeof(int) * list_size);
 	map->color_map[i] = (int *)malloc(sizeof(int) * list_size);
 	if (errno)
 	{
-		// todo: free height_map[0 ~ now]
+		// to do: free height_map[0 ~ now]
 		exit_malloc_error(map, head);
 	}
 	if (map->width == 0)
@@ -43,7 +43,7 @@ void	set_data_to_map(t_map *map, t_list *head, t_list *data, size_t i)
 		printf(INVALID_MAP_MSG);
 		exit (1);
 	}
-	// todo: add color_map, error
+	// to do: add color_map, error
 	// debug_split_list(list);
 	is_invalid_num = true;
 	j = 0;
@@ -74,8 +74,10 @@ void	init_map(t_map *map, t_list *data, size_t line_count)
 	head = data;
 	map->width = 0;
 	map->height = line_count;
-	map->height_map = (int **)malloc(sizeof(int *) * map->height); // todo: NULL
-	map->color_map = (int **)malloc(sizeof(int *) * map->height); // todo: NULL
+	map->height_map = (int **)malloc(sizeof(int *) * map->height);
+	// to do: NULL
+	map->color_map = (int **)malloc(sizeof(int *) * map->height);
+	// to do: NULL
 	if (errno)
 		exit_malloc_error(map, head);
 	i = 0;

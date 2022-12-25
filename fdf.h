@@ -32,7 +32,7 @@
 
 typedef struct s_display {
 	void	*mlx_p;
-	void	*window_p;
+	void	*win_p;
 }	t_display;
 
 typedef struct s_map
@@ -52,6 +52,12 @@ typedef struct s_img_data {
 	int		line_length;
 	int		endian;
 }	t_img_data;
+
+typedef struct s_xy
+{
+	int	x;
+	int	y;
+}	t_xy;
 
 typedef struct s_point
 {
