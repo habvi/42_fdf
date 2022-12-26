@@ -3,11 +3,13 @@ NAME		=	fdf
 SRC			=	args.c \
 				clear.c \
 				debug.c \
-				display_map.c \
-				draw_map.c \
+				display.c \
+				draw_mlx.c \
+				exit.c \
 				main.c \
-				read.c \
-				utils.c
+				parse.c \
+				parse2.c \
+				read.c
 
 SRC_DIR		=	./src/
 OBJ_DIR		=	./obj/

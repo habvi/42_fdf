@@ -113,7 +113,7 @@ void	set_image(t_map *map, t_img_data *img)
 	}
 }
 
-void	display_map(t_map *map, t_for_exit *for_exit)
+void	draw_map(t_map *map, t_for_exit *for_exit)
 {
 	t_display	display;
 	char		*my_title;

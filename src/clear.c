@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include <stdio.h> // to do: erase printf
 
 void	clear_split_list(char **list)
 {
@@ -46,7 +47,7 @@ int	close_window(int keycode, t_for_exit *for_exit)
 	{
 		clear_data(for_exit->data);
 		clear_map_to_n(for_exit->map, for_exit->map->height);
-
+		// mlx
 		mlx_destroy_image(for_exit->display->mlx_p, for_exit->img->img);
 		mlx_destroy_window(for_exit->display->mlx_p, for_exit->display->win_p);
 		mlx_destroy_display(for_exit->display->mlx_p);
