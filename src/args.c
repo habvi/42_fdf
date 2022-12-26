@@ -1,12 +1,4 @@
 #include "fdf.h"
-#include <stdio.h> // to do: printf -> ft_printf
-
-static void	error_and_exit(const char *msg, char *ptr, int status)
-{
-	printf("Error: %s\n", msg);
-	free(ptr);
-	exit (status);
-}
 
 static void	is_correct_extension(const char *filepath)
 {

@@ -13,6 +13,7 @@
 // # include "list.h"
 // # include "get_next_line.h"
 // # include "minilibx/mlx.h"
+
 # include "../libft/include/libft.h"
 # include "../libft/include/list.h"
 # include "../libft/include/get_next_line.h"
@@ -77,7 +78,10 @@ typedef struct s_for_exit {
 	t_img_data	*img;
 }	t_for_exit;
 
-// main.c
+// utils.c
+void    error_and_exit(const char *msg, char *ptr, int status);
+
+// read.c
 size_t	read_map(int fd, t_list **data);
 
 // args.c
