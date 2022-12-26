@@ -1,4 +1,4 @@
-NAME		= fdf
+NAME		=	fdf
 
 SRC			=	args.c \
 				clear.c \
