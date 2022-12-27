@@ -1,34 +1,36 @@
 #include "fdf.h"
-#include <stdio.h> // to do: printf -> ft_printf
+
+static void	add_line_to_data(t_list **data, const t_list *head, char *line, size_t line_count)
+{
+	t_list	*node;
+
+	node = ft_lstnew(line);
+	if (node == NULL)
+	{
+		clear_data((t_list *)head);
+		print_msg_and_exit(MALLOC_ERROR_MSG, NULL, EXIT_ERROR);
+	}
+	if (line_count >= 2)
+		data = &((*data)->next);
+	ft_lstadd_back(data, node);
+	// to do: all node keeps head
+}
 
 // t_list *data ??
 size_t	read_map(int fd, t_list **data)
 {
-	char	*line;
-	t_list	*node;
-	size_t	line_count;
-	t_list	*head;
-	char	*msg;
+	size_t			line_count;
+	char			*line;
+	const t_list	*head = *data;
+	char			*msg;
 
 	line_count = 0;
-	head = *data;
 	while (true)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		// remove '\n' here?
-		node = ft_lstnew(line);
-		// to do: check data malloc error, free head ~ now
-		if (node == NULL)
-		{
-			clear_data(*data);
-			return (0);
-		}
-		if (line_count >= 2)
-			data = &((*data)->next);
-		ft_lstadd_back(data, node);
-		// to do: all node keeps head
+		add_line_to_data(data, head, line, line_count);
 		line_count++;
 	}
 	if (*data == NULL)
