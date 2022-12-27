@@ -36,6 +36,11 @@
 # define OPEN_ERROR				-1
 # define KEY_ESC				65307
 
+typedef struct s_info {
+	t_list			*data;
+	const t_list	*head;
+}	t_info;
+
 typedef struct s_display {
 	void	*mlx_p;
 	void	*win_p;

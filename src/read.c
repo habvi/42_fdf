@@ -1,6 +1,7 @@
 #include "fdf.h"
 
-static void	add_line_to_data(t_list **data, const t_list *head, char *line, size_t line_count)
+static void	add_line_to_data(\
+			t_list **data, const t_list *head, char *line, size_t line_count)
 {
 	t_list	*node;
 
@@ -13,7 +14,6 @@ static void	add_line_to_data(t_list **data, const t_list *head, char *line, size
 	if (line_count >= 2)
 		data = &((*data)->next);
 	ft_lstadd_back(data, node);
-	// to do: all node keeps head
 }
 
 // t_list *data ??
@@ -21,7 +21,7 @@ size_t	read_map(int fd, t_list **data)
 {
 	size_t			line_count;
 	char			*line;
-	const t_list	*head = *data;
+	const t_list	*head;
 	char			*msg;
 
 	line_count = 0;
@@ -31,6 +31,8 @@ size_t	read_map(int fd, t_list **data)
 		if (line == NULL)
 			break ;
 		add_line_to_data(data, head, line, line_count);
+		if (!line_count)
+			head = *data;
 		line_count++;
 	}
 	if (*data == NULL)

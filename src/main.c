@@ -1,14 +1,16 @@
 #include "fdf.h"
+#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
 	const int	fd = check_args(argc, argv);
-	t_list		*data;
+	t_info		info;
 	size_t		line_count;
 
-	data = NULL;
-	line_count = read_map(fd, &data);
-	display_map(data, line_count);
+	info.data = NULL;
+	line_count = read_map(fd, &info.data);
+	info.head = info.data;
+	display_map(info.data, line_count);
 	return (0);
 }
 
