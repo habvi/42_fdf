@@ -4,7 +4,6 @@ SRC			=	args.c \
 				clear.c \
 				debug.c \
 				display.c \
-				draw_mlx.c \
 				exit.c \
 				main.c \
 				parse.c \

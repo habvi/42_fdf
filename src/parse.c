@@ -1,8 +1,11 @@
 #include "fdf.h"
 #include <stdio.h> // to do: printf -> ft_printf
 
-static void	init_map(t_map *map, size_t line_count, const t_list *data)
+static void	init_map(t_info *info, size_t line_count)
 {
+	t_map	*map;
+
+	map = info->map;
 	map->width = 0;
 	map->height = line_count;
 	// ft_calloc?
@@ -10,16 +13,17 @@ static void	init_map(t_map *map, size_t line_count, const t_list *data)
 	// ft_calloc?
 	map->color_map = (int **)malloc(sizeof(int *) * map->height);
 	if (map->height_map == NULL || map->color_map == NULL)
-		clear_and_exit(map, data, MALLOC_ERROR_MSG, 0);
+		clear_and_exit(info, MALLOC_ERROR_MSG, 0);
 }
 
-void	parse_map(t_map *map, t_list *data, size_t line_count)
+void	parse_map(t_info *info, size_t line_count)
 {
-	const t_list	*head = data;
-	size_t			i;
-	size_t			len;
+	t_list	*data;
+	size_t	i;
+	size_t	len;
 
-	init_map(map, line_count, head);
+	init_map(info, line_count);
+	data = info->data;
 	i = 0;
 	while (data)
 	{
@@ -30,7 +34,7 @@ void	parse_map(t_map *map, t_list *data, size_t line_count)
 			len--;
 		}
 		// printf("|%s| %zu\n", data->content, len);
-		set_data_to_map(map, head, data, i);
+		set_data_to_map(info, data, i);
 		// set_height_map, set_color_map, error
 		data = data->next;
 		i++;

@@ -40,18 +40,19 @@ void	clear_map_to_n(t_map *map, size_t n)
 	free(map->color_map);
 }
 
-int	close_window(int keycode, t_for_exit *for_exit)
+// only one ptr
+int	close_window(int keycode, t_mlx *mlxs)
 {
 	printf("keycode : %d\n", keycode);
 	if (keycode == KEY_ESC)
 	{
-		clear_data(for_exit->data);
-		clear_map_to_n(for_exit->map, for_exit->map->height);
+		clear_data(mlxs->data);
+		clear_map_to_n(mlxs->map, mlxs->map->height);
 		// mlx
-		mlx_destroy_image(for_exit->display->mlx_p, for_exit->img->img);
-		mlx_destroy_window(for_exit->display->mlx_p, for_exit->display->win_p);
-		mlx_destroy_display(for_exit->display->mlx_p);
-		free(for_exit->display->mlx_p);
+		mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
+		mlx_destroy_window(mlxs->display->mlx_p, mlxs->display->win_p);
+		mlx_destroy_display(mlxs->display->mlx_p);
+		free(mlxs->display->mlx_p);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

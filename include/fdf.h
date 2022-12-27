@@ -36,16 +36,6 @@
 # define OPEN_ERROR				-1
 # define KEY_ESC				65307
 
-typedef struct s_info {
-	t_list			*data;
-	const t_list	*head;
-}	t_info;
-
-typedef struct s_display {
-	void	*mlx_p;
-	void	*win_p;
-}	t_display;
-
 typedef struct s_map
 {
 	size_t	width;
@@ -53,6 +43,17 @@ typedef struct s_map
 	int		**height_map;
 	int		**color_map;
 }	t_map;
+
+typedef struct s_info {
+	t_list			*data;
+	const t_list	*head;
+	t_map			*map;
+}	t_info;
+
+typedef struct s_display {
+	void	*mlx_p;
+	void	*win_p;
+}	t_display;
 
 # include "debug.h" // to do: erase
 
@@ -77,16 +78,16 @@ typedef struct s_point
 	int	z;
 }	t_point;
 
-typedef struct s_for_exit {
+typedef struct s_mlx {
 	t_display	*display;
+	t_img_data	*img;
 	t_map		*map;
 	t_list		*data;
-	t_img_data	*img;
-}	t_for_exit;
+}	t_mlx;
 
 // exit.c
 void	print_msg_and_exit(const char *msg, char *ptr, const int status);
-void	clear_and_exit(t_map *map, const t_list *data, const char *msg, const int n);
+void	clear_and_exit(t_info *info, const char *msg, const int n);
 
 // args.c
 int		check_args(int argc, char *argv[]);
@@ -98,18 +99,15 @@ size_t	read_map(int fd, t_list **data);
 void	clear_split_list(char **list);
 void	clear_data(t_list *data);
 void	clear_map_to_n(t_map *map, size_t n);
-int		close_window(int keycode, t_for_exit *for_exit);
+int		close_window(int keycode, t_mlx *mlxs);
 
 // parse.c
-void	parse_map(t_map *map, t_list *data, size_t line_count);
+void	parse_map(t_info *info, size_t line_count);
 
 // parse2.c
-void	set_data_to_map(t_map *map, const t_list *head, t_list *data, size_t i);
+void	set_data_to_map(t_info *info, t_list *data, size_t i);
 
-// display.c
-void	display_map(t_list *data, size_t line_count);
-
-// draw_mlx.c
-void	draw_map(t_map *map, t_for_exit *for_exit);
+// display_map.c
+void	display_map(t_info *info);
 
 #endif
