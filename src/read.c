@@ -9,7 +9,7 @@ static void	add_line_to_data(\
 	if (node == NULL)
 	{
 		clear_data((t_list *)head);
-		print_msg_and_exit(MALLOC_ERROR_MSG, NULL, EXIT_ERROR);
+		print_msg_and_exit(MALLOC_ERROR_MSG, NULL, ERROR);
 	}
 	if (line_count >= 2)
 		data = &((*data)->next);
@@ -38,7 +38,7 @@ size_t	read_map(int fd, t_list **data)
 	if (*data == NULL)
 	{
 		msg = "empty file";
-		print_msg_and_exit(msg, NULL, EXIT_ERROR);
+		print_msg_and_exit(msg, NULL, ERROR);
 	}
 	return (line_count);
 }

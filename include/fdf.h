@@ -30,14 +30,31 @@
 # define PIXEL_SIZE				30
 # define HEIGHT_MAGNIFICATION	2
 
-# define SUCCESS				0
-# define EXIT_SUCCESS			0
-# define EXIT_ERROR				1
 # define OPEN_ERROR				-1
-# define KEY_ESC				65307
 
-typedef struct s_map
-{
+typedef enum e_status {
+	SUCCESS = 0,
+	ERROR = 1
+}	t_status;
+
+typedef enum e_key {
+	// KEY_UP = 65362,
+	// KEY_DOWN = 65364,
+	// KEY_LEFT = 65361,
+	// KEY_RIGHT = 65363,
+	// KEY_ONE = 49,
+	// KEY_TWO = 50,
+	KEY_ESC = 65307
+}	t_key;
+
+typedef enum e_mouse {
+	MOUSE_LEFT = 1,
+	MOUSE_RIGHT = 3,
+	// MOUSE_UP = 4,
+	// MOUSE_DOWN = 5
+}	t_mouse;
+
+typedef struct s_map {
 	size_t	width;
 	size_t	height;
 	int		**height_map;
@@ -65,14 +82,12 @@ typedef struct s_img_data {
 	int		endian;
 }	t_img_data;
 
-typedef struct s_xy
-{
+typedef struct s_xy {
 	int	x;
 	int	y;
 }	t_xy;
 
-typedef struct s_point
-{
+typedef struct s_point {
 	int	x;
 	int	y;
 	int	z;

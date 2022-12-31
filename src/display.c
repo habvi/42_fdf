@@ -96,7 +96,7 @@ void	draw_line_right_down(t_map *map, t_img_data *img, size_t x, size_t y)
 		my_mlx_pixel_put(img, from.x, from.y, 0x0061ff76);
 }
 
-void	set_image(t_map *map, t_img_data *img)
+void	draw_lines(t_map *map, t_img_data *img)
 {
 	size_t	x;
 	size_t	y;
@@ -114,6 +114,45 @@ void	set_image(t_map *map, t_img_data *img)
 	}
 }
 
+void	set_t_mlxs(\
+				t_mlx *mlxs, t_display *display, t_img_data *img, t_info *info)
+{
+	mlxs->display = display;
+	mlxs->img = img;
+	mlxs->map = info->map;
+	mlxs->data = info->data;
+}
+
+void	set_window(t_mlx *mlxs, char *my_title)
+{
+	mlxs->display->mlx_p = mlx_init();
+	mlxs->display->win_p = mlx_new_window(\
+						mlxs->display->mlx_p, WIN_WIDTH, WIN_HEIGHT, my_title);
+}
+
+void	set_image(t_mlx *mlxs)
+{
+	// img
+	mlxs->img->img = mlx_new_image(mlxs->display->mlx_p, WIN_WIDTH, WIN_HEIGHT);
+	mlxs->img->addr = mlx_get_data_addr(\
+								mlxs->img->img, &mlxs->img->bits_per_pixel, \
+								&mlxs->img->line_length, &mlxs->img->endian);
+	draw_lines(mlxs->map, mlxs->img);
+}
+
+int	mouse_hook(int mouse_code, t_mlx *mlxs)
+{
+	printf("mousecode : %d\n", mouse_code);
+	(void)mlxs;
+	return (SUCCESS);
+}
+
+void	set_hook(t_mlx *mlxs)
+{
+	mlx_hook(mlxs->display->win_p, 2, 1LL << 0, close_window, mlxs);
+	mlx_mouse_hook(mlxs->display->win_p, mouse_hook, mlxs);
+}
+
 void	display_map(t_info *info)
 {
 	t_mlx		mlxs;
@@ -121,22 +160,13 @@ void	display_map(t_info *info)
 	char		*my_title;
 	t_img_data	img;
 
-	debug_map(info->map);
-	display.mlx_p = mlx_init();
+	debug_map(info->map); // to do: erase
+	set_t_mlxs(&mlxs, &display, &img, info);
 	my_title = "mlx@hiabe";
-	display.win_p = mlx_new_window(\
-					display.mlx_p, WIN_WIDTH, WIN_HEIGHT, my_title);
-	// img
-	img.img = mlx_new_image(display.mlx_p, WIN_WIDTH, WIN_HEIGHT);
-	img.addr = mlx_get_data_addr(\
-				img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	set_image(info->map, &img);
-	// ---
-	mlxs.display = &display;
-	mlxs.img = &img;
-	mlxs.map = info->map;
-	mlxs.data = info->data;
-	mlx_hook(display.win_p, 2, 1LL << 0, close_window, &mlxs);
+	set_window(&mlxs, my_title);
+	set_image(&mlxs);
+	set_hook(&mlxs);
+
 	mlx_put_image_to_window(display.mlx_p, display.win_p, img.img, 0, 0);
 	mlx_loop(display.mlx_p);
 }

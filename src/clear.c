@@ -53,7 +53,7 @@ int	close_window(int keycode, t_mlx *mlxs)
 		mlx_destroy_window(mlxs->display->mlx_p, mlxs->display->win_p);
 		mlx_destroy_display(mlxs->display->mlx_p);
 		free(mlxs->display->mlx_p);
-		exit(EXIT_SUCCESS);
+		exit(SUCCESS);
 	}
 	return (0);
 }
