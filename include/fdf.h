@@ -21,14 +21,15 @@
 
 # define INVALID_MAP_MSG		"invalid map\n"
 # define MALLOC_ERROR_MSG		"malloc\n"
-# define WIN_WIDTH				1200
-# define WIN_HEIGHT				800
-# define PI						(3.14159265358979323846264338327950288)
-# define START_MARGIN			50
-# define SHIFT_X				400
-# define SHIFT_Y				300
-# define PIXEL_SIZE				30
+
+# define WIN_HEIGHT				720
+# define WIN_WIDTH				1280
+
+# define PIXEL_SIZE				50
 # define HEIGHT_MAGNIFICATION	2
+
+# define PI						(3.14159265358979323846264338327950288)
+# define ANGLE					35
 
 # define OPEN_ERROR				-1
 
@@ -36,23 +37,6 @@ typedef enum e_status {
 	SUCCESS = 0,
 	ERROR = 1
 }	t_status;
-
-typedef enum e_key {
-	// KEY_UP = 65362,
-	// KEY_DOWN = 65364,
-	// KEY_LEFT = 65361,
-	// KEY_RIGHT = 65363,
-	// KEY_ONE = 49,
-	// KEY_TWO = 50,
-	KEY_ESC = 65307
-}	t_key;
-
-typedef enum e_mouse {
-	MOUSE_LEFT = 1,
-	MOUSE_RIGHT = 3,
-	// MOUSE_UP = 4,
-	// MOUSE_DOWN = 5
-}	t_mouse;
 
 typedef struct s_map {
 	size_t	width;
@@ -74,13 +58,13 @@ typedef struct s_display {
 
 # include "debug.h" // to do: erase
 
-typedef struct s_img_data {
+typedef struct s_img {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_img_data;
+}	t_img;
 
 typedef struct s_xy {
 	int	x;
@@ -95,9 +79,11 @@ typedef struct s_point {
 
 typedef struct s_mlx {
 	t_display	*display;
-	t_img_data	*img;
+	t_img		*img;
 	t_map		*map;
 	t_list		*data;
+	int			delta_x;
+	int			delta_y;
 }	t_mlx;
 
 // exit.c
@@ -124,5 +110,17 @@ void	set_data_to_map(t_info *info, t_list *data, size_t i);
 
 // display_map.c
 void	display_map(t_info *info);
+
+// image.c
+void	my_mlx_pixel_put(t_img *img, int y, int x, int color);
+void	set_image(t_mlx *mlxs);
+
+// math.c
+void	calc_coordinates(t_point *point, size_t x, size_t y, size_t z);
+void	rotate_to_isometric_projection(t_mlx *mlxs, t_point *point);
+void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int color);
+
+// hook.c
+void	set_hook(t_mlx *mlxs);
 
 #endif

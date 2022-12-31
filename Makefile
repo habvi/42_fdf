@@ -5,7 +5,10 @@ SRC			=	args.c \
 				debug.c \
 				display.c \
 				exit.c \
+				hook.c \
+				image.c \
 				main.c \
+				math.c \
 				parse.c \
 				parse2.c \
 				read.c
@@ -21,7 +24,7 @@ SRCS		=	$(addprefix $(SRC_DIR), $(SRC))
 OBJS		=	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))
 LIBFT		=	libft.a
 
-# -> cc
+# to do: -> cc
 CC			=	clang
 CFLAGS		=	-Wall -Wextra -Werror
 MLX_FLAGS	=	-Lmlx_linux -lXext -lX11 -lm

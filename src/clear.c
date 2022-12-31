@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include "hook.h"
 #include <stdio.h> // to do: erase printf
 
 void	clear_split_list(char **list)

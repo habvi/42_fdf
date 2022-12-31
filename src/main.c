@@ -1,5 +1,4 @@
 #include "fdf.h"
-#include <stdio.h>
 
 static void	init_info(t_info *info, t_map *map)
 {
