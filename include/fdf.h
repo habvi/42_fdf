@@ -11,12 +11,10 @@
 
 // # include "libft.h"
 // # include "list.h"
-// # include "get_next_line.h"
 // # include "minilibx/mlx.h"
 
 # include "../libft/include/libft.h"
 # include "../libft/include/list.h"
-# include "../libft/include/get_next_line.h"
 # include "../minilibx/mlx.h"
 
 # define INVALID_MAP_MSG		"invalid map\n"
@@ -25,7 +23,7 @@
 # define WIN_HEIGHT				720
 # define WIN_WIDTH				1280
 
-# define PIXEL_SIZE				50
+# define PIXEL_SIZE				30
 # define HEIGHT_MAGNIFICATION	2
 
 # define PI						(3.14159265358979323846264338327950288)
@@ -100,7 +98,7 @@ size_t	read_map(int fd, t_list **data);
 void	clear_split_list(char **list);
 void	clear_data(t_list *data);
 void	clear_map_to_n(t_map *map, size_t n);
-int		close_window(int keycode, t_mlx *mlxs);
+int		close_window(t_mlx *mlxs);
 
 // parse.c
 void	parse_map(t_info *info, size_t line_count);
@@ -109,18 +107,16 @@ void	parse_map(t_info *info, size_t line_count);
 void	set_data_to_map(t_info *info, t_list *data, size_t i);
 
 // display_map.c
+void	set_image(t_mlx *mlxs);
 void	display_map(t_info *info);
 
 // image.c
 void	my_mlx_pixel_put(t_img *img, int y, int x, int color);
-void	set_image(t_mlx *mlxs);
+void	draw_image(t_mlx *mlxs);
 
 // math.c
 void	calc_coordinates(t_point *point, size_t x, size_t y, size_t z);
 void	rotate_to_isometric_projection(t_mlx *mlxs, t_point *point);
 void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int color);
-
-// hook.c
-void	set_hook(t_mlx *mlxs);
 
 #endif

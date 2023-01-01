@@ -5,10 +5,11 @@ SRC			=	args.c \
 				debug.c \
 				display.c \
 				exit.c \
-				hook.c \
 				image.c \
+				key.c \
 				main.c \
 				math.c \
+				mouse.c \
 				parse.c \
 				parse2.c \
 				read.c

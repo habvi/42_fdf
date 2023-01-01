@@ -1,3 +1,4 @@
+#include "../libft/include/get_next_line.h" // to do: only gnl?
 #include "fdf.h"
 
 static void	add_line_to_data(\

@@ -17,30 +17,33 @@ void	my_mlx_pixel_put(t_img *img, int y, int x, int color)
 	*(unsigned int *)dst = color;
 }
 
+static void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y)
+{
+	calc_coordinates(point, x, y, mlxs->map->height_map[y][x]);
+	rotate_to_isometric_projection(mlxs, point);
+}
+
 static void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y)
 {
 	t_point	from;
 	t_point	to;
 
-	calc_coordinates(&from, x, y, mlxs->map->height_map[y][x]);
-	rotate_to_isometric_projection(mlxs, &from);
+	calc_and_rotate(mlxs, &from, x, y);
 	if (y + 1 < mlxs->map->height)
 	{
-		calc_coordinates(&to, x, y + 1, mlxs->map->height_map[y + 1][x]);
-		rotate_to_isometric_projection(mlxs, &to);
+		calc_and_rotate(mlxs, &to, x, y + 1);
 		draw_line_by_bresenham(mlxs->img, from, to, 0);
 	}
 	if (x + 1 < mlxs->map->width)
 	{
-		calc_coordinates(&to, x + 1, y, mlxs->map->height_map[y][x + 1]);
-		rotate_to_isometric_projection(mlxs, &to);
+		calc_and_rotate(mlxs, &to, x + 1, y);
 		draw_line_by_bresenham(mlxs->img, from, to, 0);
 	}
 	if (y + 1 == mlxs->map->height && x + 1 == mlxs->map->width)
 		my_mlx_pixel_put(mlxs->img, from.y, from.x, 0x0061ff76);
 }
 
-static void	draw_lines(t_mlx *mlxs)
+void	draw_image(t_mlx *mlxs)
 {
 	size_t	x;
 	size_t	y;
@@ -56,15 +59,6 @@ static void	draw_lines(t_mlx *mlxs)
 		}
 		y++;
 	}
-}
-
-void	set_image(t_mlx *mlxs)
-{
-	mlxs->img->img = mlx_new_image(mlxs->display->mlx_p, WIN_WIDTH, WIN_HEIGHT);
-	// error
-	mlxs->img->addr = mlx_get_data_addr(\
-						mlxs->img->img, &mlxs->img->bits_per_pixel, \
-						&mlxs->img->line_length, &mlxs->img->endian);
-	// error
-	draw_lines(mlxs);
+	mlx_put_image_to_window(\
+			mlxs->display->mlx_p, mlxs->display->win_p, mlxs->img->img, 0, 0);
 }
