@@ -4,12 +4,20 @@
 static void	set_t_mlxs(\
 				t_mlx *mlxs, t_display *display, t_img *img, t_info *info)
 {
+	const int	start_y = WIN_HEIGHT * DEFAULT_ZOOM;
+	const int	start_x = WIN_WIDTH * DEFAULT_ZOOM;
+
 	mlxs->display = display;
 	mlxs->img = img;
 	mlxs->map = info->map;
 	mlxs->data = info->data;
-	mlxs->delta_x = 200;
-	mlxs->delta_y = 300;
+	mlxs->zoom = DEFAULT_ZOOM;
+	mlxs->points_distance = \
+						ft_min((WIN_HEIGHT - 2 * start_y) / mlxs->map->height, \
+								(WIN_WIDTH - 2 * start_x) / mlxs->map->width);
+	mlxs->height_emphasis = DEFAULT_HEIGHT_EMPHASIS;
+	mlxs->delta_y = start_y;
+	mlxs->delta_x = start_x * 2;
 }
 
 static void	set_window(t_mlx *mlxs, char *my_title)
@@ -33,7 +41,7 @@ void	set_image(t_mlx *mlxs)
 
 static void	set_hook(t_mlx *mlxs)
 {
-	const long long	exit_mask = 1LL << 17;
+	const long long	exit_mask = 1LL << EXIT_MASK;
 
 	mlx_mouse_hook(mlxs->display->win_p, mouse_hook, mlxs);
 	mlx_key_hook(mlxs->display->win_p, key_hook, mlxs);
@@ -49,6 +57,7 @@ void	display_map(t_info *info)
 
 	debug_map(info->map); // to do: erase
 	set_t_mlxs(&mlxs, &display, &img, info);
+	printf("points distance : %f\n", mlxs.points_distance);
 	my_title = "FdF@hiabe";
 	set_window(&mlxs, my_title);
 	set_image(&mlxs);

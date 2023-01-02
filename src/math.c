@@ -1,13 +1,6 @@
 #include "fdf.h"
 #include <math.h>
 
-void	calc_coordinates(t_point *point, size_t x, size_t y, size_t z)
-{
-	point->x = PIXEL_SIZE * x;
-	point->y = PIXEL_SIZE * y;
-	point->z = z * HEIGHT_MAGNIFICATION;
-}
-
 static double	degree_to_radian(int degree)
 {
 	return ((double)degree * PI / 180.0);

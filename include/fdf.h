@@ -17,19 +17,19 @@
 # include "../libft/include/list.h"
 # include "../minilibx/mlx.h"
 
-# define INVALID_MAP_MSG		"invalid map\n"
-# define MALLOC_ERROR_MSG		"malloc\n"
+# define INVALID_MAP_MSG			"invalid map\n"
+# define MALLOC_ERROR_MSG			"malloc\n"
 
-# define WIN_HEIGHT				720
-# define WIN_WIDTH				1280
+# define WIN_HEIGHT					720
+# define WIN_WIDTH					1280
 
-# define PIXEL_SIZE				30
-# define HEIGHT_MAGNIFICATION	2
+# define DEFAULT_ZOOM				(0.25)
+# define DEFAULT_HEIGHT_EMPHASIS	1
 
-# define PI						(3.14159265358979323846264338327950288)
-# define ANGLE					35
+# define PI							(3.14159265358979323846264338327950288)
+# define ANGLE						35
 
-# define OPEN_ERROR				-1
+# define OPEN_ERROR					-1
 
 typedef enum e_status {
 	SUCCESS = 0,
@@ -80,6 +80,9 @@ typedef struct s_mlx {
 	t_img		*img;
 	t_map		*map;
 	t_list		*data;
+	double		zoom;
+	double		points_distance;
+	int			height_emphasis;
 	int			delta_x;
 	int			delta_y;
 }	t_mlx;

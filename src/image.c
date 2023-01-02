@@ -19,7 +19,9 @@ void	my_mlx_pixel_put(t_img *img, int y, int x, int color)
 
 static void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y)
 {
-	calc_coordinates(point, x, y, mlxs->map->height_map[y][x]);
+	point->x = mlxs->points_distance * x;
+	point->y = mlxs->points_distance * y;
+	point->z = mlxs->map->height_map[y][x] * mlxs->height_emphasis;
 	rotate_to_isometric_projection(mlxs, point);
 }
 
