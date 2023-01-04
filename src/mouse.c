@@ -35,3 +35,9 @@ int	mouse_hook(t_mouse mouse_code, int x, int y, t_mlx *mlxs)
 	}
 	return (SUCCESS);
 }
+
+int	minimize_window(t_mlx *mlxs)
+{
+	draw_image(mlxs);
+	return (SUCCESS);
+}

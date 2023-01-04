@@ -1,5 +1,6 @@
 #include "fdf.h"
 #include "hook.h"
+#include <X11/X.h>
 
 static void	set_t_mlxs(\
 				t_mlx *mlxs, t_display *display, t_img *img, t_info *info)
@@ -41,11 +42,10 @@ void	set_image(t_mlx *mlxs)
 
 static void	set_hook(t_mlx *mlxs)
 {
-	const long long	exit_mask = 1LL << EXIT_MASK;
-
 	mlx_mouse_hook(mlxs->display->win_p, mouse_hook, mlxs);
 	mlx_key_hook(mlxs->display->win_p, key_hook, mlxs);
-	mlx_hook(mlxs->display->win_p, EXIT_EVENT, exit_mask, close_window, mlxs);
+	mlx_hook(mlxs->display->win_p, FocusIn, FocusChangeMask, minimize_window, mlxs);
+	mlx_hook(mlxs->display->win_p, DestroyNotify, StructureNotifyMask, close_window, mlxs);
 }
 
 void	display_map(t_info *info)

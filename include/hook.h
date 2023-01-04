@@ -6,9 +6,6 @@
 # define Z_LOWER_BOUNDS	1
 # define Z_UPPER_BOUNDS	5
 
-# define EXIT_EVENT		33
-# define EXIT_MASK		17
-
 typedef enum e_key {
 	KEY_UP = 65362,
 	KEY_DOWN = 65364,
@@ -28,6 +25,7 @@ typedef enum e_mouse {
 
 // mouse.c
 int	mouse_hook(t_mouse mouse_code, int x, int y, t_mlx *mlxs);
+int	minimize_window(t_mlx *mlxs);
 
 // key.c
 int	key_hook(t_key keycode, t_mlx *mlxs);
