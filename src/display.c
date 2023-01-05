@@ -12,6 +12,7 @@ static void	set_t_mlxs(\
 	mlxs->img = img;
 	mlxs->map = info->map;
 	mlxs->data = info->data;
+	mlxs->is_iso = true;
 	mlxs->zoom = DEFAULT_ZOOM;
 	mlxs->points_distance = \
 						ft_min((WIN_HEIGHT - 2 * start_y) / mlxs->map->height, \
@@ -19,6 +20,8 @@ static void	set_t_mlxs(\
 	mlxs->height_emphasis = DEFAULT_HEIGHT_EMPHASIS;
 	mlxs->delta_y = start_y;
 	mlxs->delta_x = start_x * 2;
+	mlxs->rotate_x_angle = 0;
+	mlxs->rotate_y_angle = 0;
 }
 
 static void	set_window(t_mlx *mlxs, char *my_title)
@@ -42,10 +45,13 @@ void	set_image(t_mlx *mlxs)
 
 static void	set_hook(t_mlx *mlxs)
 {
-	mlx_mouse_hook(mlxs->display->win_p, mouse_hook, mlxs);
-	mlx_key_hook(mlxs->display->win_p, key_hook, mlxs);
-	mlx_hook(mlxs->display->win_p, FocusIn, FocusChangeMask, minimize_window, mlxs);
-	mlx_hook(mlxs->display->win_p, DestroyNotify, StructureNotifyMask, close_window, mlxs);
+	void	*win_p;
+
+	win_p = mlxs->display->win_p;
+	mlx_mouse_hook(win_p, mouse_hook, mlxs);
+	mlx_key_hook(win_p, key_hook, mlxs);
+	mlx_hook(win_p, FocusIn, FocusChangeMask, minimize_window, mlxs);
+	mlx_hook(win_p, DestroyNotify, StructureNotifyMask, close_window, mlxs);
 }
 
 void	display_map(t_info *info)

@@ -2,6 +2,7 @@
 #include "hook.h"
 #include <stdio.h> // to do: erase printf
 
+// parse2
 void	clear_split_list(char **list)
 {
 	size_t	i;
@@ -21,11 +22,13 @@ static void	del(void *content)
 	free(content);
 }
 
+// read, exit
 void	clear_data(t_list *data)
 {
 	ft_lstclear(&data, del);
 }
 
+// exit
 void	clear_map_to_n(t_map *map, size_t n)
 {
 	size_t	i;
@@ -41,6 +44,7 @@ void	clear_map_to_n(t_map *map, size_t n)
 	free(map->color_map);
 }
 
+// key
 int	close_window(t_mlx *mlxs)
 {
 	clear_data(mlxs->data);

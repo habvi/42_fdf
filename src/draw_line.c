@@ -1,22 +1,4 @@
 #include "fdf.h"
-#include <math.h>
-
-static double	degree_to_radian(int degree)
-{
-	return ((double)degree * PI / 180.0);
-}
-
-void	rotate_to_isometric_projection(t_mlx *mlxs, t_point *point)
-{
-	const double	cos_radian = degree_to_radian(ANGLE);
-	const double	sin_radian = degree_to_radian(ANGLE);
-	t_point			tmp;
-
-	tmp.x = (point->x - point->y) * cos(cos_radian);
-	tmp.y = (point->x + point->y) * sin(sin_radian) - point->z;
-	point->x = tmp.x + mlxs->delta_x;
-	point->y = tmp.y + mlxs->delta_y;
-}
 
 static void	set_sxy(t_xy *sxy, t_point *from, t_point *to)
 {

@@ -4,15 +4,16 @@ SRC			=	args.c \
 				clear.c \
 				debug.c \
 				display.c \
+				draw_line.c \
 				exit.c \
 				image.c \
 				key.c \
 				main.c \
-				math.c \
 				mouse.c \
 				parse.c \
 				parse2.c \
-				read.c
+				read.c \
+				rotate.c
 
 SRC_DIR		=	./src/
 OBJ_DIR		=	./obj/

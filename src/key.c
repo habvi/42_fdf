@@ -6,7 +6,21 @@ static bool	is_rolled_key(t_key keycode)
 {
 	return (keycode == KEY_LEFT || keycode == KEY_RIGHT || \
 			keycode == KEY_UP || keycode == KEY_DOWN || \
-			keycode == KEY_ONE || keycode == KEY_TWO);
+			keycode == KEY_ONE || keycode == KEY_TWO || \
+			keycode == KEY_J || keycode == KEY_K || \
+			keycode == KEY_H || keycode == KEY_L);
+}
+
+static void	height_up(t_mlx *mlxs)
+{
+	if (mlxs->height_emphasis < Z_UPPER_BOUNDS)
+		mlxs->height_emphasis += 1;
+}
+
+static void	height_down(t_mlx *mlxs)
+{
+	if (mlxs->height_emphasis > Z_LOWER_BOUNDS)
+		mlxs->height_emphasis -= 1;
 }
 
 static void	move_image(t_key keycode, t_mlx *mlxs)
@@ -20,15 +34,17 @@ static void	move_image(t_key keycode, t_mlx *mlxs)
 	else if (keycode == KEY_DOWN)
 		mlxs->delta_y += SHIFT_WIDTH;
 	else if (keycode == KEY_ONE)
-	{
-		if (mlxs->height_emphasis < Z_UPPER_BOUNDS)
-			mlxs->height_emphasis += 1;
-	}
+		height_up(mlxs);
 	else if (keycode == KEY_TWO)
-	{
-		if (mlxs->height_emphasis > Z_LOWER_BOUNDS)
-			mlxs->height_emphasis -= 1;
-	}
+		height_down(mlxs);
+	else if (keycode == KEY_J)
+		mlxs->rotate_x_angle += ANGLE_ROTATE;
+	else if (keycode == KEY_K)
+		mlxs->rotate_x_angle -= ANGLE_ROTATE;
+	else if (keycode == KEY_H)
+		mlxs->rotate_y_angle -= ANGLE_ROTATE;
+	else if (keycode == KEY_L)
+		mlxs->rotate_y_angle += ANGLE_ROTATE;
 }
 
 int	key_hook(t_key keycode, t_mlx *mlxs)

@@ -2,9 +2,10 @@
 # define HOOK_H
 
 # define SHIFT_WIDTH	20
+# define ANGLE_ROTATE	10
 
 # define Z_LOWER_BOUNDS	1
-# define Z_UPPER_BOUNDS	5
+# define Z_UPPER_BOUNDS	6
 
 typedef enum e_key {
 	KEY_UP = 65362,
@@ -13,12 +14,15 @@ typedef enum e_key {
 	KEY_RIGHT = 65363,
 	KEY_ONE = 49,
 	KEY_TWO = 50,
+	KEY_H = 104,
+	KEY_J = 106,
+	KEY_K = 107,
+	KEY_L = 108,
 	KEY_ESC = 65307
 }	t_key;
 
 typedef enum e_mouse {
 	// MOUSE_LEFT = 1,
-	// MOUSE_RIGHT = 3,
 	MOUSE_UP = 4,
 	MOUSE_DOWN = 5
 }	t_mouse;

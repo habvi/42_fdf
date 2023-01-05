@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include <math.h>
 
 static bool	is_in_window(int y, int x)
 {
@@ -15,14 +16,6 @@ void	my_mlx_pixel_put(t_img *img, int y, int x, int color)
 	offset = y * img->line_length + x * (img->bits_per_pixel / 8);
 	dst = img->addr + offset;
 	*(unsigned int *)dst = color;
-}
-
-static void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y)
-{
-	point->x = mlxs->points_distance * x;
-	point->y = mlxs->points_distance * y;
-	point->z = mlxs->map->height_map[y][x] * mlxs->height_emphasis;
-	rotate_to_isometric_projection(mlxs, point);
 }
 
 static void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y)

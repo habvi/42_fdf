@@ -27,7 +27,7 @@
 # define DEFAULT_HEIGHT_EMPHASIS	1
 
 # define PI							(3.14159265358979323846264338327950288)
-# define ANGLE						35
+# define ANGLE_ISO					35
 
 # define OPEN_ERROR					-1
 
@@ -80,11 +80,14 @@ typedef struct s_mlx {
 	t_img		*img;
 	t_map		*map;
 	t_list		*data;
+	bool		is_iso;
 	double		zoom;
 	double		points_distance;
 	int			height_emphasis;
 	int			delta_x;
 	int			delta_y;
+	int			rotate_x_angle;
+	int			rotate_y_angle;
 }	t_mlx;
 
 // exit.c
@@ -117,9 +120,10 @@ void	display_map(t_info *info);
 void	my_mlx_pixel_put(t_img *img, int y, int x, int color);
 void	draw_image(t_mlx *mlxs);
 
-// math.c
-void	calc_coordinates(t_point *point, size_t x, size_t y, size_t z);
-void	rotate_to_isometric_projection(t_mlx *mlxs, t_point *point);
+// draw_line.c
 void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int color);
+
+// rotate.c
+void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y);
 
 #endif
