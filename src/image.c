@@ -36,6 +36,16 @@ static void	draw_menu_background(t_mlx *mlxs)
 	}
 }
 
+void	set_image(t_mlx *mlxs)
+{
+	mlxs->img->img = mlx_new_image(mlxs->display->mlx_p, WIN_WIDTH, WIN_HEIGHT);
+	// error
+	mlxs->img->addr = mlx_get_data_addr(\
+						mlxs->img->img, &mlxs->img->bits_per_pixel, \
+						&mlxs->img->line_length, &mlxs->img->endian);
+	// error
+}
+
 void	draw_image(t_mlx *mlxs)
 {
 	size_t	x;

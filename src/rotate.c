@@ -49,8 +49,8 @@ void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y)
 	}
 	point->x += mlxs->delta_x;
 	point->y += mlxs->delta_y;
-if (mlxs->map->height_map[y][x] == 0)
+	if (mlxs->map->height_map[y][x] == 0)
 		point->color = COLOR_PINK;
 	else
-		point->color = COLOR_GREEN;
+		point->color = COLOR_BLUE;
 }

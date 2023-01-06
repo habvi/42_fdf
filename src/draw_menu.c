@@ -29,7 +29,7 @@ static void	draw_key_usage(t_mlx *mlxs, t_menu *menu, size_t *y)
 	draw(mlxs, menu->x_sub_title, y, str);
 	str = "H, J, K, L";
 	draw(mlxs, menu->x_keycode, y, str);
-	str = "*Height Emphasis(max 5)*";
+	str = "*Height Emphasis(max 10)*";
 	draw(mlxs, menu->x_sub_title, y, str);
 	str = "1, 2";
 	draw(mlxs, menu->x_keycode, y, str);

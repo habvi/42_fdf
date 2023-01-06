@@ -2,7 +2,7 @@
 #include "hook.h"
 #include <X11/X.h>
 
-static void	set_t_mlxs(\
+static void	init_t_mlxs(\
 				t_mlx *mlxs, t_display *display, t_img *img, t_info *info)
 {
 	const int	start_y = WIN_HEIGHT * DEFAULT_ZOOM;
@@ -33,16 +33,6 @@ static void	set_window(t_mlx *mlxs, char *my_title)
 	// error
 }
 
-void	set_image(t_mlx *mlxs)
-{
-	mlxs->img->img = mlx_new_image(mlxs->display->mlx_p, WIN_WIDTH, WIN_HEIGHT);
-	// error
-	mlxs->img->addr = mlx_get_data_addr(\
-						mlxs->img->img, &mlxs->img->bits_per_pixel, \
-						&mlxs->img->line_length, &mlxs->img->endian);
-	// error
-}
-
 static void	set_hook(t_mlx *mlxs)
 {
 	void	*win_p;
@@ -61,7 +51,7 @@ void	display_map(t_info *info)
 	t_img		img;
 
 	debug_map(info->map); // to do: erase
-	set_t_mlxs(&mlxs, &display, &img, info);
+	init_t_mlxs(&mlxs, &display, &img, info);
 	printf("points distance : %f\n", mlxs.points_distance);
 	set_window(&mlxs, WIN_TITLE);
 	set_image(&mlxs);

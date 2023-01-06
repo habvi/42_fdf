@@ -5,7 +5,7 @@
 # define ANGLE_ROTATE	10
 
 # define Z_LOWER_BOUNDS	1
-# define Z_UPPER_BOUNDS	6
+# define Z_UPPER_BOUNDS	11
 
 typedef enum e_key {
 	KEY_UP = 65362,

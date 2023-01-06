@@ -9,7 +9,9 @@ typedef enum e_color
 {
 	COLOR_WHITE = 0x00ffffff,
 	COLOR_PINK = 0x00f193df,
-	COLOR_GREEN = 0x0061ff76
+	// COLOR_YELLOW = 0x00f2ec5a,
+	// COLOR_GREEN = 0x0061ff76,
+	COLOR_BLUE = 0x002a89e5
 }	t_color;
 
 // color.c

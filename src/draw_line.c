@@ -8,7 +8,7 @@ static bool	is_out_of_menu(size_t y, size_t x)
 			WIN_MARGIN <= x && x < WIN_MARGIN + MENU_WIDTH));
 }
 
-static void	set_sxy(t_xy *sign, t_point from, t_point to)
+static void	set_sxy(t_xy *sign, t_point from, t_point to, t_point *current)
 {
 	sign->x = -1;
 	if (from.x < to.x)
@@ -16,6 +16,7 @@ static void	set_sxy(t_xy *sign, t_point from, t_point to)
 	sign->y = -1;
 	if (from.y < to.y)
 		sign->y = 1;
+	*current = from;
 }
 
 static void	draw_line_by_bresenham(\
@@ -27,9 +28,8 @@ static void	draw_line_by_bresenham(\
 	int			err;
 	int			err2;
 
-	set_sxy(&sign, from, to);
+	set_sxy(&sign, from, to, &current);
 	err = delta.x - delta.y;
-	current = from;
 	while (!(current.x == to.x && current.y == to.y))
 	{
 		if (is_out_of_menu(current.y, current.x))

@@ -115,11 +115,11 @@ void	parse_map(t_info *info, size_t line_count);
 void	set_data_to_map(t_info *info, t_list *data, size_t i);
 
 // display_map.c
-void	set_image(t_mlx *mlxs);
 void	display_map(t_info *info);
 
 // image.c
 void	my_mlx_pixel_put(t_img *img, int y, int x, int color);
+void	set_image(t_mlx *mlxs);
 void	draw_image(t_mlx *mlxs);
 
 // draw_line.c
