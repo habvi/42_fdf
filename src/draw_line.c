@@ -12,7 +12,7 @@ static void	set_sxy(t_xy *sxy, t_point *from, t_point *to)
 		sxy->y = -1;
 }
 
-void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int color)
+static void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int color)
 {
 	const t_xy	dxy = {.x = abs(to.x - from.x), .y = abs(to.y - from.y)};
 	t_xy		sxy;
@@ -37,4 +37,24 @@ void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int color)
 			from.y += sxy.y;
 		}
 	}
+}
+
+void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y)
+{
+	t_point	from;
+	t_point	to;
+
+	calc_and_rotate(mlxs, &from, x, y);
+	if (y + 1 < mlxs->map->height)
+	{
+		calc_and_rotate(mlxs, &to, x, y + 1);
+		draw_line_by_bresenham(mlxs->img, from, to, 0);
+	}
+	if (x + 1 < mlxs->map->width)
+	{
+		calc_and_rotate(mlxs, &to, x + 1, y);
+		draw_line_by_bresenham(mlxs->img, from, to, 0);
+	}
+	if (y + 1 == mlxs->map->height && x + 1 == mlxs->map->width) // out of menu
+		my_mlx_pixel_put(mlxs->img, from.y, from.x, 0x0061ff76);
 }

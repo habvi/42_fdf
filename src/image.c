@@ -1,5 +1,4 @@
 #include "fdf.h"
-#include <math.h>
 
 static bool	is_in_window(int y, int x)
 {
@@ -18,24 +17,9 @@ void	my_mlx_pixel_put(t_img *img, int y, int x, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y)
+static void	draw_menu(t_mlx *mlxs)
 {
-	t_point	from;
-	t_point	to;
-
-	calc_and_rotate(mlxs, &from, x, y);
-	if (y + 1 < mlxs->map->height)
-	{
-		calc_and_rotate(mlxs, &to, x, y + 1);
-		draw_line_by_bresenham(mlxs->img, from, to, 0);
-	}
-	if (x + 1 < mlxs->map->width)
-	{
-		calc_and_rotate(mlxs, &to, x + 1, y);
-		draw_line_by_bresenham(mlxs->img, from, to, 0);
-	}
-	if (y + 1 == mlxs->map->height && x + 1 == mlxs->map->width)
-		my_mlx_pixel_put(mlxs->img, from.y, from.x, 0x0061ff76);
+	(void)mlxs;
 }
 
 void	draw_image(t_mlx *mlxs)
@@ -43,6 +27,7 @@ void	draw_image(t_mlx *mlxs)
 	size_t	x;
 	size_t	y;
 
+	draw_menu(mlxs);
 	y = 0;
 	while (y < mlxs->map->height)
 	{

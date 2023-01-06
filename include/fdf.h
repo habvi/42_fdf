@@ -121,7 +121,7 @@ void	my_mlx_pixel_put(t_img *img, int y, int x, int color);
 void	draw_image(t_mlx *mlxs);
 
 // draw_line.c
-void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int color);
+void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y);
 
 // rotate.c
 void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y);
