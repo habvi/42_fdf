@@ -1,9 +1,10 @@
 #include "fdf.h"
+#include "menu.h"
 
 static bool	is_out_of_menu(size_t y, size_t x)
 {
-	return !(WIN_MARGIN <= y && y < WIN_MARGIN + MENU_HEIGHT && \
-			WIN_MARGIN <= x && x < WIN_MARGIN + MENU_WIDTH);
+	return (!(WIN_MARGIN <= y && y < WIN_MARGIN + MENU_HEIGHT && \
+			WIN_MARGIN <= x && x < WIN_MARGIN + MENU_WIDTH));
 }
 
 static void	set_sxy(t_xy *sxy, t_point *from, t_point *to)

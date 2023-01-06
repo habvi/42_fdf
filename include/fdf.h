@@ -20,11 +20,9 @@
 # define INVALID_MAP_MSG			"invalid map\n"
 # define MALLOC_ERROR_MSG			"malloc\n"
 
+# define WIN_TITLE					"FdF@hiabe"
 # define WIN_HEIGHT					720
 # define WIN_WIDTH					1280
-# define WIN_MARGIN					50
-# define MENU_HEIGHT				300
-# define MENU_WIDTH					200
 
 # define DEFAULT_ZOOM				(0.25)
 # define DEFAULT_HEIGHT_EMPHASIS	1

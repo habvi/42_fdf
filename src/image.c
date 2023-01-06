@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include "menu.h"
 
 static bool	is_in_window(int y, int x)
 {
@@ -17,7 +18,7 @@ void	my_mlx_pixel_put(t_img *img, int y, int x, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	draw_menu(t_mlx *mlxs)
+static void	draw_menu_background(t_mlx *mlxs)
 {
 	size_t	x;
 	size_t	y;
@@ -40,7 +41,7 @@ void	draw_image(t_mlx *mlxs)
 	size_t	x;
 	size_t	y;
 
-	draw_menu(mlxs);
+	draw_menu_background(mlxs);
 	y = 0;
 	while (y < mlxs->map->height)
 	{
@@ -54,4 +55,5 @@ void	draw_image(t_mlx *mlxs)
 	}
 	mlx_put_image_to_window(\
 			mlxs->display->mlx_p, mlxs->display->win_p, mlxs->img->img, 0, 0);
+	draw_menu_string(mlxs);
 }

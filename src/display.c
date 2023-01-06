@@ -58,14 +58,12 @@ void	display_map(t_info *info)
 {
 	t_mlx		mlxs;
 	t_display	display;
-	char		*my_title;
 	t_img		img;
 
 	debug_map(info->map); // to do: erase
 	set_t_mlxs(&mlxs, &display, &img, info);
 	printf("points distance : %f\n", mlxs.points_distance);
-	my_title = "FdF@hiabe";
-	set_window(&mlxs, my_title);
+	set_window(&mlxs, WIN_TITLE);
 	set_image(&mlxs);
 	draw_image(&mlxs);
 	set_hook(&mlxs);

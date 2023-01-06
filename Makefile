@@ -5,6 +5,7 @@ SRC			=	args.c \
 				debug.c \
 				display.c \
 				draw_line.c \
+				draw_menu.c \
 				exit.c \
 				image.c \
 				key.c \
