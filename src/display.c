@@ -50,7 +50,6 @@ void	display_map(t_info *info)
 	t_display	display;
 	t_img		img;
 
-	debug_map(info->map); // to do: erase
 	init_t_mlxs(&mlxs, &display, &img, info);
 	printf("points distance : %f\n", mlxs.points_distance);
 	set_window(&mlxs, WIN_TITLE);

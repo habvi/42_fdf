@@ -33,4 +33,11 @@ void	debug_map(t_map *map)
 			printf("%d ", map->height_map[i][j]);
 		printf("\n");
 	}
+	printf("==color map==\n");
+	for (size_t i = 0; i < map->height; i++)
+	{
+		for (size_t j = 0; j < map->width; j++)
+			printf("%d ", map->color_map[i][j]);
+		printf("\n");
+	}
 }

@@ -27,6 +27,7 @@
 # define ERR_MSG_MAP_WIDTH			"invalid map width"
 
 # define OPEN_ERROR					-1
+# define NONE_COLOR					-1
 
 # define WIN_TITLE					"FdF@hiabe"
 # define WIN_HEIGHT					720

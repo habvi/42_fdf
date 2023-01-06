@@ -17,6 +17,7 @@ int	main(int argc, char *argv[])
 	line_count = read_map(fd, &(info.data));
 	info.head = info.data;
 	parse_map(&info, line_count);
+	// debug_map(&map);
 	display_map(&info);
 	return (0);
 }

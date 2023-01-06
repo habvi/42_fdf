@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include "../libft/include/libft.h"
 
 static const char	**split_map_line(\
 					t_info *info, t_list *data, size_t *list_size, size_t i)
@@ -9,6 +10,18 @@ static const char	**split_map_line(\
 	if (list == NULL)
 		clear_before_exit(info, ERR_MSG_MALLOC, i);
 	return (list);
+}
+
+static void	init_color_map(int *map, int x, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		map[i] = x;
+		i++;
+	}
 }
 
 static void	init_map_line(\
@@ -24,6 +37,7 @@ static void	init_map_line(\
 		clear_split_list((char **)list);
 		clear_before_exit(info, ERR_MSG_MALLOC, i + 1);
 	}
+	init_color_map(map->color_map[i], -1, list_size);
 }
 
 static void	check_map_line_width(\
@@ -41,12 +55,26 @@ static void	check_map_line_width(\
 	}
 }
 
-static void	convert_map_height_str_to_int(\
-			t_info *info, const char **list, size_t i)
+size_t	comma_index(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ',')
+			break;
+		i++;
+	}
+	return (i);
+}
+
+static void	convert_map_atoi(t_info *info, const char **list, size_t i)
 {
 	t_map	*map;
 	bool	is_invalid_num;
 	size_t	j;
+	size_t	max_len;
 	int		num;
 
 	map = info->map;
@@ -54,9 +82,21 @@ static void	convert_map_height_str_to_int(\
 	j = 0;
 	while (list[j] != NULL)
 	{
-		is_invalid_num &= ft_atoi_with_bool(list[j], &num);
+		// convert_map_height();
+		max_len = comma_index(list[j]);
+		is_invalid_num &= ft_atoi_n_with_bool(list[j], &num, BASE10, max_len);
 		map->height_map[i][j] = num;
+		// printf("map_height : %zu %d %d\n", max_len, is_invalid_num, map->height_map[i][j]);
+		// convert_map_color();
+		if (list[j][max_len] == ',')
+		{
+			num = 0;
+			is_invalid_num &= ft_atox_with_bool(&list[j][max_len + 1], &num);
+			map->color_map[i][j] = num;
+			// printf("map_color %d %d[[%s]]: \n", num, is_invalid_num, &list[j][max_len + 1]);
+		}
 		j++;
+		// printf("\n\n");
 	}
 	if (!is_invalid_num)
 	{
@@ -73,7 +113,6 @@ void	set_data_to_map(t_info *info, t_list *data, size_t i)
 
 	init_map_line(info, list, list_size, i);
 	check_map_line_width(info, list, list_size, i);
-	// to do: add color_map, error
-	convert_map_height_str_to_int(info, list, i);
+	convert_map_atoi(info, list, i);
 	clear_split_list((char **)list);
 }

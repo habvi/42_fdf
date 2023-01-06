@@ -33,7 +33,7 @@ void	parse_map(t_info *info, size_t line_count)
 			data->content[len - 1] = '\0';
 			len--;
 		}
-		printf("|%s| %zu\n", data->content, len);
+		// printf("|%s| %zu\n", data->content, len);
 		set_data_to_map(info, data, i);
 		data = data->next;
 		i++;
