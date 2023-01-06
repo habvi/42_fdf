@@ -1,5 +1,11 @@
 #include "fdf.h"
 
+static bool	is_out_of_menu(size_t y, size_t x)
+{
+	return !(WIN_MARGIN <= y && y < WIN_MARGIN + MENU_HEIGHT && \
+			WIN_MARGIN <= x && x < WIN_MARGIN + MENU_WIDTH);
+}
+
 static void	set_sxy(t_xy *sxy, t_point *from, t_point *to)
 {
 	if (from->x < to->x)
@@ -24,7 +30,8 @@ static void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int col
 	while (!(from.x == to.x && from.y == to.y))
 	{
 		(void)color;
-		my_mlx_pixel_put(img, from.y, from.x, 0x0061ff76);
+		if (is_out_of_menu(from.y, from.x))
+			my_mlx_pixel_put(img, from.y, from.x, 0x0061ff76);
 		err2 = 2 * err;
 		if (err2 > -dxy.y)
 		{
@@ -55,6 +62,7 @@ void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y)
 		calc_and_rotate(mlxs, &to, x + 1, y);
 		draw_line_by_bresenham(mlxs->img, from, to, 0);
 	}
-	if (y + 1 == mlxs->map->height && x + 1 == mlxs->map->width) // out of menu
+	if (y + 1 == mlxs->map->height && x + 1 == mlxs->map->width && \
+		is_out_of_menu(from.y, from.x))
 		my_mlx_pixel_put(mlxs->img, from.y, from.x, 0x0061ff76);
 }

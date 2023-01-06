@@ -19,7 +19,20 @@ void	my_mlx_pixel_put(t_img *img, int y, int x, int color)
 
 static void	draw_menu(t_mlx *mlxs)
 {
-	(void)mlxs;
+	size_t	x;
+	size_t	y;
+
+	y = WIN_MARGIN;
+	while (y < WIN_MARGIN + MENU_HEIGHT)
+	{
+		x = WIN_MARGIN;
+		while (x < WIN_MARGIN + MENU_WIDTH)
+		{
+			my_mlx_pixel_put(mlxs->img, y, x, 0xffffffff);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	draw_image(t_mlx *mlxs)
