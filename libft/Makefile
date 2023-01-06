@@ -1,4 +1,5 @@
 SRC			=	ft_atoi.c \
+				ft_atox.c \
 				ft_isdigit.c \
 				ft_min.c \
 				ft_split.c \
@@ -8,6 +9,7 @@ SRC			=	ft_atoi.c \
 				ft_strlen.c \
 				ft_strtrim.c \
 				ft_substr.c \
+				ft_toupper.c \
 				ft_lstadd_back.c \
 				ft_lstclear.c \
 				ft_lstdelone.c \

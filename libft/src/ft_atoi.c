@@ -1,29 +1,30 @@
 #include "libft.h"
 
-static bool	is_space(int c)
+bool	is_space(int c)
 {
 	return (c == '\t' || c == '\n' || c == '\v' || \
 			c == '\f' || c == '\r' || c == ' ');
 }
 
-static bool	is_operator(int c)
+bool	is_operator(int c)
 {
 	return (c == '-' || c == '+');
 }
 
-static bool	is_overflow(int *num, int c, int op)
+bool	is_overflow(int *num, int c, int op, const char *base)
 {
-	int	ov_div;
-	int	ov_mod;
+	const size_t	base_num = ft_strlen(base);
+	int				ov_div;
+	int				ov_mod;
 
-	ov_div = INT_MAX / 10;
-	ov_mod = INT_MAX % 10 + (op == -1);
+	ov_div = INT_MAX / base_num;
+	ov_mod = INT_MAX % base_num + (op == -1);
 	if (*num > ov_div)
 	{
 		*num = 0;
 		return (true);
 	}
-	if (*num == ov_div && c - '0' > ov_mod)
+	if (*num == ov_div && base_index(base, c) > ov_mod)
 	{
 		*num = 0;
 		return (true);
@@ -31,31 +32,43 @@ static bool	is_overflow(int *num, int c, int op)
 	return (false);
 }
 
-// if "-", return (0) -> fixed
-bool	ft_atoi_with_bool(const char *str, int *num)
+bool	ft_atoi_n_with_bool(\
+					const char *str, int *num, const char *base, size_t len)
 {
-	int		op;
-	bool	at_least_one_digit;
+	const size_t	base_num = ft_strlen(base);
+	int				op;
+	bool			at_least_one_digit;
+	int				base_i;
+	size_t			i;
 
+	i = 0;
 	*num = 0;
 	op = 1;
-	while (is_space(*str))
+	while (is_space(*str) && i < len)
+	{
 		str++;
-	if (is_operator(*str))
+		i++;
+	}
+	if (is_operator(*str) && i < len)
 	{
 		op = ',' - *str;
 		str++;
+		i++;
 	}
 	at_least_one_digit = false;
-	while (ft_isdigit(*str))
+	while (ft_strchr(base, *str) != NULL && i < len)
 	{
-		at_least_one_digit = true;
-		if (is_overflow(num, *str, op))
+		base_i = base_index(base, *str);
+		if (base_i == INVALID_CHAR)
 			return (false);
-		*num = *num * 10 + *str - '0';
+		at_least_one_digit = true;
+		if (is_overflow(num, *str, op, base))
+			return (false);
+		*num = *num * base_num + base_i;
 		str++;
+		i++;
 	}
-	if (*str || !at_least_one_digit)
+	if (i != len || !at_least_one_digit)
 		return (false);
 	*num *= op;
 	return (true);
