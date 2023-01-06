@@ -17,8 +17,16 @@
 # include "../libft/include/list.h"
 # include "../minilibx/mlx.h"
 
-# define INVALID_MAP_MSG			"invalid map\n"
-# define MALLOC_ERROR_MSG			"malloc\n"
+# define ERR_MSG_FILEPATH			"invalid filepath"
+# define ERR_MSG_FILE_EXTENSION		"invalid file's extension"
+# define ERR_MSG_ARGS				"invalid number of arguments"
+# define ERR_MSG_INVALID_MAP		"invalid map"
+# define ERR_MSG_MALLOC				"malloc"
+# define ERR_MSG_EMPTY				"empty file"
+# define ERR_MSG_MAP_HEIGHT			"invalid map height"
+# define ERR_MSG_MAP_WIDTH			"invalid map width"
+
+# define OPEN_ERROR					-1
 
 # define WIN_TITLE					"FdF@hiabe"
 # define WIN_HEIGHT					720
@@ -29,8 +37,6 @@
 
 # define PI							(3.14159265358979323846264338327950288)
 # define ANGLE_ISO					35
-
-# define OPEN_ERROR					-1
 
 typedef enum e_status {
 	SUCCESS = 0,
@@ -93,8 +99,8 @@ typedef struct s_mlx {
 }	t_mlx;
 
 // exit.c
-void	print_msg_and_exit(const char *msg, char *ptr, const int status);
-void	clear_and_exit(t_info *info, const char *msg, const int n);
+void	error_exit(const char *msg, char *ptr, const int status);
+void	clear_before_exit(t_info *info, const char *msg, const int n);
 
 // args.c
 int		check_args(int argc, char *argv[]);

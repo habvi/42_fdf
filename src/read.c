@@ -10,7 +10,7 @@ static void	add_line_to_data(\
 	if (node == NULL)
 	{
 		clear_data((t_list *)head);
-		print_msg_and_exit(MALLOC_ERROR_MSG, NULL, EXIT_FAILURE);
+		error_exit(ERR_MSG_MALLOC, NULL, EXIT_FAILURE);
 	}
 	if (line_count >= 2)
 		data = &((*data)->next);
@@ -23,7 +23,6 @@ size_t	read_map(int fd, t_list **data)
 	size_t			line_count;
 	char			*line;
 	const t_list	*head;
-	char			*msg;
 
 	line_count = 0;
 	while (true)
@@ -37,9 +36,6 @@ size_t	read_map(int fd, t_list **data)
 		line_count++;
 	}
 	if (*data == NULL)
-	{
-		msg = "empty file";
-		print_msg_and_exit(msg, NULL, EXIT_FAILURE);
-	}
+		error_exit(ERR_MSG_EMPTY, NULL, EXIT_FAILURE);
 	return (line_count);
 }

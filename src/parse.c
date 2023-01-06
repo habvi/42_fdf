@@ -13,7 +13,7 @@ static void	init_map(t_info *info, size_t line_count)
 	// ft_calloc?
 	map->color_map = (int **)malloc(sizeof(int *) * map->height);
 	if (map->height_map == NULL || map->color_map == NULL)
-		clear_and_exit(info, MALLOC_ERROR_MSG, 0);
+		clear_before_exit(info, ERR_MSG_MALLOC, 0);
 }
 
 void	parse_map(t_info *info, size_t line_count)

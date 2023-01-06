@@ -1,6 +1,5 @@
 #include "fdf.h"
 
-// to do: 4 val
 static const char	**split_map_line(\
 					t_info *info, t_list *data, size_t *list_size, size_t i)
 {
@@ -8,7 +7,7 @@ static const char	**split_map_line(\
 
 	list = (const char **)ft_split(data->content, ' ', list_size);
 	if (list == NULL)
-		clear_and_exit(info, MALLOC_ERROR_MSG, i);
+		clear_before_exit(info, ERR_MSG_MALLOC, i);
 	return (list);
 }
 
@@ -23,7 +22,7 @@ static void	init_map_line(\
 	if (map->height_map[i] == NULL || map->color_map[i] == NULL)
 	{
 		clear_split_list((char **)list);
-		clear_and_exit(info, MALLOC_ERROR_MSG, i + 1);
+		clear_before_exit(info, ERR_MSG_MALLOC, i + 1);
 	}
 }
 
@@ -31,7 +30,6 @@ static void	check_map_line_width(\
 			t_info *info, const char **list, size_t list_size, size_t i)
 {
 	t_map	*map;
-	char	*msg;
 
 	map = info->map;
 	if (map->width == 0)
@@ -39,8 +37,7 @@ static void	check_map_line_width(\
 	else if (map->width != list_size)
 	{
 		clear_split_list((char **)list);
-		msg = "invalid map width";
-		clear_and_exit(info, msg, i + 1);
+		clear_before_exit(info, ERR_MSG_MAP_WIDTH, i + 1);
 	}
 }
 
@@ -51,7 +48,6 @@ static void	convert_map_height_str_to_int(\
 	bool	is_invalid_num;
 	size_t	j;
 	int		num;
-	char	*msg;
 
 	map = info->map;
 	is_invalid_num = true;
@@ -65,8 +61,7 @@ static void	convert_map_height_str_to_int(\
 	if (!is_invalid_num)
 	{
 		clear_split_list((char **)list);
-		msg = "invalid map height integer";
-		clear_and_exit(info, msg, i + 1);
+		clear_before_exit(info, ERR_MSG_MAP_HEIGHT, i + 1);
 	}
 }
 

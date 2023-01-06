@@ -49,7 +49,6 @@ int	close_window(t_mlx *mlxs)
 {
 	clear_data(mlxs->data);
 	clear_map_to_n(mlxs->map, mlxs->map->height);
-	// mlx
 	mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
 	mlx_destroy_window(mlxs->display->mlx_p, mlxs->display->win_p);
 	mlx_destroy_display(mlxs->display->mlx_p);
