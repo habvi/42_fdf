@@ -29,7 +29,7 @@ static void	draw_menu_background(t_mlx *mlxs)
 		x = WIN_MARGIN;
 		while (x < WIN_MARGIN + MENU_WIDTH)
 		{
-			my_mlx_pixel_put(mlxs->img, y, x, 0xffffffff);
+			my_mlx_pixel_put(mlxs->img, y, x, MENU_BG_COLOR);
 			x++;
 		}
 		y++;

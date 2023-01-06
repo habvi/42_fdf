@@ -11,7 +11,8 @@ static void	init_t_menu(t_menu *menu)
 static void	draw(t_mlx *mlxs, size_t x, size_t *y, char *str)
 {
 	*y += H_LINE_SPACE;
-	mlx_string_put(mlxs->display->mlx_p, mlxs->display->win_p, x, *y, MENU_COLOR, str);
+	mlx_string_put(mlxs->display->mlx_p, mlxs->display->win_p, \
+					x, *y, MENU_STR_COLOR, str);
 }
 
 static void	draw_key_usage(t_mlx *mlxs, t_menu *menu, size_t *y)

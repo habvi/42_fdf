@@ -1,5 +1,6 @@
-#include "fdf.h"
 #include <math.h>
+#include "fdf.h"
+#include "color.h"
 
 static double	degree_to_radian(double degree)
 {
@@ -48,4 +49,8 @@ void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y)
 	}
 	point->x += mlxs->delta_x;
 	point->y += mlxs->delta_y;
+if (mlxs->map->height_map[y][x] == 0)
+		point->color = COLOR_PINK;
+	else
+		point->color = COLOR_GREEN;
 }

@@ -74,6 +74,7 @@ typedef struct s_point {
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 }	t_point;
 
 typedef struct s_mlx {

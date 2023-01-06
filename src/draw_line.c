@@ -1,5 +1,6 @@
 #include "fdf.h"
 #include "menu.h"
+#include "color.h"
 
 static bool	is_out_of_menu(size_t y, size_t x)
 {
@@ -7,42 +8,43 @@ static bool	is_out_of_menu(size_t y, size_t x)
 			WIN_MARGIN <= x && x < WIN_MARGIN + MENU_WIDTH));
 }
 
-static void	set_sxy(t_xy *sxy, t_point *from, t_point *to)
+static void	set_sxy(t_xy *sign, t_point from, t_point to)
 {
-	if (from->x < to->x)
-		sxy->x = 1;
-	else
-		sxy->x = -1;
-	if (from->y < to->y)
-		sxy->y = 1;
-	else
-		sxy->y = -1;
+	sign->x = -1;
+	if (from.x < to.x)
+		sign->x = 1;
+	sign->y = -1;
+	if (from.y < to.y)
+		sign->y = 1;
 }
 
-static void	draw_line_by_bresenham(t_img *img, t_point from, t_point to, int color)
+static void	draw_line_by_bresenham(\
+			t_img *img, const t_point from, const t_point to)
 {
-	const t_xy	dxy = {.x = abs(to.x - from.x), .y = abs(to.y - from.y)};
-	t_xy		sxy;
+	const t_xy	delta = {.x = abs(to.x - from.x), .y = abs(to.y - from.y)};
+	t_xy		sign;
+	t_point		current;
 	int			err;
 	int			err2;
 
-	set_sxy(&sxy, &from, &to);
-	err = dxy.x - dxy.y;
-	while (!(from.x == to.x && from.y == to.y))
+	set_sxy(&sign, from, to);
+	err = delta.x - delta.y;
+	current = from;
+	while (!(current.x == to.x && current.y == to.y))
 	{
-		(void)color;
-		if (is_out_of_menu(from.y, from.x))
-			my_mlx_pixel_put(img, from.y, from.x, 0x0061ff76);
+		if (is_out_of_menu(current.y, current.x))
+			my_mlx_pixel_put(img, current.y, current.x, \
+							get_current_color(current, from, to, delta));
 		err2 = 2 * err;
-		if (err2 > -dxy.y)
+		if (err2 > -delta.y)
 		{
-			err -= dxy.y;
-			from.x += sxy.x;
+			err -= delta.y;
+			current.x += sign.x;
 		}
-		if (err2 < dxy.x)
+		if (err2 < delta.x)
 		{
-			err += dxy.x;
-			from.y += sxy.y;
+			err += delta.x;
+			current.y += sign.y;
 		}
 	}
 }
@@ -56,14 +58,14 @@ void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y)
 	if (y + 1 < mlxs->map->height)
 	{
 		calc_and_rotate(mlxs, &to, x, y + 1);
-		draw_line_by_bresenham(mlxs->img, from, to, 0);
+		draw_line_by_bresenham(mlxs->img, from, to);
 	}
 	if (x + 1 < mlxs->map->width)
 	{
 		calc_and_rotate(mlxs, &to, x + 1, y);
-		draw_line_by_bresenham(mlxs->img, from, to, 0);
+		draw_line_by_bresenham(mlxs->img, from, to);
 	}
 	if (y + 1 == mlxs->map->height && x + 1 == mlxs->map->width && \
 		is_out_of_menu(from.y, from.x))
-		my_mlx_pixel_put(mlxs->img, from.y, from.x, 0x0061ff76);
+		my_mlx_pixel_put(mlxs->img, from.y, from.x, from.color);
 }

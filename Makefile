@@ -2,6 +2,7 @@ NAME		=	fdf
 
 SRC			=	args.c \
 				clear.c \
+				color.c \
 				debug.c \
 				display.c \
 				draw_line.c \
