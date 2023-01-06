@@ -7,7 +7,7 @@
 # define MENU_WIDTH			170
 # define WIN_MARGIN			50
 
-# define W_TITLE_SPACE		40
+# define W_TITLE_SPACE		35
 # define W_SUBTITLE_SPACE	10
 # define W_CONTENT_SPACE	30
 
