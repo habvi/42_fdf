@@ -50,8 +50,7 @@ void	draw_image(const t_mlx *mlxs)
 	size_t	y;
 	size_t	x;
 
-	if (!mlxs->is_large_file)
-		draw_menu_background(mlxs);
+	draw_menu_background(mlxs);
 	y = 0;
 	while (y < mlxs->map->height)
 	{

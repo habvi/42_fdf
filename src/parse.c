@@ -1,6 +1,5 @@
 #include "fdf.h"
 #include "../libft/include/libft.h"
-#include <stdio.h> // to do: printf -> ft_printf
 
 static void	init_map(const t_info *info, const size_t line_count)
 {
@@ -32,7 +31,6 @@ void	parse_map(const t_info *info, const size_t line_count)
 			data->content[len - 1] = '\0';
 			len--;
 		}
-		// printf("|%s| %zu\n", data->content, len);
 		set_data_to_map(info, data, i);
 		data = data->next;
 		i++;

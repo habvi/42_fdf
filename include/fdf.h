@@ -29,7 +29,6 @@
 
 # define DEFAULT_ZOOM				(0.25)
 # define DEFAULT_HEIGHT_EMPHASIS	1
-# define DRAW_INTERVAL				5
 
 # define PI							(3.14159265358979323846264338327950288)
 # define ANGLE_ISO					30
@@ -98,8 +97,6 @@ typedef struct s_mlx {
 	int			delta_y;
 	int			rotate_x_angle;
 	int			rotate_y_angle;
-	int			counter;
-	bool		is_large_file;
 }	t_mlx;
 
 // exit.c

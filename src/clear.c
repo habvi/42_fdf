@@ -1,7 +1,6 @@
 #include "fdf.h"
 #include "../minilibx/mlx.h"
 #include "hook.h"
-#include <stdio.h> // to do: erase printf
 
 // parse2
 void	clear_split_list(char **list)
