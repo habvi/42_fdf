@@ -33,6 +33,10 @@ static void	draw_key_usage(t_mlx *mlxs, t_menu *menu, size_t *y)
 	draw(mlxs, menu->x_sub_title, y, str);
 	str = "1, 2";
 	draw(mlxs, menu->x_keycode, y, str);
+	str = "*Isometric or Parallel*";
+	draw(mlxs, menu->x_sub_title, y, str);
+	str = "I, P";
+	draw(mlxs, menu->x_keycode, y, str);
 	str = "*Close window*";
 	draw(mlxs, menu->x_sub_title, y, str);
 	str = "ESC";
