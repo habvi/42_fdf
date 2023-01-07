@@ -14,6 +14,8 @@ static void	init_t_mlxs(\
 	mlxs->img = img;
 	mlxs->map = info->map;
 	mlxs->data = info->data;
+	mlxs->z_min = info->z_min;
+	mlxs->z_max = info->z_max;
 	mlxs->is_iso = true;
 	mlxs->zoom = DEFAULT_ZOOM;
 	mlxs->points_distance = \

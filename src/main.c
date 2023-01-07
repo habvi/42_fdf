@@ -1,9 +1,12 @@
 #include "fdf.h"
+#include <limits.h>
 
 static void	init_info(t_info *info, t_map *map)
 {
 	info->data = NULL;
 	info->map = map;
+	info->z_min = INT_MAX;
+	info->z_max = INT_MIN;
 }
 
 int	main(int argc, char *argv[])

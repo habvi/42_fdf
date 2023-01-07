@@ -48,6 +48,8 @@ typedef struct s_info {
 	t_list			*data;
 	const t_list	*head;
 	t_map			*map;
+	int				z_min;
+	int				z_max;
 }	t_info;
 
 typedef struct s_display {
@@ -82,6 +84,8 @@ typedef struct s_mlx {
 	t_img		*img;
 	t_map		*map;
 	t_list		*data;
+	int			z_min;
+	int			z_max;
 	bool		is_iso;
 	double		zoom;
 	double		points_distance;

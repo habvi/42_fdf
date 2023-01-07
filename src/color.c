@@ -1,13 +1,6 @@
 #include "fdf.h"
 #include "color.h"
 
-void	set_default_color(t_point *point, const int z)
-{
-	// to do: min_z, max_z -> percent
-	(void)z;
-	point->color = COLOR_WHITE;
-}
-
 static double	get_percent(const int start, const int end, const int current)
 {
 	double	start_to_current;
@@ -46,4 +39,18 @@ int	get_current_color(const t_point current, t_point start, \
 					(end.color >> GREEN_SHIFT) & COLOR_MASK, percent);
 	blue = get_light(start.color & COLOR_MASK, end.color & COLOR_MASK, percent);
 	return ((red << RED_SHIFT) | (green << GREEN_SHIFT) | blue);
+}
+
+void	set_default_color(const t_mlx *mlxs, t_point *point, const int z)
+{
+	const double	percent = get_percent(mlxs->z_min, mlxs->z_max, z);
+
+	if (percent < DEFAULT_COLOR_BLOCK)
+		point->color = COLOR_PINK;
+	else if (percent < DEFAULT_COLOR_BLOCK * 2)
+		point->color = COLOR_YELLOW;
+	else if (percent < DEFAULT_COLOR_BLOCK * 3)
+		point->color = COLOR_GREEN;
+	else
+		point->color = COLOR_BLUE;
 }

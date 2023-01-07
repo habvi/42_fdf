@@ -15,14 +15,22 @@ static size_t	comma_index(const char *str)
 	return (i);
 }
 
+static void	calc_z_min_max(t_info *info, const int num)
+{
+	info->z_min = ft_min(info->z_min, num);
+	info->z_max = ft_max(info->z_max, num);
+}
+
 static int	convert_height(\
-				const char *num_str, size_t *max_len, bool *is_valid_num)
+		t_info *info, const char *num_str, size_t *max_len, bool *is_valid_num)
 {
 	int	num;
 
 	num = 0;
 	*max_len = comma_index(num_str);
 	*is_valid_num &= ft_atoi_n_with_bool(num_str, &num, BASE10, *max_len);
+	if (is_valid_num)
+		calc_z_min_max(info, num);
 	return (num);
 }
 
@@ -49,7 +57,7 @@ void	convert_map_height_and_color(\
 	while (list[j] != NULL)
 	{
 		height = &info->map->height_map[i][j];
-		*height = convert_height(list[j], &max_len, &is_valid_num);
+		*height = convert_height((t_info *)info, list[j], &max_len, &is_valid_num);
 		if (list[j][max_len] == ',')
 		{
 			color = &info->map->color_map[i][j];

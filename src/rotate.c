@@ -39,16 +39,16 @@ void	calc_and_rotate(\
 	point->x = mlxs->points_distance * x;
 	point->y = mlxs->points_distance * y;
 	point->z = mlxs->map->height_map[y][x] * mlxs->height_emphasis; // overflow
+	if (mlxs->map->color_map[y][x] == NONE_COLOR)
+		set_default_color(mlxs, point, point->z);
+	else
+		point->color = mlxs->map->color_map[y][x];
 	rotate_x_axis(mlxs, point, *point);
 	rotate_y_axis(mlxs, point, *point);
 	if (mlxs->is_iso)
 		rotate_to_isometric_projection(point, *point);
 	point->x += mlxs->delta_x;
 	point->y += mlxs->delta_y;
-	if (mlxs->map->color_map[y][x] == NONE_COLOR)
-		set_default_color(point, point->z);
-	else
-		point->color = mlxs->map->color_map[y][x];
 	// if (mlxs->map->height_map[y][x] == 0)
 	// 	point->color = COLOR_PINK;
 	// else
