@@ -11,9 +11,15 @@ static void	init_t_menu(t_menu *menu)
 
 static void	draw(const t_mlx *mlxs, const size_t x, size_t *y, char *str)
 {
+	int	color;
+
 	*y += H_LINE_SPACE;
+	if (mlxs->is_large_file)
+		color = MENU_COLOR_FOR_LARGE;
+	else
+		color = MENU_STR_COLOR;
 	mlx_string_put(mlxs->display->mlx_p, mlxs->display->win_p, \
-					x, *y, MENU_STR_COLOR, str);
+					x, *y, color, str);
 }
 
 static void	draw_key_usage(const t_mlx *mlxs, const t_menu *menu, size_t *y)

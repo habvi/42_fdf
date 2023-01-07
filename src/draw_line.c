@@ -50,11 +50,14 @@ static void	draw_line_by_bresenham(\
 	while (!(current.x == to.x && current.y == to.y))
 	{
 		if (is_out_of_menu(current.y, current.x) && \
-			is_in_window(current.y, current.x) && \
-			mlxs->counter % DRAW_INTERVAL == 0) // to do: change each density
+			is_in_window(current.y, current.x))
 		{
-			color = get_current_color(current, from, to, delta);
-			my_mlx_pixel_put(mlxs->img, current.y, current.x, color);
+			if (!mlxs->is_large_file || \
+				(mlxs->is_large_file && mlxs->counter % DRAW_INTERVAL == 0))
+			{
+				color = get_current_color(current, from, to, delta);
+				my_mlx_pixel_put(mlxs->img, current.y, current.x, color);
+			}
 		}
 		mlxs->counter++;
 		update_err_current(err, delta, sign, &current);

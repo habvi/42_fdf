@@ -1,13 +1,14 @@
 #ifndef HOOK_H
 # define HOOK_H
 
-# define SHIFT_WIDTH	20
-# define ANGLE_ROTATE	10
+# define SHIFT_WIDTH		40
+# define ANGLE_ROTATE		10
 
 # define Z_LOWER_BOUNDS		1
 # define Z_UPPER_BOUNDS		21
 # define Z_EMPHASIS_DELTA	2
-# define ZOOM_DELTA			(1.25)
+# define ADJUST_DELTA		10
+# define ZOOM_DELTA			(1.5)
 
 typedef enum e_key {
 	KEY_UP = 65362,
