@@ -1,7 +1,7 @@
 #include "fdf.h"
 #include "hook.h"
 #include "../minilibx/mlx.h"
-#include <stdio.h> // to do: printf -> ft_printf
+#include "../libft/include/ft_printf.h"
 
 static bool	is_rolled_key(const t_key keycode)
 {
@@ -55,7 +55,7 @@ static void	move_image(const t_key keycode, t_mlx *mlxs)
 
 int	key_hook(const t_key keycode, const t_mlx *mlxs)
 {
-	printf("keycode : %d\n", keycode);
+	ft_printf("keycode : %d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_window(mlxs);
 	else if (is_rolled_key(keycode))

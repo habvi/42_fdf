@@ -1,10 +1,10 @@
 #include "fdf.h"
-#include <stdio.h> // to do: printf -> ft_printf
+#include "../libft/include/ft_printf.h"
 
 // args, read
 void	error_exit(const char *msg, void *ptr, const int status)
 {
-	printf("Error: %s\n", msg);
+	ft_printf("Error: %s\n", msg);
 	if (ptr)
 		free(ptr);
 	exit(status);

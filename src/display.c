@@ -4,8 +4,6 @@
 #include "hook.h"
 #include <X11/X.h>
 
-#include <stdio.h>
-
 static void	init_t_mlxs(\
 			t_mlx *mlxs, t_display *display, t_img *img, const t_info *info)
 {

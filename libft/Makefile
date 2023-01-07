@@ -1,5 +1,6 @@
 SRC			=	ft_atoi.c \
 				ft_atox.c \
+				ft_isdigit.c \
 				ft_max.c \
 				ft_min.c \
 				ft_split.c \
@@ -17,7 +18,17 @@ SRC			=	ft_atoi.c \
 				ft_lstlast.c \
 				ft_lstnew.c \
 				get_next_line_utils.c \
-				get_next_line.c
+				get_next_line.c \
+				ft_printf.c \
+				handle_info.c \
+				parse_format.c \
+				convert_to_str.c \
+				convert_to_str2.c \
+				strdup_for_printf.c \
+				itoa_utoa_for_printf.c\
+				ptoa_xtoa_for_printf.c \
+				set_field.c \
+				set_output.c
 
 SRC_DIR		=	./src/
 OBJS_DIR	=	./obj/

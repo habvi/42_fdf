@@ -1,7 +1,7 @@
 #include "fdf.h"
 #include "../minilibx/mlx.h"
 #include "hook.h"
-#include <stdio.h> // to do: printf -> ft_printf
+#include "../libft/include/ft_printf.h"
 
 static bool	is_rolled_mouse(const t_mouse mouse_code)
 {
@@ -27,7 +27,7 @@ static void	move_image(const t_mouse mouse_code, t_mlx *mlxs)
 int	mouse_hook(\
 		const t_mouse mouse_code, const int x, const int y, const t_mlx *mlxs)
 {
-	printf("mousecode : %d, (y, x) = (%d, %d)\n", mouse_code, y, x);
+	ft_printf("mousecode : %d, (y, x) = (%d, %d)\n", mouse_code, y, x);
 	if (is_rolled_mouse(mouse_code))
 	{
 		move_image(mouse_code, (t_mlx *)mlxs);
