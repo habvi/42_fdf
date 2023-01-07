@@ -21,6 +21,7 @@ bool	ft_atox_with_bool(const char *str, int *num);
 
 bool	ft_isdigit(int c);
 size_t	ft_min(const size_t x, const size_t y);
+double	ft_min_double(const double x, const double y);
 char	**ft_split(char const *s, char c, size_t *list_size);
 char	*ft_strchr(const char *s, int int_c);
 char	*ft_strdup(const char *s);
