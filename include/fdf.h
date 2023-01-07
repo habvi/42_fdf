@@ -5,7 +5,7 @@
 # include <stdlib.h> // malloc, free, exit
 // # include <stdio.h> // perror
 # include <string.h> // strerror
-# include <errno.h> // to do: fix
+# include <errno.h>
 # include <stdbool.h>
 
 # include "../libft/include/list.h"
@@ -17,6 +17,7 @@
 # define ERR_MSG_MALLOC				"malloc"
 # define ERR_MSG_EMPTY				"empty file"
 # define ERR_MSG_MAP_WIDTH			"invalid map width"
+# define ERR_MLX					"from mlx"
 
 # define FILE_EXTENSION				".fdf"
 # define OPEN_ERROR					-1
@@ -102,6 +103,9 @@ typedef struct s_mlx {
 // exit.c
 void	error_exit(const char *msg, void *ptr, const int status);
 void	clear_before_exit(const t_info *info, const char *msg, const size_t n);
+void	exit_mlx_p(const t_mlx *mlxs);
+void	exit_win_p(const t_mlx *mlxs);
+void	exit_img_p(const t_mlx *mlxs);
 
 // args.c
 int		check_args(const int argc, const char *argv[]);

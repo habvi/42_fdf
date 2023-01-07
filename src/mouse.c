@@ -33,6 +33,8 @@ int	mouse_hook(\
 		move_image(mouse_code, (t_mlx *)mlxs);
 		mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
 		set_image(mlxs);
+		if (mlxs->img->img == NULL)
+			exit_img_p(mlxs);
 		draw_image(mlxs);
 	}
 	return (SUCCESS);

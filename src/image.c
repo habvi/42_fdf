@@ -38,11 +38,11 @@ static void	draw_menu_background(const t_mlx *mlxs)
 void	set_image(const t_mlx *mlxs)
 {
 	mlxs->img->img = mlx_new_image(mlxs->display->mlx_p, WIN_WIDTH, WIN_HEIGHT);
-	// error
+	if (mlxs->img->img == NULL)
+		exit_img_p(mlxs);
 	mlxs->img->addr = mlx_get_data_addr(\
 						mlxs->img->img, &mlxs->img->bits_per_pixel, \
 						&mlxs->img->line_length, &mlxs->img->endian);
-	// error
 }
 
 void	draw_image(const t_mlx *mlxs)

@@ -26,6 +26,6 @@ int	main(int argc, char *argv[])
 
 // __attribute__((destructor)) static void	destructor(void)
 // {
-// 	system("leaks ~");
+// 	system("leaks fdf");
 // 	exit (SUCCESS);
 // }

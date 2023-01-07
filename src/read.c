@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../libft/include/get_next_line.h" // to do: only gnl?
+#include "../libft/include/get_next_line.h"
 
 static void	add_line_to_data(\
 		t_list **data, const t_list *head, char *line, const size_t line_count)

@@ -63,6 +63,8 @@ int	key_hook(const t_key keycode, const t_mlx *mlxs)
 		move_image(keycode, (t_mlx *)mlxs);
 		mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
 		set_image(mlxs);
+		if (mlxs->img->img == NULL)
+			exit_img_p(mlxs);
 		draw_image(mlxs);
 	}
 	return (SUCCESS);

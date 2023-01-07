@@ -31,10 +31,12 @@ static void	init_t_mlxs(\
 static void	set_window(const t_mlx *mlxs)
 {
 	mlxs->display->mlx_p = mlx_init();
-	// error
+	if (mlxs->display->mlx_p == NULL)
+		exit_mlx_p(mlxs);
 	mlxs->display->win_p = mlx_new_window(\
 						mlxs->display->mlx_p, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
-	// error
+	if (mlxs->display->win_p == NULL)
+		exit_win_p(mlxs);
 }
 
 static void	set_hook(const t_mlx *mlxs)
@@ -59,6 +61,8 @@ void	display_map(const t_info *info)
 	init_t_mlxs(&mlxs, &display, &img, info);
 	set_window(&mlxs);
 	set_image(&mlxs);
+	if (mlxs.img->img == NULL)
+		exit_img_p(&mlxs);
 	draw_image(&mlxs);
 	set_hook(&mlxs);
 	mlx_loop(mlxs.display->mlx_p);
