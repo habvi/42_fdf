@@ -89,7 +89,7 @@ typedef struct s_mlx {
 	bool		is_iso;
 	double		zoom;
 	double		points_distance;
-	int			height_emphasis;
+	double		height_emphasis;
 	int			delta_x;
 	int			delta_y;
 	int			rotate_x_angle;

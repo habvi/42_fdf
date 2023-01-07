@@ -16,13 +16,13 @@ static bool	is_rolled_key(const t_key keycode)
 static void	height_up(t_mlx *mlxs)
 {
 	if (mlxs->height_emphasis < Z_UPPER_BOUNDS)
-		mlxs->height_emphasis += 1;
+		mlxs->height_emphasis += Z_EMPHASIS_DELTA;
 }
 
 static void	height_down(t_mlx *mlxs)
 {
 	if (mlxs->height_emphasis > Z_LOWER_BOUNDS)
-		mlxs->height_emphasis -= 1;
+		mlxs->height_emphasis -= Z_EMPHASIS_DELTA;
 }
 
 static void	move_image(const t_key keycode, t_mlx *mlxs)

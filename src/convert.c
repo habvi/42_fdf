@@ -22,7 +22,7 @@ static void	calc_z_min_max(t_info *info, const int num)
 }
 
 static int	convert_height(\
-		t_info *info, const char *num_str, size_t *max_len, bool *is_valid_num)
+const t_info *info, const char *num_str, size_t *max_len, bool *is_valid_num)
 {
 	int	num;
 
@@ -30,7 +30,7 @@ static int	convert_height(\
 	*max_len = comma_index(num_str);
 	*is_valid_num &= ft_atoi_n_with_bool(num_str, &num, BASE10, *max_len);
 	if (is_valid_num)
-		calc_z_min_max(info, num);
+		calc_z_min_max((t_info *)info, num);
 	return (num);
 }
 
@@ -57,7 +57,7 @@ void	convert_map_height_and_color(\
 	while (list[j] != NULL)
 	{
 		height = &info->map->height_map[i][j];
-		*height = convert_height((t_info *)info, list[j], &max_len, &is_valid_num);
+		*height = convert_height(info, list[j], &max_len, &is_valid_num);
 		if (list[j][max_len] == ',')
 		{
 			color = &info->map->color_map[i][j];

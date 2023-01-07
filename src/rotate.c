@@ -49,8 +49,4 @@ void	calc_and_rotate(\
 		rotate_to_isometric_projection(point, *point);
 	point->x += mlxs->delta_x;
 	point->y += mlxs->delta_y;
-	// if (mlxs->map->height_map[y][x] == 0)
-	// 	point->color = COLOR_PINK;
-	// else
-	// 	point->color = COLOR_BLUE;
 }

@@ -14,13 +14,13 @@ static void	move_image(const t_mouse mouse_code, t_mlx *mlxs)
 	{
 		mlxs->delta_y -= 10;
 		mlxs->delta_x -= 10;
-		mlxs->points_distance *= 1.25;
+		mlxs->points_distance *= ZOOM_DELTA;
 	}
 	else if (mouse_code == MOUSE_DOWN)
 	{
 		mlxs->delta_y += 10;
 		mlxs->delta_x += 10;
-		mlxs->points_distance /= 1.25;
+		mlxs->points_distance /= ZOOM_DELTA;
 	}
 }
 
