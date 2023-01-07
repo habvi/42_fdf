@@ -1,5 +1,6 @@
 SRC			=	ft_atoi.c \
 				ft_atox.c \
+				ft_max.c \
 				ft_min.c \
 				ft_split.c \
 				ft_strchr.c \
