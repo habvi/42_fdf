@@ -37,7 +37,7 @@
 # define DEFAULT_HEIGHT_EMPHASIS	1
 
 # define PI							(3.14159265358979323846264338327950288)
-# define ANGLE_ISO					35
+# define ANGLE_ISO					30
 
 typedef enum e_status {
 	SUCCESS = 0,

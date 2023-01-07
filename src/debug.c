@@ -27,17 +27,17 @@ void	debug_split_list(char **list)
 void	debug_map(t_map *map)
 {
 	printf("         H: %zu, W: %zu\n", map->height, map->width);
-	for (size_t i = 0; i < map->height; i++)
-	{
-		for (size_t j = 0; j < map->width; j++)
-			printf("%d ", map->height_map[i][j]);
-		printf("\n");
-	}
-	printf("==color map==\n");
-	for (size_t i = 0; i < map->height; i++)
-	{
-		for (size_t j = 0; j < map->width; j++)
-			printf("%d ", map->color_map[i][j]);
-		printf("\n");
-	}
+	// for (size_t i = 0; i < map->height; i++)
+	// {
+	// 	for (size_t j = 0; j < map->width; j++)
+	// 		printf("%d ", map->height_map[i][j]);
+	// 	printf("\n");
+	// }
+	// printf("==color map==\n");
+	// for (size_t i = 0; i < map->height; i++)
+	// {
+	// 	for (size_t j = 0; j < map->width; j++)
+	// 		printf("%d ", map->color_map[i][j]);
+	// 	printf("\n");
+	// }
 }

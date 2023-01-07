@@ -18,6 +18,8 @@ typedef enum e_key {
 	KEY_J = 106,
 	KEY_K = 107,
 	KEY_L = 108,
+	KEY_I = 105,
+	KEY_P = 112,
 	KEY_ESC = 65307
 }	t_key;
 

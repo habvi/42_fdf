@@ -5,8 +5,8 @@
 static void	init_t_mlxs(\
 				t_mlx *mlxs, t_display *display, t_img *img, t_info *info)
 {
-	const int	start_y = WIN_HEIGHT * DEFAULT_ZOOM;
-	const int	start_x = WIN_WIDTH * DEFAULT_ZOOM;
+	const double	start_y = WIN_HEIGHT * DEFAULT_ZOOM;
+	const double	start_x = WIN_WIDTH * DEFAULT_ZOOM;
 
 	mlxs->display = display;
 	mlxs->img = img;
@@ -15,8 +15,8 @@ static void	init_t_mlxs(\
 	mlxs->is_iso = true;
 	mlxs->zoom = DEFAULT_ZOOM;
 	mlxs->points_distance = \
-						ft_min((WIN_HEIGHT - 2 * start_y) / mlxs->map->height, \
-								(WIN_WIDTH - 2 * start_x) / mlxs->map->width);
+				ft_min_double((WIN_HEIGHT - 2 * start_y) / (double)mlxs->map->height, \
+								(WIN_WIDTH - 2 * start_x) / (double)mlxs->map->width);
 	mlxs->height_emphasis = DEFAULT_HEIGHT_EMPHASIS;
 	mlxs->delta_y = start_y;
 	mlxs->delta_x = start_x * 2;
@@ -51,7 +51,6 @@ void	display_map(t_info *info)
 	t_img		img;
 
 	init_t_mlxs(&mlxs, &display, &img, info);
-	printf("points distance : %f\n", mlxs.points_distance);
 	set_window(&mlxs, WIN_TITLE);
 	set_image(&mlxs);
 	draw_image(&mlxs);

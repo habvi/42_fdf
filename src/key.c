@@ -8,7 +8,8 @@ static bool	is_rolled_key(t_key keycode)
 			keycode == KEY_UP || keycode == KEY_DOWN || \
 			keycode == KEY_ONE || keycode == KEY_TWO || \
 			keycode == KEY_J || keycode == KEY_K || \
-			keycode == KEY_H || keycode == KEY_L);
+			keycode == KEY_H || keycode == KEY_L ||
+			keycode == KEY_I || keycode == KEY_P);
 }
 
 static void	height_up(t_mlx *mlxs)
@@ -45,6 +46,10 @@ static void	move_image(t_key keycode, t_mlx *mlxs)
 		mlxs->rotate_y_angle -= ANGLE_ROTATE;
 	else if (keycode == KEY_L)
 		mlxs->rotate_y_angle += ANGLE_ROTATE;
+	else if (keycode == KEY_I)
+		mlxs->is_iso = true;
+	else if (keycode == KEY_P)
+		mlxs->is_iso = false;
 }
 
 int	key_hook(t_key keycode, t_mlx *mlxs)

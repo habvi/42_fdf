@@ -41,12 +41,10 @@ void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y)
 	point->x = mlxs->points_distance * x;
 	point->y = mlxs->points_distance * y;
 	point->z = mlxs->map->height_map[y][x] * mlxs->height_emphasis; // overflow
+	rotate_x_axis(mlxs, point, *point);
+	rotate_y_axis(mlxs, point, *point);
 	if (mlxs->is_iso)
-	{
-		rotate_x_axis(mlxs, point, *point);
-		rotate_y_axis(mlxs, point, *point);
 		rotate_to_isometric_projection(point);
-	}
 	point->x += mlxs->delta_x;
 	point->y += mlxs->delta_y;
 	if (mlxs->map->color_map[y][x] == NONE_COLOR)
