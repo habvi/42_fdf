@@ -2,7 +2,7 @@
 #include "../minilibx/mlx.h"
 #include "menu.h"
 
-static bool	is_in_window(const int y, const int x)
+bool	is_in_window(const int y, const int x)
 {
 	return (0 <= y && y < WIN_HEIGHT && 0 <= x && x < WIN_WIDTH);
 }
@@ -12,8 +12,6 @@ void	my_mlx_pixel_put(t_img *img, const int y, const int x, const int color)
 	char	*dst;
 	int		offset;
 
-	if (!is_in_window(y, x))
-		return ;
 	offset = y * img->line_length + x * (img->bits_per_pixel / 8);
 	dst = img->addr + offset;
 	*(unsigned int *)dst = color;

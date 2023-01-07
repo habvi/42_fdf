@@ -4,6 +4,8 @@
 #include "hook.h"
 #include <X11/X.h>
 
+#include <stdio.h>
+
 static void	init_t_mlxs(\
 			t_mlx *mlxs, t_display *display, t_img *img, const t_info *info)
 {
@@ -21,11 +23,13 @@ static void	init_t_mlxs(\
 	mlxs->points_distance = \
 				ft_min_double((WIN_HEIGHT - 2 * start_y) / mlxs->map->height, \
 								(WIN_WIDTH - 2 * start_x) / mlxs->map->width);
+	printf("=== %f\n", mlxs->points_distance);
 	mlxs->height_emphasis = DEFAULT_HEIGHT_EMPHASIS;
 	mlxs->delta_y = start_y;
 	mlxs->delta_x = start_x * 2;
 	mlxs->rotate_x_angle = 0;
 	mlxs->rotate_y_angle = 0;
+	mlxs->counter = 0;
 }
 
 static void	set_window(const t_mlx *mlxs)

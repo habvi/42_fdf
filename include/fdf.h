@@ -28,6 +28,7 @@
 
 # define DEFAULT_ZOOM				(0.25)
 # define DEFAULT_HEIGHT_EMPHASIS	1
+# define DRAW_INTERVAL				2
 
 # define PI							(3.14159265358979323846264338327950288)
 # define ANGLE_ISO					30
@@ -94,6 +95,7 @@ typedef struct s_mlx {
 	int			delta_y;
 	int			rotate_x_angle;
 	int			rotate_y_angle;
+	int			counter;
 }	t_mlx;
 
 // exit.c
@@ -126,6 +128,7 @@ void	set_data_to_map(const t_info *info, const t_list *data, const size_t i);
 void	display_map(const t_info *info);
 
 // image.c
+bool	is_in_window(const int y, const int x);
 void	my_mlx_pixel_put(t_img *img, const int y, const int x, const int color);
 void	set_image(const t_mlx *mlxs);
 void	draw_image(const t_mlx *mlxs);
