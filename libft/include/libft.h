@@ -20,7 +20,8 @@ bool	ft_atoi_n_with_bool(const char *str, int *num, const char *base, size_t len
 bool	ft_atox_with_bool(const char *str, int *num);
 
 bool	ft_isdigit(int c);
-size_t	ft_min(const size_t x, const size_t y);
+int	    ft_max(const int x, const int y);
+int	    ft_min(const int x, const int y);
 double	ft_min_double(const double x, const double y);
 char	**ft_split(char const *s, char c, size_t *list_size);
 char	*ft_strchr(const char *s, int int_c);

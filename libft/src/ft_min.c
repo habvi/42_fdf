@@ -1,6 +1,6 @@
 #include "libft.h"
 
-size_t	ft_min(const size_t x, const size_t y)
+int	ft_min(const int x, const int y)
 {
 	if (x <= y)
 		return (x);
