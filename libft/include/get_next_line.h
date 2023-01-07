@@ -12,7 +12,7 @@
 # define READ_ERROR -1
 
 // get_next_line.c
-char	*get_next_line(int fd);
+char	*get_next_line(const int fd);
 
 // get_next_line_utils.c
 char	*ft_strjoin(char const *s1, char const *s2);

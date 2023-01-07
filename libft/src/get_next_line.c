@@ -67,7 +67,7 @@ static char	*output(char **saved)
 	return (left);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(const int fd)
 {
 	static char	*saved = NULL;
 	bool		finish_read;
