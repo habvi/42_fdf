@@ -1,14 +1,14 @@
 #include "fdf.h"
 #include "color.h"
 
-void	set_default_color(t_point *point, int z)
+void	set_default_color(t_point *point, const int z)
 {
 	// to do: min_z, max_z -> percent
 	(void)z;
 	point->color = COLOR_WHITE;
 }
 
-static double	get_percent(int start, int end, int current)
+static double	get_percent(const int start, const int end, const int current)
 {
 	double	start_to_current;
 	double	start_to_end;
@@ -21,12 +21,12 @@ static double	get_percent(int start, int end, int current)
 		return (start_to_current / start_to_end);
 }
 
-static int	get_light(int start, int end, double percent)
+static int	get_light(const int start, const int end, const double percent)
 {
 	return ((int)((1 - percent) * start + percent * end));
 }
 
-int	get_current_color(t_point current, t_point start, \
+int	get_current_color(const t_point current, t_point start, \
 						t_point end, const t_xy delta)
 {
 	int		red;

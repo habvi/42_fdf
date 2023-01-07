@@ -15,8 +15,8 @@ typedef enum e_color
 }	t_color;
 
 // color.c
-void	set_default_color(t_point *point, int z);
-int		get_current_color(t_point current, t_point start, \
-						t_point end, const t_xy delta);
+void	set_default_color(t_point *point, const int z);
+int		get_current_color(const t_point current, t_point start, \
+							t_point end, const t_xy delta);
 
 #endif

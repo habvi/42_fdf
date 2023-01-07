@@ -1,8 +1,10 @@
 NAME		=	fdf
 
+# to do: erase debug.c
 SRC			=	args.c \
 				clear.c \
 				color.c \
+				convert.c \
 				debug.c \
 				display.c \
 				draw_line.c \
@@ -13,9 +15,9 @@ SRC			=	args.c \
 				main.c \
 				mouse.c \
 				parse.c \
-				parse2.c \
 				read.c \
-				rotate.c
+				rotate.c \
+				set_data.c
 
 SRC_DIR		=	./src/
 OBJ_DIR		=	./obj/

@@ -10,7 +10,7 @@ int	main(int argc, char *argv[])
 {
 	t_info		info;
 	t_map		map;
-	const int	fd = check_args(argc, argv);
+	const int	fd = check_args(argc, (const char **)argv);
 	size_t		line_count;
 
 	init_info(&info, &map);

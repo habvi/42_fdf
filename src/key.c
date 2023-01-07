@@ -1,14 +1,15 @@
 #include "fdf.h"
 #include "hook.h"
+#include "../minilibx/mlx.h"
 #include <stdio.h> // to do: printf -> ft_printf
 
-static bool	is_rolled_key(t_key keycode)
+static bool	is_rolled_key(const t_key keycode)
 {
 	return (keycode == KEY_LEFT || keycode == KEY_RIGHT || \
 			keycode == KEY_UP || keycode == KEY_DOWN || \
 			keycode == KEY_ONE || keycode == KEY_TWO || \
 			keycode == KEY_J || keycode == KEY_K || \
-			keycode == KEY_H || keycode == KEY_L ||
+			keycode == KEY_H || keycode == KEY_L || \
 			keycode == KEY_I || keycode == KEY_P);
 }
 
@@ -24,7 +25,7 @@ static void	height_down(t_mlx *mlxs)
 		mlxs->height_emphasis -= 1;
 }
 
-static void	move_image(t_key keycode, t_mlx *mlxs)
+static void	move_image(const t_key keycode, t_mlx *mlxs)
 {
 	if (keycode == KEY_LEFT)
 		mlxs->delta_x -= SHIFT_WIDTH;
@@ -52,14 +53,14 @@ static void	move_image(t_key keycode, t_mlx *mlxs)
 		mlxs->is_iso = false;
 }
 
-int	key_hook(t_key keycode, t_mlx *mlxs)
+int	key_hook(const t_key keycode, const t_mlx *mlxs)
 {
 	printf("keycode : %d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_window(mlxs);
 	else if (is_rolled_key(keycode))
 	{
-		move_image(keycode, mlxs);
+		move_image(keycode, (t_mlx *)mlxs);
 		mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
 		set_image(mlxs);
 		draw_image(mlxs);

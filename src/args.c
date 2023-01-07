@@ -1,8 +1,10 @@
 #include "fdf.h"
+#include "../libft/include/libft.h"
+#include <fcntl.h> // open
 
 static void	is_correct_extension(const char *filepath)
 {
-	const char	extension[] = ".fdf";
+	const char	*extension = FILE_EXTENSION;
 	size_t		len_extension;
 	size_t		len_filepath;
 
@@ -41,7 +43,7 @@ static int	check_filepath(const char *filepath_org)
 	return (fd);
 }
 
-int	check_args(int argc, char *argv[])
+int	check_args(const int argc, const char *argv[])
 {
 	int	fd;
 

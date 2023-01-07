@@ -1,22 +1,21 @@
 #include "fdf.h"
+#include "../libft/include/libft.h"
 #include <stdio.h> // to do: printf -> ft_printf
 
-static void	init_map(t_info *info, size_t line_count)
+static void	init_map(const t_info *info, const size_t line_count)
 {
 	t_map	*map;
 
 	map = info->map;
 	map->width = 0;
 	map->height = line_count;
-	// ft_calloc?
 	map->height_map = (int **)malloc(sizeof(int *) * map->height);
-	// ft_calloc?
 	map->color_map = (int **)malloc(sizeof(int *) * map->height);
 	if (map->height_map == NULL || map->color_map == NULL)
 		clear_before_exit(info, ERR_MSG_MALLOC, 0);
 }
 
-void	parse_map(t_info *info, size_t line_count)
+void	parse_map(const t_info *info, const size_t line_count)
 {
 	t_list	*data;
 	size_t	i;

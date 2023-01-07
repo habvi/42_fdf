@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include "../minilibx/mlx.h"
 #include "menu.h"
 
 static void	init_t_menu(t_menu *menu)
@@ -8,14 +9,14 @@ static void	init_t_menu(t_menu *menu)
 	menu->x_keycode = WIN_MARGIN + W_CONTENT_SPACE;
 }
 
-static void	draw(t_mlx *mlxs, size_t x, size_t *y, char *str)
+static void	draw(const t_mlx *mlxs, const size_t x, size_t *y, char *str)
 {
 	*y += H_LINE_SPACE;
 	mlx_string_put(mlxs->display->mlx_p, mlxs->display->win_p, \
 					x, *y, MENU_STR_COLOR, str);
 }
 
-static void	draw_key_usage(t_mlx *mlxs, t_menu *menu, size_t *y)
+static void	draw_key_usage(const t_mlx *mlxs, const t_menu *menu, size_t *y)
 {
 	char	*str;
 
@@ -43,7 +44,7 @@ static void	draw_key_usage(t_mlx *mlxs, t_menu *menu, size_t *y)
 	draw(mlxs, menu->x_keycode, y, str);
 }
 
-static void	draw_mouse_usage(t_mlx *mlxs, t_menu *menu, size_t *y)
+static void	draw_mouse_usage(const t_mlx *mlxs, const t_menu *menu, size_t *y)
 {
 	char	*str;
 
@@ -59,7 +60,7 @@ static void	draw_mouse_usage(t_mlx *mlxs, t_menu *menu, size_t *y)
 	draw(mlxs, menu->x_keycode, y, str);
 }
 
-void	draw_menu_string(t_mlx *mlxs)
+void	draw_menu_string(const t_mlx *mlxs)
 {
 	t_menu	menu;
 	size_t	y;

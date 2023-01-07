@@ -1,7 +1,6 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include <fcntl.h> // open
 // # include <unistd.h> // close, read, write
 # include <stdlib.h> // malloc, free, exit
 // # include <stdio.h> // perror
@@ -9,13 +8,7 @@
 # include <errno.h> // to do: fix
 # include <stdbool.h>
 
-// # include "libft.h"
-// # include "list.h"
-// # include "minilibx/mlx.h"
-
-# include "../libft/include/libft.h"
 # include "../libft/include/list.h"
-# include "../minilibx/mlx.h"
 
 # define ERR_MSG_FILEPATH			"invalid filepath"
 # define ERR_MSG_FILE_EXTENSION		"invalid file's extension"
@@ -23,9 +16,9 @@
 # define ERR_MSG_INVALID_MAP		"invalid map"
 # define ERR_MSG_MALLOC				"malloc"
 # define ERR_MSG_EMPTY				"empty file"
-# define ERR_MSG_MAP_HEIGHT			"invalid map height"
 # define ERR_MSG_MAP_WIDTH			"invalid map width"
 
+# define FILE_EXTENSION				".fdf"
 # define OPEN_ERROR					-1
 # define NONE_COLOR					-1
 
@@ -100,39 +93,44 @@ typedef struct s_mlx {
 }	t_mlx;
 
 // exit.c
-void	error_exit(const char *msg, char *ptr, const int status);
-void	clear_before_exit(t_info *info, const char *msg, const int n);
+void	error_exit(const char *msg, void *ptr, const int status);
+void	clear_before_exit(const t_info *info, const char *msg, const size_t n);
 
 // args.c
-int		check_args(int argc, char *argv[]);
+int		check_args(const int argc, const char *argv[]);
 
 // read.c
-size_t	read_map(int fd, t_list **data);
+size_t	read_map(const int fd, t_list **data);
 
 // clear.c
 void	clear_split_list(char **list);
 void	clear_data(t_list *data);
-void	clear_map_to_n(t_map *map, size_t n);
-int		close_window(t_mlx *mlxs);
+void	clear_map_to_n(const t_map *map, const size_t n);
+int		close_window(const t_mlx *mlxs);
 
 // parse.c
-void	parse_map(t_info *info, size_t line_count);
+void	parse_map(const t_info *info, const size_t line_count);
 
-// parse2.c
-void	set_data_to_map(t_info *info, t_list *data, size_t i);
+// convert.c
+void	convert_map_height_and_color(\
+					const t_info *info, const char **list, const size_t i);
+
+// set_data.c
+void	set_data_to_map(const t_info *info, const t_list *data, const size_t i);
 
 // display_map.c
-void	display_map(t_info *info);
+void	display_map(const t_info *info);
 
 // image.c
-void	my_mlx_pixel_put(t_img *img, int y, int x, int color);
-void	set_image(t_mlx *mlxs);
-void	draw_image(t_mlx *mlxs);
+void	my_mlx_pixel_put(t_img *img, const int y, const int x, const int color);
+void	set_image(const t_mlx *mlxs);
+void	draw_image(const t_mlx *mlxs);
 
 // draw_line.c
-void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y);
+void	draw_line_right_down(const t_mlx *mlxs, const size_t x, const size_t y);
 
 // rotate.c
-void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y);
+void	calc_and_rotate(\
+			const t_mlx *mlxs, t_point *point, const size_t x, const size_t y);
 
 #endif

@@ -1,4 +1,5 @@
 #include "fdf.h"
+#include "../minilibx/mlx.h"
 #include "hook.h"
 #include <stdio.h> // to do: erase printf
 
@@ -29,7 +30,7 @@ void	clear_data(t_list *data)
 }
 
 // exit
-void	clear_map_to_n(t_map *map, size_t n)
+void	clear_map_to_n(const t_map *map, const size_t n)
 {
 	size_t	i;
 
@@ -45,7 +46,7 @@ void	clear_map_to_n(t_map *map, size_t n)
 }
 
 // key
-int	close_window(t_mlx *mlxs)
+int	close_window(const t_mlx *mlxs)
 {
 	clear_data(mlxs->data);
 	clear_map_to_n(mlxs->map, mlxs->map->height);

@@ -23,6 +23,6 @@ typedef struct s_menu {
 }	t_menu;
 
 // draw_menu.c
-void	draw_menu_string(t_mlx *mlxs);
+void	draw_menu_string(const t_mlx *mlxs);
 
 #endif

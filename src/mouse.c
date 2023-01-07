@@ -1,13 +1,14 @@
 #include "fdf.h"
+#include "../minilibx/mlx.h"
 #include "hook.h"
 #include <stdio.h> // to do: printf -> ft_printf
 
-static bool	is_rolled_mouse(t_mouse mouse_code)
+static bool	is_rolled_mouse(const t_mouse mouse_code)
 {
 	return (mouse_code == MOUSE_UP || mouse_code == MOUSE_DOWN);
 }
 
-static void	move_image(t_mouse mouse_code, t_mlx *mlxs)
+static void	move_image(const t_mouse mouse_code, t_mlx *mlxs)
 {
 	if (mouse_code == MOUSE_UP)
 	{
@@ -23,12 +24,13 @@ static void	move_image(t_mouse mouse_code, t_mlx *mlxs)
 	}
 }
 
-int	mouse_hook(t_mouse mouse_code, int x, int y, t_mlx *mlxs)
+int	mouse_hook(\
+		const t_mouse mouse_code, const int x, const int y, const t_mlx *mlxs)
 {
 	printf("mousecode : %d, (y, x) = (%d, %d)\n", mouse_code, y, x);
 	if (is_rolled_mouse(mouse_code))
 	{
-		move_image(mouse_code, mlxs);
+		move_image(mouse_code, (t_mlx *)mlxs);
 		mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
 		set_image(mlxs);
 		draw_image(mlxs);
@@ -36,7 +38,7 @@ int	mouse_hook(t_mouse mouse_code, int x, int y, t_mlx *mlxs)
 	return (SUCCESS);
 }
 
-int	minimize_window(t_mlx *mlxs)
+int	minimize_window(const t_mlx *mlxs)
 {
 	draw_image(mlxs);
 	return (SUCCESS);

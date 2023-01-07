@@ -1,13 +1,13 @@
-#include <math.h>
 #include "fdf.h"
 #include "color.h"
+#include <math.h>
 
 static double	degree_to_radian(double degree)
 {
 	return (degree * PI / 180.0);
 }
 
-static void	rotate_x_axis(t_mlx *mlxs, t_point *point, const t_point tmp)
+static void	rotate_x_axis(const t_mlx *mlxs, t_point *point, const t_point tmp)
 {
 	const int		angle = mlxs->rotate_x_angle % 360;
 	const double	radian = degree_to_radian(angle);
@@ -16,7 +16,7 @@ static void	rotate_x_axis(t_mlx *mlxs, t_point *point, const t_point tmp)
 	point->z = -tmp.y * sin(radian) + tmp.z * cos(radian);
 }
 
-static void	rotate_y_axis(t_mlx *mlxs, t_point *point, t_point tmp)
+static void	rotate_y_axis(const t_mlx *mlxs, t_point *point, const t_point tmp)
 {
 	const int		angle = mlxs->rotate_y_angle % 360;
 	const double	radian = degree_to_radian(angle);
@@ -25,18 +25,16 @@ static void	rotate_y_axis(t_mlx *mlxs, t_point *point, t_point tmp)
 	point->z = -tmp.x * sin(radian) + tmp.z * cos(radian);
 }
 
-static void	rotate_to_isometric_projection(t_point *point)
+static void	rotate_to_isometric_projection(t_point *point, const t_point tmp)
 {
 	const double	radian = degree_to_radian(ANGLE_ISO);
-	t_point			tmp;
 
-	tmp.x = (point->x - point->y) * cos(radian);
-	tmp.y = (point->x + point->y) * sin(radian) - point->z;
-	point->x = tmp.x;
-	point->y = tmp.y;
+	point->x = (tmp.x - tmp.y) * cos(radian);
+	point->y = (tmp.x + tmp.y) * sin(radian) - point->z;
 }
 
-void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y)
+void	calc_and_rotate(\
+			const t_mlx *mlxs, t_point *point, const size_t x, const size_t y)
 {
 	point->x = mlxs->points_distance * x;
 	point->y = mlxs->points_distance * y;
@@ -44,7 +42,7 @@ void	calc_and_rotate(t_mlx *mlxs, t_point *point, size_t x, size_t y)
 	rotate_x_axis(mlxs, point, *point);
 	rotate_y_axis(mlxs, point, *point);
 	if (mlxs->is_iso)
-		rotate_to_isometric_projection(point);
+		rotate_to_isometric_projection(point, *point);
 	point->x += mlxs->delta_x;
 	point->y += mlxs->delta_y;
 	if (mlxs->map->color_map[y][x] == NONE_COLOR)

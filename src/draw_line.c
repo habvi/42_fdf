@@ -2,13 +2,14 @@
 #include "menu.h"
 #include "color.h"
 
-static bool	is_out_of_menu(size_t y, size_t x)
+static bool	is_out_of_menu(const size_t y, const size_t x)
 {
 	return (!(WIN_MARGIN <= y && y < WIN_MARGIN + MENU_HEIGHT && \
 			WIN_MARGIN <= x && x < WIN_MARGIN + MENU_WIDTH));
 }
 
-static void	set_sxy(t_xy *sign, t_point from, t_point to, t_point *current)
+static void	set_sxy(\
+			t_xy *sign, const t_point from, const t_point to, t_point *current)
 {
 	sign->x = -1;
 	if (from.x < to.x)
@@ -49,7 +50,7 @@ static void	draw_line_by_bresenham(\
 	}
 }
 
-void	draw_line_right_down(t_mlx *mlxs, size_t x, size_t y)
+void	draw_line_right_down(const t_mlx *mlxs, const size_t x, const size_t y)
 {
 	t_point	from;
 	t_point	to;

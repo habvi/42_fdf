@@ -24,16 +24,16 @@ typedef enum e_key {
 }	t_key;
 
 typedef enum e_mouse {
-	// MOUSE_LEFT = 1,
 	MOUSE_UP = 4,
 	MOUSE_DOWN = 5
 }	t_mouse;
 
 // mouse.c
-int	mouse_hook(t_mouse mouse_code, int x, int y, t_mlx *mlxs);
-int	minimize_window(t_mlx *mlxs);
+int	mouse_hook(\
+		const t_mouse mouse_code, const int x, const int y, const t_mlx *mlxs);
+int	minimize_window(const t_mlx *mlxs);
 
 // key.c
-int	key_hook(t_key keycode, t_mlx *mlxs);
+int	key_hook(const t_key keycode, const t_mlx *mlxs);
 
 #endif
