@@ -45,8 +45,8 @@ static void	init_t_mlxs(\
 				ft_min_double((WIN_HEIGHT - 2 * start_y) / mlxs->map->height, \
 								(WIN_WIDTH - 2 * start_x) / mlxs->map->width);
 	mlxs->height_emphasis = DEFAULT_HEIGHT_EMPHASIS;
-	mlxs->delta_y = start_y;
-	mlxs->delta_x = start_x * 2;
+	mlxs->delta_y = 0;
+	mlxs->delta_x = 0;
 	mlxs->rotate_x_angle = 0;
 	mlxs->rotate_y_angle = 0;
 }
