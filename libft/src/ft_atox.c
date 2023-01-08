@@ -12,7 +12,6 @@ int	base_index(const char *base, char c)
 	return (i);
 }
 
-// if "-", return (0) -> fixed
 bool	ft_atox_with_bool(const char *str, int *num)
 {
 	const size_t	base_num = ft_strlen(BASE16_LOWER);

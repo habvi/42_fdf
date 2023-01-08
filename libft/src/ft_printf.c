@@ -40,7 +40,8 @@ static void	normal_char_mode(t_info_pf *info)
 {
 	while (*info->fmt && *info->fmt != '%')
 	{
-		if (write(STDOUT_FILENO, info->fmt, 1) == ERROR || info->total_len == INT_MAX)
+		if (write(STDOUT_FILENO, info->fmt, 1) == ERROR || \
+			info->total_len == INT_MAX)
 		{
 			info->error = EXIT;
 			return ;
@@ -72,7 +73,7 @@ static void	format_specifier_or_not(t_info_pf *info, va_list *args_list)
 int	ft_printf(const char *format, ...)
 {
 	t_info_pf	info;
-	va_list	args_list;
+	va_list		args_list;
 
 	va_start(args_list, format);
 	init_info(&info, format);

@@ -1,17 +1,17 @@
 #include "libft.h"
 
-bool	is_space(int c)
+static bool	is_space(int c)
 {
 	return (c == '\t' || c == '\n' || c == '\v' || \
 			c == '\f' || c == '\r' || c == ' ');
 }
 
-bool	is_operator(int c)
+static bool	is_operator(int c)
 {
 	return (c == '-' || c == '+');
 }
 
-bool	is_overflow(int *num, int c, int op, const char *base)
+static bool	is_overflow(int *num, int c, int op, const char *base)
 {
 	const size_t	base_num = ft_strlen(base);
 	int				ov_div;
@@ -32,40 +32,44 @@ bool	is_overflow(int *num, int c, int op, const char *base)
 	return (false);
 }
 
+static int	move_space_and_op(const char *str, size_t *i, size_t len)
+{
+	int	op;
+
+	op = 1;
+	while (is_space(str[*i]) && *i < len)
+		(*i)++;
+	if (is_operator(str[*i]) && *i < len)
+	{
+		op = ',' - str[*i];
+		(*i)++;
+	}
+	return (op);
+}
+
+// if "-", return (0) -> fixed
 bool	ft_atoi_n_with_bool(\
 					const char *str, int *num, const char *base, size_t len)
 {
 	const size_t	base_num = ft_strlen(base);
-	int				op;
 	bool			at_least_one_digit;
+	int				op;
 	int				base_i;
 	size_t			i;
 
 	i = 0;
 	*num = 0;
-	op = 1;
-	while (is_space(*str) && i < len)
-	{
-		str++;
-		i++;
-	}
-	if (is_operator(*str) && i < len)
-	{
-		op = ',' - *str;
-		str++;
-		i++;
-	}
+	op = move_space_and_op(str, &i, len);
 	at_least_one_digit = false;
-	while (ft_strchr(base, *str) != NULL && i < len)
+	while (ft_strchr(base, str[i]) != NULL && i < len)
 	{
-		base_i = base_index(base, *str);
+		base_i = base_index(base, str[i]);
 		if (base_i == INVALID_CHAR)
 			return (false);
 		at_least_one_digit = true;
-		if (is_overflow(num, *str, op, base))
+		if (is_overflow(num, str[i], op, base))
 			return (false);
 		*num = *num * base_num + base_i;
-		str++;
 		i++;
 	}
 	if (i != len || !at_least_one_digit)
