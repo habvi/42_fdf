@@ -5,8 +5,8 @@
 # define ANGLE_ROTATE		10
 
 # define Z_LOWER_BOUNDS		1
-# define Z_UPPER_BOUNDS		21
-# define Z_EMPHASIS_DELTA	2
+# define Z_UPPER_BOUNDS		11
+# define Z_EMPHASIS_DELTA	1
 # define ADJUST_DELTA		10
 # define ZOOM_DELTA			(1.5)
 

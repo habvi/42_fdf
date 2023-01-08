@@ -22,11 +22,11 @@
 # define FILE_EXTENSION				".fdf"
 # define OPEN_ERROR					-1
 # define NONE_COLOR					-1
+# define OVER_MAX_DIGIT				12
 
 # define WIN_TITLE					"FdF@hiabe"
 # define WIN_HEIGHT					720
 # define WIN_WIDTH					1280
-# define LARGE_FILE					200
 
 # define DEFAULT_ZOOM				(0.25)
 # define DEFAULT_HEIGHT_EMPHASIS	1

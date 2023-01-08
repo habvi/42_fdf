@@ -38,7 +38,7 @@ void	calc_and_rotate(\
 {
 	point->x = mlxs->points_distance * x;
 	point->y = mlxs->points_distance * y;
-	point->z = mlxs->map->height_map[y][x] * mlxs->height_emphasis; // overflow
+	point->z = mlxs->map->height_map[y][x] * mlxs->height_emphasis;
 	if (mlxs->map->color_map[y][x] == NONE_COLOR)
 		set_default_color(mlxs, point, point->z);
 	else

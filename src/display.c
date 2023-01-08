@@ -4,6 +4,30 @@
 #include "hook.h"
 #include <X11/X.h>
 
+static void	init_z(t_mlx *mlxs, const t_info *info)
+{
+	const double	div = (info->z_max - info->z_min) / (WIN_HEIGHT * 0.1);
+	size_t			y;
+	size_t			x;
+
+	mlxs->z_min = info->z_min / div;
+	mlxs->z_max = info->z_max / div;
+	if (div)
+	{
+		y = 0;
+		while (y < mlxs->map->height)
+		{
+			x = 0;
+			while (x < mlxs->map->width)
+			{
+				mlxs->map->height_map[y][x] /= div;
+				x++;
+			}
+			y++;
+		}
+	}
+}
+
 static void	init_t_mlxs(\
 			t_mlx *mlxs, t_display *display, t_img *img, const t_info *info)
 {
@@ -14,8 +38,7 @@ static void	init_t_mlxs(\
 	mlxs->img = img;
 	mlxs->map = info->map;
 	mlxs->data = info->data;
-	mlxs->z_min = info->z_min;
-	mlxs->z_max = info->z_max;
+	init_z(mlxs, info);
 	mlxs->is_iso = true;
 	mlxs->zoom = DEFAULT_ZOOM;
 	mlxs->points_distance = \
