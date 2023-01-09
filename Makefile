@@ -51,6 +51,9 @@ $(LIBFT):
 	$(MAKE) -C ./$(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT) $@
 
+$(MINILIBX):
+	make -C $(MLX_DIR)
+
 clean:
 	$(RM) -r $(OBJ_DIR) libft/$(OBJ_DIR)
 
