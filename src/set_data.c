@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../libft/include/libft.h"
+#include "libft.h"
 
 static const char	**split_map_line(\
 	const t_info *info, const t_list *data, size_t *list_size, const size_t i)

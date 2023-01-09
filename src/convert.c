@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../libft/include/libft.h"
+#include "libft.h"
 
 static size_t	comma_index(const char *str, bool *is_valid_num)
 {

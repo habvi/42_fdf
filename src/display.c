@@ -1,6 +1,6 @@
 #include "fdf.h"
-#include "../libft/include/libft.h"
-#include "../minilibx/mlx.h"
+#include "libft.h"
+#include "mlx.h"
 #include "hook.h"
 #include <X11/X.h>
 

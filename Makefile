@@ -1,11 +1,9 @@
 NAME		=	fdf
 
-# to do: erase debug.c
 SRC			=	args.c \
 				clear.c \
 				color.c \
 				convert.c \
-				debug.c \
 				display.c \
 				draw_line.c \
 				draw_menu.c \
@@ -20,34 +18,38 @@ SRC			=	args.c \
 				set_data.c
 
 SRC_DIR		=	./src/
+# SRCS		=	$(addprefix $(SRC_DIR), $(SRC))
 OBJ_DIR		=	./obj/
-INCLUDE_DIR	=	./include/
-INCLUDES	=	-I $(INCLUDE_DIR)
-
-# unused
-SRCS		=	$(addprefix $(SRC_DIR), $(SRC))
-
 OBJS		=	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))
+
+LIBFT_DIR	=	libft
 LIBFT		=	libft.a
 
-# to do: -> cc
-CC			=	clang
+# set
+MLX_DIR		=	minilibx
+
+INCLUDE_DIR	=	include
+INCLUDES	=	-I./$(INCLUDE_DIR)/ -I$(LIBFT_DIR)/$(INCLUDE_DIR)/ -I$(MLX_DIR)/
+
+CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 MLX_FLAGS	=	-Lmlx_linux -lXext -lX11 -lm
-MINILIBX	=	minilibx/libmlx_Linux.a
+MINILIBX	=	$(MLX_DIR)/libmlx_Linux.a
 
 all: $(NAME)
 
+bonus: all
+
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p obj
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MLX_FLAGS) $(MINILIBX)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MINILIBX) $(MLX_FLAGS)
 
 $(LIBFT):
-	$(MAKE) -C ./libft
-	cp libft/$(LIBFT) $@
+	$(MAKE) -C ./$(LIBFT_DIR)
+	cp $(LIBFT_DIR)/$(LIBFT) $@
 
 clean:
 	$(RM) -r $(OBJ_DIR) libft/$(OBJ_DIR)
@@ -57,4 +59,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+norm:
+	norminette $(SRC_DIR) $(INCLUDE_DIR) $(LIBFT_DIR)
+
+.PHONY: all clean fclean re bonus norm

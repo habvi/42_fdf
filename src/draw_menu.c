@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../minilibx/mlx.h"
+#include "mlx.h"
 #include "menu.h"
 
 static void	init_t_menu(t_menu *menu)

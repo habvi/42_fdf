@@ -1,7 +1,7 @@
 #include "fdf.h"
-#include "../minilibx/mlx.h"
+#include "mlx.h"
 #include "hook.h"
-#include "../libft/include/ft_printf.h"
+#include "ft_printf.h"
 
 static bool	is_rolled_mouse(const t_mouse mouse_code)
 {

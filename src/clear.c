@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../minilibx/mlx.h"
+#include "mlx.h"
 #include "hook.h"
 
 // parse2

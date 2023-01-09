@@ -1,7 +1,5 @@
 obj/
 *.a
 fdf
-fdf_linux
-test_main/
+test_map/
 minilibx/
-__MACOSX/

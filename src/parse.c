@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../libft/include/libft.h"
+#include "libft.h"
 
 static void	init_map(const t_info *info, const size_t line_count)
 {

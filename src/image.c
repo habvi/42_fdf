@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../minilibx/mlx.h"
+#include "mlx.h"
 #include "menu.h"
 
 bool	is_in_window(const int y, const int x)

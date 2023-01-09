@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../libft/include/libft.h"
+#include "libft.h"
 #include <fcntl.h> // open
 
 static void	is_correct_extension(const char *filepath)

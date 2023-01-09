@@ -1,6 +1,7 @@
 #include "fdf.h"
-#include "../libft/include/ft_printf.h"
-#include "../minilibx/mlx.h"
+#include "libft.h"
+#include "ft_printf.h"
+#include "mlx.h"
 
 // args, read
 void	error_exit(const char *msg, void *ptr, const int status)

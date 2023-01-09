@@ -1,5 +1,5 @@
 #include "fdf.h"
-#include "../libft/include/get_next_line.h"
+#include "get_next_line.h"
 
 static void	add_line_to_data(\
 		t_list **data, const t_list *head, char *line, const size_t line_count)
@@ -19,11 +19,12 @@ static void	add_line_to_data(\
 // t_list *data ??
 size_t	read_map(const int fd, t_list **data)
 {
-	size_t			line_count;
-	char			*line;
-	const t_list	*head;
+	size_t	line_count;
+	char	*line;
+	t_list	*head;
 
 	line_count = 0;
+	head = NULL;
 	while (true)
 	{
 		line = get_next_line(fd);

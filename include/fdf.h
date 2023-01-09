@@ -59,8 +59,6 @@ typedef struct s_display {
 	void	*win_p;
 }	t_display;
 
-# include "debug.h" // to do: erase
-
 typedef struct s_img {
 	void	*img;
 	char	*addr;
