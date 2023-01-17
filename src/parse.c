@@ -14,14 +14,14 @@ static void	init_map(const t_info *info, const size_t line_count)
 		clear_before_exit(info, ERR_MSG_MALLOC, 0);
 }
 
-void	parse_map(const t_info *info, const size_t line_count)
+void	parse_map(t_info *info, const size_t line_count)
 {
 	t_list	*data;
 	size_t	i;
 	size_t	len;
 
 	init_map(info, line_count);
-	data = info->data;
+	data = (t_list *)info->head;
 	i = 0;
 	while (data)
 	{

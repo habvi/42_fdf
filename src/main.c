@@ -3,7 +3,7 @@
 
 static void	init_info(t_info *info, t_map *map)
 {
-	info->data = NULL;
+	info->tail = NULL;
 	info->map = map;
 	info->z_min = INT_MAX;
 	info->z_max = INT_MIN;
@@ -11,21 +11,16 @@ static void	init_info(t_info *info, t_map *map)
 
 int	main(int argc, char *argv[])
 {
-	t_info		info;
-	t_map		map;
-	const int	fd = check_args(argc, (const char **)argv);
-	size_t		line_count;
+	int		fd;
+	t_info	info;
+	t_map	map;
+	size_t	line_count;
 
+	check_args(argc, (const char **)argv);
+	fd = open_file(argv[1]);
 	init_info(&info, &map);
-	line_count = read_map(fd, &(info.data));
-	info.head = info.data;
+	line_count = read_map(fd, &info);
 	parse_map(&info, line_count);
 	display_map(&info);
 	return (0);
 }
-
-// __attribute__((destructor)) static void	destructor(void)
-// {
-// 	system("leaks fdf");
-// 	exit (SUCCESS);
-// }

@@ -1,41 +1,37 @@
 #include "fdf.h"
 #include "get_next_line.h"
 
-static void	add_line_to_data(\
-		t_list **data, const t_list *head, char *line, const size_t line_count)
+static void	add_line_to_data(t_info *info, char *line, const size_t line_count)
 {
 	const t_list	*node = ft_lstnew(line);
 
 	if (node == NULL)
 	{
-		clear_data((t_list *)head);
+		clear_data((t_list *)info->head);
 		error_exit(ERR_MSG_MALLOC, NULL, EXIT_FAILURE);
 	}
 	if (line_count >= 2)
-		data = &((*data)->next);
-	ft_lstadd_back(data, (t_list *)node);
+		info->tail = info->tail->next;
+	ft_lstadd_back(&info->tail, (t_list *)node);
 }
 
-// t_list *data ??
-size_t	read_map(const int fd, t_list **data)
+size_t	read_map(const int fd, t_info *info)
 {
 	size_t	line_count;
 	char	*line;
-	t_list	*head;
 
 	line_count = 0;
-	head = NULL;
 	while (true)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		add_line_to_data(data, head, line, line_count);
+		add_line_to_data(info, line, line_count);
 		if (!line_count)
-			head = *data;
+			info->head = info->tail;
 		line_count++;
 	}
-	if (*data == NULL)
+	if (info->tail == NULL)
 		error_exit(ERR_MSG_EMPTY, NULL, EXIT_FAILURE);
 	return (line_count);
 }

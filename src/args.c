@@ -2,7 +2,16 @@
 #include "libft.h"
 #include <fcntl.h> // open
 
-static void	is_correct_extension(const char *filepath)
+int	open_file(const char *filepath)
+{
+	const int	fd = open(filepath, O_RDONLY);
+
+	if (fd == OPEN_ERROR)
+		error_exit(strerror(errno), NULL, EXIT_FAILURE);
+	return (fd);
+}
+
+static void	check_file_extension(const char *filepath)
 {
 	const char	*extension = FILE_EXTENSION;
 	size_t		len_extension;
@@ -21,34 +30,12 @@ static void	is_correct_extension(const char *filepath)
 	}
 }
 
-static const char	*parse_filepath(const char *filepath_org)
+void	check_args(const int argc, const char *argv[])
 {
-	const char	*filepath = ft_strtrim(filepath_org, " ");
-
-	if (filepath == NULL)
-		error_exit(ERR_MSG_MALLOC, NULL, EXIT_FAILURE);
-	return (filepath);
-}
-
-static int	check_filepath(const char *filepath_org)
-{
-	const char	*filepath = parse_filepath(filepath_org);
-	int			fd;
-
-	is_correct_extension(filepath);
-	fd = open(filepath, O_RDONLY);
-	free((char *)filepath);
-	if (fd == OPEN_ERROR)
-		error_exit(strerror(errno), NULL, EXIT_FAILURE);
-	return (fd);
-}
-
-int	check_args(const int argc, const char *argv[])
-{
-	int	fd;
-
 	if (argc != 2)
+	{
+		(void)argv;
 		error_exit(ERR_MSG_ARGS, NULL, EXIT_FAILURE);
-	fd = check_filepath(argv[1]);
-	return (fd);
+	}
+	check_file_extension(argv[1]);
 }

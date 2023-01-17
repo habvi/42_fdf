@@ -47,8 +47,8 @@ typedef struct s_map {
 }	t_map;
 
 typedef struct s_info {
-	t_list			*data;
 	const t_list	*head;
+	t_list			*tail;
 	t_map			*map;
 	int				z_min;
 	int				z_max;
@@ -80,22 +80,22 @@ typedef struct s_point {
 }	t_point;
 
 typedef struct s_mlx {
-	int			win_height;
-	int			win_width;
-	t_display	*display;
-	t_img		*img;
-	t_map		*map;
-	t_list		*data;
-	int			z_min;
-	int			z_max;
-	bool		is_iso;
-	double		zoom;
-	double		points_distance;
-	double		height_emphasis;
-	int			delta_x;
-	int			delta_y;
-	int			rotate_x_angle;
-	int			rotate_y_angle;
+	int				win_height;
+	int				win_width;
+	t_display		*display;
+	t_img			*img;
+	t_map			*map;
+	const t_list	*data;
+	int				z_min;
+	int				z_max;
+	bool			is_iso;
+	double			zoom;
+	double			points_distance;
+	double			height_emphasis;
+	int				delta_x;
+	int				delta_y;
+	int				rotate_x_angle;
+	int				rotate_y_angle;
 }	t_mlx;
 
 // exit.c
@@ -106,10 +106,11 @@ void	exit_win_p(const t_mlx *mlxs);
 void	exit_img_p(const t_mlx *mlxs);
 
 // args.c
-int		check_args(const int argc, const char *argv[]);
+void	check_args(const int argc, const char *argv[]);
+int		open_file(const char *filename);
 
 // read.c
-size_t	read_map(const int fd, t_list **data);
+size_t	read_map(const int fd, t_info *info);
 
 // clear.c
 void	clear_split_list(char **list);
@@ -118,7 +119,7 @@ void	clear_map_to_n(const t_map *map, const size_t n);
 int		close_window(const t_mlx *mlxs);
 
 // parse.c
-void	parse_map(const t_info *info, const size_t line_count);
+void	parse_map(t_info *info, const size_t line_count);
 
 // convert.c
 void	convert_map_height_and_color(\

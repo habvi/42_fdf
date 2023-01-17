@@ -15,7 +15,8 @@ SRC			=	args.c \
 				parse.c \
 				read.c \
 				rotate.c \
-				set_data.c
+				set_data.c \
+				debug.c
 
 SRC_DIR		=	./src/
 # SRCS		=	$(addprefix $(SRC_DIR), $(SRC))
@@ -51,7 +52,7 @@ $(LIBFT):
 	$(MAKE) -C ./$(LIBFT_DIR)
 	cp $(LIBFT_DIR)/$(LIBFT) $@
 
-$(MINILIBX):
+$(MINILIBX): $(MLX_DIR)
 	make -C $(MLX_DIR)
 
 clean:
@@ -62,7 +63,10 @@ fclean: clean
 
 re: fclean all
 
+clone: $(MLX_DIR)
+	git clone https://github.com/42Paris/minilibx-linux $(MLX_DIR)
+
 norm:
 	norminette $(SRC_DIR) $(INCLUDE_DIR) $(LIBFT_DIR)
 
-.PHONY: all clean fclean re bonus norm
+.PHONY: all clean fclean re bonus norm clone

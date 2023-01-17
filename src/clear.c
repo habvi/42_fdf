@@ -47,7 +47,7 @@ void	clear_map_to_n(const t_map *map, const size_t n)
 // key
 int	close_window(const t_mlx *mlxs)
 {
-	clear_data(mlxs->data);
+	clear_data((t_list *)mlxs->data);
 	clear_map_to_n(mlxs->map, mlxs->map->height);
 	mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
 	mlx_destroy_window(mlxs->display->mlx_p, mlxs->display->win_p);

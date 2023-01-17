@@ -37,7 +37,7 @@ static void	init_t_mlxs(\
 	mlxs->display = display;
 	mlxs->img = img;
 	mlxs->map = info->map;
-	mlxs->data = info->data;
+	mlxs->data = info->head;
 	init_z(mlxs, info);
 	mlxs->is_iso = true;
 	mlxs->zoom = DEFAULT_ZOOM;
