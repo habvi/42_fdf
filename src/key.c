@@ -5,12 +5,20 @@
 
 static bool	is_rolled_key(const t_key keycode)
 {
-	return (keycode == KEY_LEFT || keycode == KEY_RIGHT || \
-			keycode == KEY_UP || keycode == KEY_DOWN || \
-			keycode == KEY_ONE || keycode == KEY_TWO || \
-			keycode == KEY_J || keycode == KEY_K || \
-			keycode == KEY_H || keycode == KEY_L || \
-			keycode == KEY_I || keycode == KEY_P);
+	const t_key	keycodes[] = {KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN,
+							KEY_ONE, KEY_TWO,
+							KEY_J, KEY_K, KEY_H, KEY_L,
+							KEY_I, KEY_P, 0};
+	size_t		i;
+
+	i = 0;
+	while (keycodes[i])
+	{
+		if (keycode == keycodes[i])
+			return (true);
+		i++;
+	}
+	return (false);
 }
 
 static void	height_up(t_mlx *mlxs)

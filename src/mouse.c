@@ -5,7 +5,17 @@
 
 static bool	is_rolled_mouse(const t_mouse mouse_code)
 {
-	return (mouse_code == MOUSE_UP || mouse_code == MOUSE_DOWN);
+	const t_mouse	mouse_codes[] = {MOUSE_UP, MOUSE_DOWN, 0};
+	size_t			i;
+
+	i = 0;
+	while (mouse_codes[i])
+	{
+		if (mouse_code == mouse_codes[i])
+			return (true);
+		i++;
+	}
+	return (false);
 }
 
 static void	move_image(const t_mouse mouse_code, t_mlx *mlxs)
