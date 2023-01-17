@@ -20,13 +20,15 @@ static void	check_file_extension(const char *filepath)
 	len_extension = ft_strlen(extension);
 	len_filepath = ft_strlen(filepath);
 	if (!ft_strchr(filepath, '.') || len_filepath <= len_extension)
-		error_exit(ERR_MSG_FILEPATH, (char *)filepath, EXIT_FAILURE);
+		error_exit(ERR_MSG_FILEPATH, NULL, EXIT_FAILURE);
+	if (filepath[len_filepath - len_extension - 1] == '/')
+		error_exit(ERR_MSG_FILEPATH, NULL, EXIT_FAILURE);
 	while (len_extension)
 	{
 		len_extension--;
 		len_filepath--;
 		if (filepath[len_filepath] != extension[len_extension])
-			error_exit(ERR_MSG_FILE_EXTENSION, (char *)filepath, EXIT_FAILURE);
+			error_exit(ERR_MSG_FILE_EXTENSION, NULL, EXIT_FAILURE);
 	}
 }
 
