@@ -9,57 +9,60 @@ static void	init_t_menu(t_menu *menu)
 	menu->x_keycode = WIN_MARGIN + W_CONTENT_SPACE;
 }
 
-static void	draw(const t_mlx *mlxs, const size_t x, size_t *y, char *str)
+static void	draw(const t_mlx *mlxs, const size_t x, size_t *y, const char *str)
 {
 	*y += H_LINE_SPACE;
 	mlx_string_put(mlxs->display->mlx_p, mlxs->display->win_p, \
-					x, *y, MENU_STR_COLOR, str);
+							x, *y, MENU_STR_COLOR, (char *)str);
 }
 
 static void	draw_key_usage(const t_mlx *mlxs, const t_menu *menu, size_t *y)
 {
-	char	*str;
+	const char		*menu_str[] = {"----- KEY -----", \
+									"*Translate*", \
+									"up, down, left, right", \
+									"*Rotate*", \
+									"X,Y,Z : J/K, H/L, N/M", \
+									"*Height Emphasis(max 10)*", \
+									"1, 2", \
+									"*Isometric or Parallel*", \
+									"I, P", \
+									"*Close window*", \
+									"ESC", NULL};
+	const size_t	coord_x[] = {menu->x_title, \
+								menu->x_sub_title, menu->x_keycode, \
+								menu->x_sub_title, menu->x_keycode, \
+								menu->x_sub_title, menu->x_keycode, \
+								menu->x_sub_title, menu->x_keycode, \
+								menu->x_sub_title, menu->x_keycode};
+	size_t			i;
 
-	str = "----- KEY -----";
-	draw(mlxs, menu->x_title, y, str);
-	str = "*Translate*";
-	draw(mlxs, menu->x_sub_title, y, str);
-	str = "up, down, left, right";
-	draw(mlxs, menu->x_keycode, y, str);
-	str = "*Rotate*";
-	draw(mlxs, menu->x_sub_title, y, str);
-	str = "H, J, K, L";
-	draw(mlxs, menu->x_keycode, y, str);
-	str = "*Height Emphasis(max 10)*";
-	draw(mlxs, menu->x_sub_title, y, str);
-	str = "1, 2";
-	draw(mlxs, menu->x_keycode, y, str);
-	str = "*Isometric or Parallel*";
-	draw(mlxs, menu->x_sub_title, y, str);
-	str = "I, P";
-	draw(mlxs, menu->x_keycode, y, str);
-	str = "*Close window*";
-	draw(mlxs, menu->x_sub_title, y, str);
-	str = "ESC";
-	draw(mlxs, menu->x_keycode, y, str);
+	i = 0;
+	while (menu_str[i])
+	{
+		draw(mlxs, coord_x[i], y, menu_str[i]);
+		i++;
+	}
 }
 
 static void	draw_mouse_usage(const t_mlx *mlxs, const t_menu *menu, size_t *y)
 {
-	char	*str;
+	const char		*menu_str[] = {"----- MOUSE -----", \
+									"*Zoom in / out*", \
+									"scroll up, down", NULL};
+	const size_t	coord_x[] = {menu->x_title, \
+								menu->x_sub_title, menu->x_keycode};
+	size_t			i;
 
-	str = "----- MOUSE -----";
-	draw(mlxs, menu->x_title, y, str);
-	str = "*Zoom in / out*";
-	draw(mlxs, menu->x_sub_title, y, str);
-	str = "scroll up, down";
-	draw(mlxs, menu->x_keycode, y, str);
-	str = "*Close window*";
-	draw(mlxs, menu->x_sub_title, y, str);
-	str = "x";
-	draw(mlxs, menu->x_keycode, y, str);
+	i = 0;
+	while (menu_str[i])
+	{
+		draw(mlxs, coord_x[i], y, menu_str[i]);
+		i++;
+	}
 }
 
+// y static??
 void	draw_menu_string(const t_mlx *mlxs)
 {
 	t_menu	menu;

@@ -34,17 +34,17 @@ typedef enum e_mouse {
 }	t_mouse;
 
 // mouse.c
-int	mouse_hook(\
+int		mouse_hook(\
 		const t_mouse mouse_code, const int x, const int y, const t_mlx *mlxs);
-int	minimize_window(const t_mlx *mlxs);
+int		minimize_window(const t_mlx *mlxs);
 
 // key.c
-int	key_hook(const t_key keycode, const t_mlx *mlxs);
+int		key_hook(const t_key keycode, const t_mlx *mlxs);
 
 // key_operation.c
-void    move_in_4_directions(t_mlx *mlxs, const t_key keycode);
-void    emphasize_height(t_mlx *mlxs, const t_key keycode);
-void    rotate_in_3_directions(t_mlx *mlxs, const t_key keycode);
-void    switch_iso(t_mlx *mlxs, const t_key keycode);
+void	move_in_4_directions(t_mlx *mlxs, const t_key keycode);
+void	emphasize_height(t_mlx *mlxs, const t_key keycode);
+void	rotate_in_3_directions(t_mlx *mlxs, const t_key keycode);
+void	switch_iso(t_mlx *mlxs, const t_key keycode);
 
 #endif

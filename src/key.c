@@ -5,14 +5,15 @@
 
 static bool	is_rolled_key(const t_key keycode)
 {
-	const t_key	keycodes[] = {KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, \
-							KEY_ONE, KEY_TWO, \
-							KEY_J, KEY_K, KEY_H, KEY_L, KEY_N, KEY_M, \
-							KEY_I, KEY_P, 0};
-	size_t		i;
+	static const t_key	keycodes[] = {KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, \
+									KEY_ONE, KEY_TWO, \
+									KEY_J, KEY_K, KEY_H, KEY_L, KEY_N, KEY_M, \
+									KEY_I, KEY_P};
+	size_t				i;
+	static const size_t	len = sizeof(keycodes) / sizeof(keycodes[0]);
 
 	i = 0;
-	while (keycodes[i])
+	while (i < len)
 	{
 		if (keycode == keycodes[i])
 			return (true);
@@ -21,7 +22,7 @@ static bool	is_rolled_key(const t_key keycode)
 	return (false);
 }
 
-static void	move_image(const t_mlx *mlxs, const t_key keycode)
+static void	move_image(t_mlx *mlxs, const t_key keycode)
 {
 	move_in_4_directions((t_mlx *)mlxs, keycode);
 	emphasize_height((t_mlx *)mlxs, keycode);
@@ -36,7 +37,7 @@ int	key_hook(const t_key keycode, const t_mlx *mlxs)
 		close_window(mlxs);
 	else if (is_rolled_key(keycode))
 	{
-		move_image(mlxs, keycode);
+		move_image((t_mlx *)mlxs, keycode);
 		mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
 		set_image(mlxs);
 		if (mlxs->img->img == NULL)

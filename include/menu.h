@@ -3,8 +3,8 @@
 
 # include <stdlib.h>
 
-# define MENU_HEIGHT		360
-# define MENU_WIDTH			170
+# define MENU_HEIGHT		320
+# define MENU_WIDTH			180
 # define WIN_MARGIN			30
 
 # define W_TITLE_SPACE		35
