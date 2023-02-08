@@ -18,8 +18,7 @@ SRCS		:=	args.c \
 				read.c \
 				rotate.c \
 				set_data.c \
-				set_point.c \
-				debug.c
+				set_point.c
 
 OBJ_DIR		:=	obj
 OBJS		:=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
