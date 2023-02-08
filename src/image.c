@@ -35,7 +35,7 @@ static void	draw_menu_background(const t_mlx *mlxs)
 	}
 }
 
-void	set_image(const t_mlx *mlxs)
+void	set_image(t_mlx *mlxs)
 {
 	mlxs->img->img = mlx_new_image(mlxs->display->mlx_p, WIN_WIDTH, WIN_HEIGHT);
 	if (mlxs->img->img == NULL)

@@ -52,7 +52,7 @@ static void	init_t_mlxs(\
 	mlxs->rotate_z_angle = 0;
 }
 
-static void	set_window(const t_mlx *mlxs)
+static void	set_window(t_mlx *mlxs)
 {
 	mlxs->display->mlx_p = mlx_init();
 	if (mlxs->display->mlx_p == NULL)
@@ -63,7 +63,7 @@ static void	set_window(const t_mlx *mlxs)
 		exit_win_p(mlxs);
 }
 
-static void	set_hook(const t_mlx *mlxs)
+static void	set_hook(t_mlx *mlxs)
 {
 	void	*win_p;
 	void	*params;

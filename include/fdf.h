@@ -135,7 +135,7 @@ void	display_map(const t_info *info);
 // image.c
 bool	is_in_window(const int y, const int x);
 void	my_mlx_pixel_put(t_img *img, const int y, const int x, const int color);
-void	set_image(const t_mlx *mlxs);
+void	set_image(t_mlx *mlxs);
 void	draw_image(const t_mlx *mlxs);
 
 // draw_line.c

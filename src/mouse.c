@@ -5,11 +5,12 @@
 
 static bool	is_rolled_mouse(const t_mouse mouse_code)
 {
-	const t_mouse	mouse_codes[] = {MOUSE_UP, MOUSE_DOWN, 0};
-	size_t			i;
+	static const t_mouse	mouse_codes[] = {MOUSE_UP, MOUSE_DOWN};
+	static const size_t		len = sizeof(mouse_codes) / sizeof(mouse_codes[0]);
+	size_t					i;
 
 	i = 0;
-	while (mouse_codes[i])
+	while (i < len)
 	{
 		if (mouse_code == mouse_codes[i])
 			return (true);
@@ -37,12 +38,12 @@ static void	move_image(const t_mouse mouse_code, t_mlx *mlxs)
 }
 
 int	mouse_hook(\
-		const t_mouse mouse_code, const int x, const int y, const t_mlx *mlxs)
+		const t_mouse mouse_code, const int x, const int y, t_mlx *mlxs)
 {
 	ft_printf("mousecode : %d, (y, x) = (%d, %d)\n", mouse_code, y, x);
 	if (is_rolled_mouse(mouse_code))
 	{
-		move_image(mouse_code, (t_mlx *)mlxs);
+		move_image(mouse_code, mlxs);
 		mlx_destroy_image(mlxs->display->mlx_p, mlxs->img->img);
 		set_image(mlxs);
 		if (mlxs->img->img == NULL)
