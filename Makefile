@@ -1,6 +1,7 @@
-NAME		=	fdf
+NAME		:=	fdf
 
-SRC			=	args.c \
+SRC_DIR		:=	src
+SRCS		:=	args.c \
 				clear.c \
 				color.c \
 				convert.c \
@@ -20,55 +21,59 @@ SRC			=	args.c \
 				set_point.c \
 				debug.c
 
-SRC_DIR		=	./src/
-# SRCS		=	$(addprefix $(SRC_DIR), $(SRC))
-OBJ_DIR		=	./obj/
-OBJS		=	$(addprefix $(OBJ_DIR), $(SRC:%.c=%.o))
+OBJ_DIR		:=	obj
+OBJS		:=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
-LIBFT_DIR	=	libft
-LIBFT		=	libft.a
+DEPS		:=	$(OBJS:.o=.d)
+
+LIBFT_DIR	:=	libft
+LIBFT		:=	$(LIBFT_DIR)/libft.a
 
 # set
-MLX_DIR		=	minilibx
+MLX_DIR		:=	minilibx
+MLX_FLAGS	:=	-Lmlx_linux -lXext -lX11 -lm
+MINILIBX	:=	$(MLX_DIR)/libmlx_Linux.a
 
-INCLUDE_DIR	=	include
-INCLUDES	=	-I./$(INCLUDE_DIR)/ -I$(LIBFT_DIR)/$(INCLUDE_DIR)/ -I$(MLX_DIR)/
+INCLUDE_DIR	:=	include
+INCLUDES	:=	-I./$(INCLUDE_DIR)/ -I$(LIBFT_DIR)/$(INCLUDE_DIR)/ -I$(MLX_DIR)/
 
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
-MLX_FLAGS	=	-Lmlx_linux -lXext -lX11 -lm
-MINILIBX	=	$(MLX_DIR)/libmlx_Linux.a
+CC			:=	cc
+CFLAGS		:=	-Wall -Wextra -Werror -MMD -MP
+MKDIR		:=	mkdir -p
 
 all: $(NAME)
 
 bonus: all
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p obj
+-include $(DEPS)
+
+$(LIBFT): FORCE
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(MINILIBX):
+	$(MAKE) -C $(MLX_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(MKDIR) $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MINILIBX) $(MLX_FLAGS)
 
-$(LIBFT):
-	$(MAKE) -C ./$(LIBFT_DIR)
-	cp $(LIBFT_DIR)/$(LIBFT) $@
-
-$(MINILIBX): $(MLX_DIR)
-	make -C $(MLX_DIR)
-
 clean:
-	$(RM) -r $(OBJ_DIR) libft/$(OBJ_DIR)
+	$(RM) -r $(OBJ_DIR) $(LIBFT_DIR)/$(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT) libft/$(LIBFT)
+	$(RM) $(NAME) $(LIBFT)
 
 re: fclean all
 
-clone: $(MLX_DIR)
+clone:
 	git clone https://github.com/42Paris/minilibx-linux $(MLX_DIR)
 
 norm:
 	norminette $(SRC_DIR) $(INCLUDE_DIR) $(LIBFT_DIR)
 
-.PHONY: all clean fclean re bonus norm clone
+FORCE:
+
+.PHONY: all clean fclean re bonus FORCE norm clone

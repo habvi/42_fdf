@@ -1,4 +1,7 @@
-SRC			=	ft_atoi.c \
+NAME		:=	libft.a
+
+SRC_DIR		:=	src
+SRCS		:=	ft_atoi.c \
 				ft_atox.c \
 				ft_isdigit.c \
 				ft_max.c \
@@ -30,31 +33,32 @@ SRC			=	ft_atoi.c \
 				set_field.c \
 				set_output.c
 
-SRC_DIR		=	./src/
-OBJS_DIR	=	./obj/
-INCLUDE_DIR	=	./include/
-INCLUDES	=	-I $(INCLUDE_DIR)
+OBJ_DIR		:=	obj
+OBJS		:=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
-SRCS		=	$(addprefix $(SRC_DIR), $(SRC))
-OBJS		=	$(addprefix $(OBJS_DIR), $(SRC:%.c=%.o))
+INCLUDE_DIR	:=	include
+INCLUDES	:=	-I./$(INCLUDE_DIR)/
 
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
-AR			=	ar rcs
+DEPS		:=	$(OBJS:.o=.d)
 
-NAME		=	libft.a
+CC			:=	cc
+CFLAGS		:=	-Wall -Wextra -Werror -MMD -MP
+ARFLAGS		:=	rcs
+MKDIR		:=	mkdir -p
 
 all: $(NAME)
 
-$(OBJS_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p obj
+-include $(DEPS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(MKDIR) $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
 clean:
-	$(RM) -r $(OBJS_DIR)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
