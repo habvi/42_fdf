@@ -49,6 +49,7 @@ static void	init_t_mlxs(\
 	mlxs->delta_x = 0;
 	mlxs->rotate_x_angle = 0;
 	mlxs->rotate_y_angle = 0;
+	mlxs->rotate_z_angle = 0;
 }
 
 static void	set_window(const t_mlx *mlxs)

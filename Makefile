@@ -9,6 +9,7 @@ SRC			=	args.c \
 				draw_menu.c \
 				exit.c \
 				image.c \
+				key_operation.c \
 				key.c \
 				main.c \
 				mouse.c \
@@ -16,6 +17,7 @@ SRC			=	args.c \
 				read.c \
 				rotate.c \
 				set_data.c \
+				set_point.c \
 				debug.c
 
 SRC_DIR		=	./src/

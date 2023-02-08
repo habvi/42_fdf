@@ -64,15 +64,15 @@ void	draw_line_right_down(const t_mlx *mlxs, const size_t x, const size_t y)
 	t_point	from;
 	t_point	to;
 
-	calc_and_rotate(mlxs, &from, x, y);
+	set_point_info(mlxs, &from, x, y);
 	if (y + 1 < mlxs->map->height)
 	{
-		calc_and_rotate(mlxs, &to, x, y + 1);
+		set_point_info(mlxs, &to, x, y + 1);
 		draw_line_by_bresenham((t_mlx *)mlxs, from, to);
 	}
 	if (x + 1 < mlxs->map->width)
 	{
-		calc_and_rotate(mlxs, &to, x + 1, y);
+		set_point_info(mlxs, &to, x + 1, y);
 		draw_line_by_bresenham((t_mlx *)mlxs, from, to);
 	}
 	if (y + 1 == mlxs->map->height && x + 1 == mlxs->map->width && \

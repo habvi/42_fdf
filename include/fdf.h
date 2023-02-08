@@ -96,6 +96,7 @@ typedef struct s_mlx {
 	int				delta_y;
 	int				rotate_x_angle;
 	int				rotate_y_angle;
+	int				rotate_z_angle;
 }	t_mlx;
 
 // exit.c
@@ -140,8 +141,14 @@ void	draw_image(const t_mlx *mlxs);
 // draw_line.c
 void	draw_line_right_down(const t_mlx *mlxs, const size_t x, const size_t y);
 
-// rotate.c
-void	calc_and_rotate(\
+// set_point.c
+void	set_point_info(\
 			const t_mlx *mlxs, t_point *point, const size_t x, const size_t y);
+
+// rotate.c
+void	rotate_x_axis(const t_mlx *mlxs, t_point *point, const t_point tmp);
+void	rotate_y_axis(const t_mlx *mlxs, t_point *point, const t_point tmp);
+void	rotate_z_axis(const t_mlx *mlxs, t_point *point, const t_point tmp);
+void	rotate_to_isometric_projection(t_point *point, const t_point tmp);
 
 #endif

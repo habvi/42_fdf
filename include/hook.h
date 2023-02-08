@@ -21,6 +21,8 @@ typedef enum e_key {
 	KEY_J = 106,
 	KEY_K = 107,
 	KEY_L = 108,
+	KEY_N = 110,
+	KEY_M = 109,
 	KEY_I = 105,
 	KEY_P = 112,
 	KEY_ESC = 65307
@@ -38,5 +40,11 @@ int	minimize_window(const t_mlx *mlxs);
 
 // key.c
 int	key_hook(const t_key keycode, const t_mlx *mlxs);
+
+// key_operation.c
+void    move_in_4_directions(t_mlx *mlxs, const t_key keycode);
+void    emphasize_height(t_mlx *mlxs, const t_key keycode);
+void    rotate_in_3_directions(t_mlx *mlxs, const t_key keycode);
+void    switch_iso(t_mlx *mlxs, const t_key keycode);
 
 #endif
