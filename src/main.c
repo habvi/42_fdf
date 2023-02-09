@@ -1,5 +1,5 @@
-#include "fdf.h"
 #include <limits.h>
+#include "fdf.h"
 
 static void	init_info(t_info *info, t_map *map)
 {

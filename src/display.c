@@ -1,8 +1,8 @@
-#include "fdf.h"
+#include <X11/X.h>
 #include "libft.h"
+#include "fdf.h"
 #include "mlx.h"
 #include "hook.h"
-#include <X11/X.h>
 
 static void	init_z(t_mlx *mlxs, const t_info *info)
 {

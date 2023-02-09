@@ -62,7 +62,6 @@ static void	draw_mouse_usage(const t_mlx *mlxs, const t_menu *menu, size_t *y)
 	}
 }
 
-// y static??
 void	draw_menu_string(const t_mlx *mlxs)
 {
 	t_menu	menu;

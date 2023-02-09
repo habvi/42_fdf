@@ -1,3 +1,5 @@
+#include <stdlib.h> // free, exit
+#include "list.h"
 #include "fdf.h"
 #include "mlx.h"
 #include "hook.h"

@@ -1,5 +1,5 @@
-#include "fdf.h"
 #include <math.h>
+#include "fdf.h"
 
 static double	degree_to_radian(double degree)
 {

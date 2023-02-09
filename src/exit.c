@@ -1,7 +1,9 @@
-#include "fdf.h"
 #include "libft.h"
 #include "ft_printf.h"
+#include "fdf.h"
 #include "mlx.h"
+
+// todo
 
 // args, read
 void	error_exit(const char *msg, void *ptr, const int status)

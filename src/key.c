@@ -1,7 +1,7 @@
+#include "ft_printf.h"
 #include "fdf.h"
 #include "hook.h"
 #include "mlx.h"
-#include "ft_printf.h"
 
 static bool	is_rolled_key(const t_key keycode)
 {

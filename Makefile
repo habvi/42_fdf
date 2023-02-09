@@ -34,7 +34,7 @@ MLX_FLAGS	:=	-Lmlx_linux -lXext -lX11 -lm
 MINILIBX	:=	$(MLX_DIR)/libmlx_Linux.a
 
 INCLUDE_DIR	:=	include
-INCLUDES	:=	-I./$(INCLUDE_DIR)/ -I$(LIBFT_DIR)/$(INCLUDE_DIR)/ -I$(MLX_DIR)/
+INCLUDES	:=	-I./$(INCLUDE_DIR)/ -I$(LIBFT_DIR)/$(INCLUDE_DIR)/ -I$(MLX_DIR)/ -I.
 
 CC			:=	cc
 CFLAGS		:=	-Wall -Wextra -Werror -MMD -MP

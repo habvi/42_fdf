@@ -1,14 +1,8 @@
 #ifndef FDF_H
 # define FDF_H
 
-// # include <unistd.h> // close, read, write
-# include <stdlib.h> // malloc, free, exit
-// # include <stdio.h> // perror
-# include <string.h> // strerror
-# include <errno.h>
+# include <stddef.h>
 # include <stdbool.h>
-
-# include "../libft/include/list.h"
 
 # define ERR_MSG_FILEPATH			"invalid filepath"
 # define ERR_MSG_FILE_EXTENSION		"invalid file's extension"
@@ -33,6 +27,8 @@
 
 # define PI							(3.14159265358979323846264338327950288)
 # define ANGLE_ISO					30
+
+typedef struct s_list	t_list;
 
 typedef enum e_status {
 	SUCCESS = 0,

@@ -1,5 +1,7 @@
-#include "fdf.h"
+#include <stdlib.h> // malloc
 #include "libft.h"
+#include "list.h"
+#include "fdf.h"
 
 static const char	**split_map_line(\
 	const t_info *info, const t_list *data, size_t *list_size, const size_t i)

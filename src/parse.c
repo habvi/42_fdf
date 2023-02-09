@@ -1,5 +1,7 @@
-#include "fdf.h"
+#include <stdlib.h> // malloc
 #include "libft.h"
+#include "list.h"
+#include "fdf.h"
 
 static void	init_map(const t_info *info, const size_t line_count)
 {

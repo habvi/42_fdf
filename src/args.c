@@ -1,6 +1,8 @@
-#include "fdf.h"
-#include "libft.h"
 #include <fcntl.h> // open
+#include <string.h> // strerror
+#include <errno.h>
+#include "libft.h"
+#include "fdf.h"
 
 int	open_file(const char *filepath)
 {
