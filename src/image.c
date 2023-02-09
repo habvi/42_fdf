@@ -1,6 +1,7 @@
 #include "fdf.h"
 #include "mlx.h"
 #include "menu.h"
+#include "draw.h"
 
 bool	is_in_window(const int y, const int x)
 {

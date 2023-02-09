@@ -3,6 +3,7 @@
 #include "list.h"
 #include "fdf.h"
 #include "error.h"
+#include "draw.h"
 
 static char	**split_map_line(\
 	const t_info *info, t_list *data, size_t *list_size, const size_t i)

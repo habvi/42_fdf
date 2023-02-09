@@ -1,6 +1,7 @@
 #include "fdf.h"
 #include "color.h"
 #include "menu.h"
+#include "draw.h"
 
 static void	set_coordinate(\
 			const t_mlx *mlxs, t_point *point, const size_t x, const size_t y)

@@ -3,6 +3,7 @@
 #include "fdf.h"
 #include "mlx.h"
 #include "hook.h"
+#include "draw.h"
 
 static void	init_z(t_mlx *mlxs, const t_info *info)
 {

@@ -4,6 +4,7 @@
 #include "libft.h"
 #include "fdf.h"
 #include "error.h"
+#include "draw.h"
 
 int	open_file(const char *filepath)
 {
