@@ -2,6 +2,7 @@
 #include "libft.h"
 #include "list.h"
 #include "fdf.h"
+#include "error.h"
 
 static void	init_map(const t_info *info, const size_t line_count)
 {

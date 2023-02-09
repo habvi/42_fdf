@@ -1,6 +1,7 @@
 #include "get_next_line.h"
 #include "list.h"
 #include "fdf.h"
+#include "error.h"
 
 static void	add_line_to_data(t_info *info, char *line, const size_t line_count)
 {

@@ -2,6 +2,7 @@
 #include "ft_printf.h"
 #include "fdf.h"
 #include "mlx.h"
+#include "error.h"
 
 // args, read
 void	error_exit(const char *msg, void *ptr, const int status)
