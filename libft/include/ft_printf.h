@@ -7,14 +7,15 @@
 # include <limits.h>
 # include <stdlib.h>
 
-# define FORMAT_TYPES	"cspdiuxX%"
-# define ERROR_MALLOC	1
-# define ERROR_OVERFLOW	2
-# define EXIT			3
-# define ERROR			-1
-# define HEX			"0123456789abcdef"
-# define WIDTH			1
-# define PRECISION		2
+# define FORMAT_TYPES		"cspdiuxX%"
+# define ERROR_MALLOC		1
+# define ERROR_OVERFLOW		2
+# define EXIT				3
+# define WRITE_ERROR		-1
+# define FT_PRINTF_ERROR	-1
+# define HEX				"0123456789abcdef"
+# define WIDTH				1
+# define PRECISION			2
 
 typedef struct s_info_pf
 {
