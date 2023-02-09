@@ -72,7 +72,7 @@ static void	set_hook(t_mlx *mlxs)
 	win_p = mlxs->display->win_p;
 	params = (void *)mlxs;
 	mlx_mouse_hook(win_p, mouse_hook, params);
-	mlx_key_hook(win_p, key_hook, params);
+	mlx_hook(win_p, KeyPress, KeyPressMask, key_hook, params);
 	mlx_hook(win_p, FocusIn, FocusChangeMask, minimize_window, params);
 	mlx_hook(win_p, DestroyNotify, StructureNotifyMask, close_window, params);
 }
