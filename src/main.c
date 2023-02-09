@@ -3,6 +3,7 @@
 
 static void	init_info(t_info *info, t_map *map)
 {
+	info->head = NULL;
 	info->tail = NULL;
 	info->map = map;
 	info->z_min = INT_MAX;

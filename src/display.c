@@ -31,8 +31,8 @@ static void	init_z(t_mlx *mlxs, const t_info *info)
 static void	init_t_mlxs(\
 			t_mlx *mlxs, t_display *display, t_img *img, const t_info *info)
 {
-	const double	start_y = WIN_HEIGHT * DEFAULT_ZOOM;
-	const double	start_x = WIN_WIDTH * DEFAULT_ZOOM;
+	static const double	start_y = WIN_HEIGHT * DEFAULT_ZOOM;
+	static const double	start_x = WIN_WIDTH * DEFAULT_ZOOM;
 
 	mlxs->display = display;
 	mlxs->img = img;

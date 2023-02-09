@@ -3,8 +3,6 @@
 #include "fdf.h"
 #include "mlx.h"
 
-// todo
-
 // args, read
 void	error_exit(const char *msg, void *ptr, const int status)
 {
@@ -17,7 +15,7 @@ void	error_exit(const char *msg, void *ptr, const int status)
 // parse, parse2
 void	clear_before_exit(const t_info *info, const char *msg, const size_t n)
 {
-	clear_data((t_list *)info->head);
+	clear_data(info->head);
 	clear_map_to_n(info->map, n);
 	error_exit(msg, NULL, EXIT_FAILURE);
 }
@@ -25,7 +23,7 @@ void	clear_before_exit(const t_info *info, const char *msg, const size_t n)
 // display
 void	exit_mlx_p(const t_mlx *mlxs)
 {
-	clear_data((t_list *)mlxs->data);
+	clear_data(mlxs->data);
 	clear_map_to_n(mlxs->map, mlxs->map->height);
 	error_exit(ERR_MLX, NULL, EXIT_FAILURE);
 }
@@ -33,7 +31,7 @@ void	exit_mlx_p(const t_mlx *mlxs)
 // display
 void	exit_win_p(const t_mlx *mlxs)
 {
-	clear_data((t_list *)mlxs->data);
+	clear_data(mlxs->data);
 	clear_map_to_n(mlxs->map, mlxs->map->height);
 	mlx_destroy_display(mlxs->display->mlx_p);
 	free(mlxs->display->mlx_p);
@@ -43,7 +41,7 @@ void	exit_win_p(const t_mlx *mlxs)
 // display, image, key, mouse
 void	exit_img_p(const t_mlx *mlxs)
 {
-	clear_data((t_list *)mlxs->data);
+	clear_data(mlxs->data);
 	clear_map_to_n(mlxs->map, mlxs->map->height);
 	mlx_destroy_window(mlxs->display->mlx_p, mlxs->display->win_p);
 	mlx_destroy_display(mlxs->display->mlx_p);

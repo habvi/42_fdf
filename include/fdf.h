@@ -43,11 +43,11 @@ typedef struct s_map {
 }	t_map;
 
 typedef struct s_info {
-	const t_list	*head;
-	t_list			*tail;
-	t_map			*map;
-	int				z_min;
-	int				z_max;
+	t_list	*head;
+	t_list	*tail;
+	t_map	*map;
+	int		z_min;
+	int		z_max;
 }	t_info;
 
 typedef struct s_display {
@@ -76,23 +76,23 @@ typedef struct s_point {
 }	t_point;
 
 typedef struct s_mlx {
-	int				win_height;
-	int				win_width;
-	t_display		*display;
-	t_img			*img;
-	t_map			*map;
-	const t_list	*data;
-	int				z_min;
-	int				z_max;
-	bool			is_iso;
-	double			zoom;
-	double			points_distance;
-	double			height_emphasis;
-	int				delta_x;
-	int				delta_y;
-	int				rotate_x_angle;
-	int				rotate_y_angle;
-	int				rotate_z_angle;
+	int			win_height;
+	int			win_width;
+	t_display	*display;
+	t_img		*img;
+	t_map		*map;
+	t_list		*data;
+	int			z_min;
+	int			z_max;
+	bool		is_iso;
+	double		zoom;
+	double		points_distance;
+	double		height_emphasis;
+	int			delta_x;
+	int			delta_y;
+	int			rotate_x_angle;
+	int			rotate_y_angle;
+	int			rotate_z_angle;
 }	t_mlx;
 
 // exit.c
@@ -119,11 +119,10 @@ int		close_window(const t_mlx *mlxs);
 void	parse_map(t_info *info, const size_t line_count);
 
 // convert.c
-void	convert_map_height_and_color(\
-					const t_info *info, const char **list, const size_t i);
+void	convert_map_height_and_color(t_info *info, char **list, const size_t i);
 
 // set_data.c
-void	set_data_to_map(const t_info *info, const t_list *data, const size_t i);
+void	set_data_to_map(t_info *info, t_list *data, const size_t i);
 
 // display_map.c
 void	display_map(const t_info *info);

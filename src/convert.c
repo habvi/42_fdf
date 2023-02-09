@@ -27,7 +27,7 @@ static void	calc_z_min_max(t_info *info, const int num)
 }
 
 static int	convert_height(\
-const t_info *info, const char *num_str, size_t *max_len, bool *is_valid_num)
+	t_info *info, const char *num_str, size_t *max_len, bool *is_valid_num)
 {
 	int	num;
 
@@ -37,7 +37,7 @@ const t_info *info, const char *num_str, size_t *max_len, bool *is_valid_num)
 		return (ERROR);
 	*is_valid_num &= ft_atoi_n_with_bool(num_str, &num, BASE10, *max_len);
 	if (is_valid_num)
-		calc_z_min_max((t_info *)info, num);
+		calc_z_min_max(info, num);
 	return (num);
 }
 
@@ -50,8 +50,7 @@ static int	convert_color(const char *color_str, bool *is_valid_num)
 	return (num);
 }
 
-void	convert_map_height_and_color(\
-					const t_info *info, const char **list, const size_t i)
+void	convert_map_height_and_color(t_info *info, char **list, const size_t i)
 {
 	bool	is_valid_num;
 	size_t	j;
@@ -74,7 +73,7 @@ void	convert_map_height_and_color(\
 	}
 	if (!is_valid_num)
 	{
-		clear_split_list((char **)list);
+		clear_split_list(list);
 		clear_before_exit(info, ERR_MSG_INVALID_MAP, i + 1);
 	}
 }

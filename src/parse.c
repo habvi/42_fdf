@@ -23,7 +23,7 @@ void	parse_map(t_info *info, const size_t line_count)
 	size_t	len;
 
 	init_map(info, line_count);
-	data = (t_list *)info->head;
+	data = info->head;
 	i = 0;
 	while (data)
 	{

@@ -4,16 +4,17 @@
 
 static void	add_line_to_data(t_info *info, char *line, const size_t line_count)
 {
-	const t_list	*node = ft_lstnew(line);
+	t_list	*node;
 
+	node = ft_lstnew(line);
 	if (node == NULL)
 	{
-		clear_data((t_list *)info->head);
+		clear_data(info->head);
 		error_exit(ERR_MSG_MALLOC, NULL, EXIT_FAILURE);
 	}
 	if (line_count >= 2)
 		info->tail = info->tail->next;
-	ft_lstadd_back(&info->tail, (t_list *)node);
+	ft_lstadd_back(&info->tail, node);
 }
 
 size_t	read_map(const int fd, t_info *info)

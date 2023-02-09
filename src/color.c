@@ -44,7 +44,7 @@ int	get_current_color(const t_point current, t_point start, \
 void	set_default_color(const t_mlx *mlxs, t_point *point, const int z)
 {
 	const double	percent = get_percent(\
-		mlxs->z_min, mlxs->z_max, z / mlxs->height_emphasis);
+						mlxs->z_min, mlxs->z_max, z / mlxs->height_emphasis);
 
 	if (percent < DEFAULT_COLOR_BLOCK)
 		point->color = COLOR_PINK;
