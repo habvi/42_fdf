@@ -30,9 +30,9 @@ static void	convert_s_to_str(t_info_pf *info, va_list *args_list)
 
 static void	convert_p_to_str(t_info_pf *info, va_list *args_list)
 {
-	unsigned long long	addr;
+	uintptr_t	addr;
 
-	addr = va_arg(*args_list, unsigned long long);
+	addr = va_arg(*args_list, uintptr_t);
 	ptoa_for_printf(addr, info);
 }
 

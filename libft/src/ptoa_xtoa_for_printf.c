@@ -27,7 +27,7 @@ static char	*set_to_list_for_p(size_t num, size_t start, size_t len)
 	return (res);
 }
 
-void	ptoa_for_printf(unsigned long long n, t_info_pf *info)
+void	ptoa_for_printf(uintptr_t n, t_info_pf *info)
 {
 	size_t	num;
 	size_t	len;

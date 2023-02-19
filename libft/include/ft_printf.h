@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 # define FORMAT_TYPES		"cspdiuxX%"
 # define ERROR_MALLOC		1
@@ -71,7 +72,7 @@ void	strdup_for_printf(t_info_pf *info, const char *src);
 void	itoa_for_printf(int n, t_info_pf *info);
 void	utoa_for_printf(unsigned int n, t_info_pf *info);
 // ptoa_xtoa_for_printf.c
-void	ptoa_for_printf(unsigned long long n, t_info_pf *info);
+void	ptoa_for_printf(uintptr_t n, t_info_pf *info);
 void	xtoa_for_printf(unsigned int n, t_info_pf *info, bool is_upper);
 
 // set_field.c
