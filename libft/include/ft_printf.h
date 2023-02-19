@@ -46,7 +46,7 @@ typedef struct s_info_pf
 // ft_printf.c
 int		ft_printf(const char *format, ...);
 
-// handle_t_args.c
+// handle_info.c
 void	init_info(t_info_pf *info, const char *format);
 void	clear_fmt_info(t_info_pf *info);
 void	free_dup_str(t_info_pf *info);
