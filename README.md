@@ -12,6 +12,15 @@ $ make
 $ ./fdf test_maps/42.fdf
 ```
 
+<br>
+
+External functions
+- open, close, read, write
+- malloc, free, strerror, exit
+- math library
+- [minilibx](https://github.com/42Paris/minilibx-linux)
+
+<br>
 
 ## test_maps
 ![sample](image/FdF_sample.jpg)
