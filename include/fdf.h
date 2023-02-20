@@ -80,7 +80,7 @@ void	exit_win_p(const t_mlx *mlxs);
 void	exit_img_p(const t_mlx *mlxs);
 
 // args.c
-void	check_args(const int argc, const char *argv[]);
+void	check_args(const int argc, char *const argv[]);
 int		open_file(const char *filename);
 
 // read.c

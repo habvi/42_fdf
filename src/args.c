@@ -36,7 +36,7 @@ static void	check_file_extension(const char *filepath)
 	}
 }
 
-void	check_args(const int argc, const char *argv[])
+void	check_args(const int argc, char *const argv[])
 {
 	if (argc != 2)
 	{

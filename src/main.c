@@ -18,12 +18,12 @@ int	main(int argc, char *argv[])
 	t_map	map;
 	size_t	line_count;
 
-	check_args(argc, (const char **)argv);
+	check_args(argc, argv);
 	fd = open_file(argv[1]);
 	init_info(&info, &map);
 	line_count = read_map(fd, &info);
 	close(fd);
 	parse_map(&info, line_count);
 	display_map(&info);
-	return (0);
+	return (SUCCESS);
 }

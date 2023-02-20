@@ -2,6 +2,7 @@
 # define COLOR_H
 
 # define DEFAULT_COLOR_BLOCK	(0.25)
+# define SAME_PLACE				1
 # define COLOR_MASK				0xFF
 # define RED_SHIFT				16
 # define GREEN_SHIFT			8

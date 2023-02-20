@@ -9,9 +9,8 @@ static double	get_percent(const int start, const int end, const int current)
 	start_to_current = current - start;
 	start_to_end = end - start;
 	if (start_to_end == 0)
-		return (1.0);
-	else
-		return (start_to_current / start_to_end);
+		return (SAME_PLACE);
+	return (start_to_current / start_to_end);
 }
 
 static int	get_light(const int start, const int end, const double percent)
@@ -19,8 +18,8 @@ static int	get_light(const int start, const int end, const double percent)
 	return ((int)((1 - percent) * start + percent * end));
 }
 
-int	get_current_color(const t_point current, t_point start, \
-						t_point end, const t_xy delta)
+int	get_current_color(\
+			const t_point current, t_point start, t_point end, const t_xy delta)
 {
 	int		red;
 	int		green;
