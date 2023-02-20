@@ -55,13 +55,13 @@ void	put_output(t_info_pf *info)
 	ssize_t	res;
 
 	res = write(STDOUT_FILENO, info->output, info->index);
-	info->total_len += res;
-	if (res == -1 || info->total_len >= INT_MAX)
+	if (res == ERROR_WRITE || info->total_len + res >= INT_MAX)
 	{
 		free(info->output);
 		info->error = EXIT;
 		return ;
 	}
+	info->total_len += res;
 	free(info->output);
 	info->output = NULL;
 }

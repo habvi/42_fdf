@@ -9,14 +9,15 @@
 # include <stdint.h>
 
 # define FORMAT_TYPES		"cspdiuxX%"
-# define ERROR_MALLOC		1
-# define ERROR_OVERFLOW		2
-# define EXIT				3
-# define WRITE_ERROR		-1
-# define FT_PRINTF_ERROR	-1
 # define HEX				"0123456789abcdef"
 # define WIDTH				1
 # define PRECISION			2
+
+# define ERROR_MALLOC		1
+# define ERROR_OVERFLOW		2
+# define ERROR_WRITE		-1
+# define ERROR_FT_PRINTF	-1
+# define EXIT				3
 
 typedef struct s_info_pf
 {
