@@ -1,4 +1,5 @@
 #include <limits.h>
+#include <unistd.h>
 #include "fdf.h"
 
 static void	init_info(t_info *info, t_map *map)
@@ -21,6 +22,7 @@ int	main(int argc, char *argv[])
 	fd = open_file(argv[1]);
 	init_info(&info, &map);
 	line_count = read_map(fd, &info);
+	close(fd);
 	parse_map(&info, line_count);
 	display_map(&info);
 	return (0);
