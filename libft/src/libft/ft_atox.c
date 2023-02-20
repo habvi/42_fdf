@@ -1,8 +1,8 @@
 #include "libft.h"
 
-uint32_t	base_index(const char *base, char c)
+uint8_t	base_index(const char *base, char c)
 {
-	uint32_t	i;
+	uint8_t	i;
 
 	i = 0;
 	while (base[i] != c)
@@ -10,12 +10,12 @@ uint32_t	base_index(const char *base, char c)
 	return (i);
 }
 
-bool	ft_atox_with_bool(const char *str, uint32_t *num)
+bool	ft_atox_with_bool(const char *str, int64_t *num)
 {
-	const uint32_t	base_num = (uint32_t)ft_strlen(BASE16_UPPER);
+	const uint8_t	base_num = ft_strlen(BASE16_UPPER);
 	bool			at_least_one_digit;
-	uint32_t		digit_base;
-	size_t			i;
+	uint8_t			digit_base;
+	uint8_t			i;
 
 	if (ft_strlen(str) < LEN_0X)
 		return (false);
@@ -41,7 +41,7 @@ bool	ft_atox_with_bool(const char *str, uint32_t *num)
 // int main(void)
 // {
 // 	char		*color = "0x80202011";
-// 	uint32_t	num = 0;
+// 	int64_t	num = 0;
 // 	printf("%d, ", ft_atox_with_bool(color, &num));
 // 	printf("%d: %u\n", num == 0x80202011, num);
 

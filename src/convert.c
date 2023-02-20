@@ -43,9 +43,9 @@ static int	convert_height(\
 	return (num);
 }
 
-static int	convert_color(const char *color_str, bool *is_valid_num)
+static int64_t	convert_color(const char *color_str, bool *is_valid_num)
 {
-	int	num;
+	int64_t	num;
 
 	num = 0;
 	*is_valid_num &= ft_atox_with_bool(color_str, &num);
@@ -57,7 +57,7 @@ void	convert_map_height_and_color(t_info *info, char **list, const size_t i)
 	bool	is_valid_num;
 	size_t	j;
 	int		*height;
-	int		*color;
+	int64_t	*color;
 	size_t	max_len;
 
 	is_valid_num = true;

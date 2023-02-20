@@ -75,4 +75,9 @@ norm:
 
 FORCE:
 
+test_atox:
+	$(CC) $(CFLAGS) $(INCLUDES) libft/src/libft/ft_atox.c libft/src/libft/ft_strlen.c libft/src/libft/ft_strchr.c libft/src/libft/ft_toupper.c
+	./a.out
+.PHONY: test_atox
+
 .PHONY: all clean fclean re bonus FORCE norm clone

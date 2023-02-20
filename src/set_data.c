@@ -16,7 +16,7 @@ static char	**split_map_line(\
 	return (list);
 }
 
-static void	init_color_map(int *map, size_t size)
+static void	init_color_map(int64_t *map, size_t size)
 {
 	size_t	i;
 
@@ -35,7 +35,7 @@ static void	init_map_line(\
 
 	map = info->map;
 	map->height_map[i] = (int *)malloc(sizeof(int) * list_size);
-	map->color_map[i] = (int *)malloc(sizeof(int) * list_size);
+	map->color_map[i] = (int64_t *)malloc(sizeof(int64_t) * list_size);
 	if (map->height_map[i] == NULL || map->color_map[i] == NULL)
 	{
 		clear_split_list(list);

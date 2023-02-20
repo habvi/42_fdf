@@ -3,6 +3,7 @@
 
 # include <stddef.h>
 # include <stdbool.h>
+# include <stdint.h>
 
 typedef struct s_list	t_list;
 
@@ -15,7 +16,7 @@ typedef struct s_map {
 	size_t	width;
 	size_t	height;
 	int		**height_map;
-	int		**color_map;
+	int64_t	**color_map;
 }	t_map;
 
 typedef struct s_info {

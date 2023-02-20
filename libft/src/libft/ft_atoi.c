@@ -32,7 +32,7 @@ static bool	is_overflow(int *num, int c, int op, const char *base)
 	return (false);
 }
 
-static int	move_space_and_op(const char *str, size_t *i, size_t len)
+static int	move_space_and_op(const char *str, uint8_t *i, uint8_t len)
 {
 	int	op;
 
@@ -49,13 +49,13 @@ static int	move_space_and_op(const char *str, size_t *i, size_t len)
 
 // if "-", return (0) -> fixed
 bool	ft_atoi_n_with_bool(\
-			const char *str, int32_t *num, const char *base, size_t len)
+			const char *str, int *num, const char *base, uint8_t len)
 {
-	const int32_t	base_num = (int32_t)ft_strlen(base);
+	const uint8_t	base_num = ft_strlen(base);
 	bool			at_least_one_digit;
 	int				op;
-	uint32_t		digit_base;
-	size_t			i;
+	uint8_t			digit_base;
+	uint8_t			i;
 
 	i = 0;
 	*num = 0;
@@ -69,7 +69,7 @@ bool	ft_atoi_n_with_bool(\
 		digit_base = base_index(base, str[i]);
 		if (is_overflow(num, str[i], op, base))
 			return (false);
-		*num = *num * base_num + (int32_t)digit_base;
+		*num = *num * base_num + digit_base;
 		i++;
 	}
 	if (i != len || !at_least_one_digit)
