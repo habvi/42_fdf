@@ -1,6 +1,8 @@
 #ifndef HOOK_H
 # define HOOK_H
 
+# include <X11/keysym.h>
+
 # define SHIFT_WIDTH		40
 # define ANGLE_ROTATE		10
 
@@ -11,21 +13,21 @@
 # define ZOOM_DELTA			(1.5)
 
 typedef enum e_key {
-	KEY_UP = 65362,
-	KEY_DOWN = 65364,
-	KEY_LEFT = 65361,
-	KEY_RIGHT = 65363,
-	KEY_ONE = 49,
-	KEY_TWO = 50,
-	KEY_H = 104,
-	KEY_J = 106,
-	KEY_K = 107,
-	KEY_L = 108,
-	KEY_N = 110,
-	KEY_M = 109,
-	KEY_I = 105,
-	KEY_P = 112,
-	KEY_ESC = 65307
+	KEY_UP = XK_Up,
+	KEY_DOWN = XK_Down,
+	KEY_LEFT = XK_Left,
+	KEY_RIGHT = XK_Right,
+	KEY_ONE = XK_1,
+	KEY_TWO = XK_2,
+	KEY_H = XK_h,
+	KEY_J = XK_j,
+	KEY_K = XK_k,
+	KEY_L = XK_l,
+	KEY_N = XK_n,
+	KEY_M = XK_m,
+	KEY_I = XK_i,
+	KEY_P = XK_p,
+	KEY_ESC = XK_Escape
 }	t_key;
 
 typedef enum e_mouse {
