@@ -25,8 +25,11 @@ double	ft_min_double(const double x, const double y);
 char	**ft_split(char const *s, char c, size_t *list_size);
 char	*ft_strchr(const char *s, int int_c);
 char	*ft_strdup(const char *s);
+void    ft_strlcpy_void(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
+char    *ft_strndup(const char *s, size_t maxlen);
+size_t  ft_strnlen(const char *s, size_t maxlen);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_toupper(int c);
 
