@@ -22,7 +22,6 @@ SRC_LIBFT		:=	libft/ft_atoi.c \
 					libft/ft_strdup.c \
 					libft/ft_strlcpy.c \
 					libft/ft_strlen.c \
-					libft/ft_strtrim.c \
 					libft/ft_substr.c \
 					libft/ft_toupper.c
 
