@@ -10,4 +10,6 @@
 # define ERR_MSG_MAP_WIDTH			"invalid map width"
 # define ERR_MLX					"from mlx"
 
+# define OPEN_ERROR					-1
+
 #endif

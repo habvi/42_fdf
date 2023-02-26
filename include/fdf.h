@@ -81,10 +81,9 @@ void	exit_img_p(const t_mlx *mlxs);
 
 // args.c
 void	check_args(const int argc, char *const argv[]);
-int		open_file(const char *filename);
 
 // read.c
-size_t	read_map(const int fd, t_info *info);
+void	read_map(const char *filepath, t_info *info, size_t *line_count);
 
 // clear.c
 void	clear_split_list(char **list);

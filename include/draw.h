@@ -2,7 +2,6 @@
 # define DRAW_H
 
 # define FILE_EXTENSION				".fdf"
-# define OPEN_ERROR					-1
 # define NONE_COLOR					-1
 # define OVER_MAX_DIGIT				12
 

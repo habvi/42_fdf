@@ -1,19 +1,7 @@
-#include <fcntl.h> // open
-#include <string.h> // strerror
-#include <errno.h>
 #include "libft.h"
 #include "fdf.h"
 #include "error.h"
 #include "draw.h"
-
-int	open_file(const char *filepath)
-{
-	const int	fd = open(filepath, O_RDONLY);
-
-	if (fd == OPEN_ERROR)
-		error_exit(strerror(errno), NULL, EXIT_FAILURE);
-	return (fd);
-}
 
 static void	check_file_extension(const char *filepath)
 {

@@ -1,3 +1,6 @@
+#include <fcntl.h> // open
+#include <string.h> // strerror
+#include <errno.h>
 #include "get_next_line.h"
 #include "list.h"
 #include "fdf.h"
@@ -18,7 +21,7 @@ static void	add_line_to_data(t_info *info, char *line, const size_t line_count)
 	ft_lstadd_back(&info->tail, node);
 }
 
-size_t	read_map(const int fd, t_info *info)
+static size_t	read_map_to_info(const int fd, t_info *info)
 {
 	size_t	line_count;
 	char	*line;
@@ -37,4 +40,14 @@ size_t	read_map(const int fd, t_info *info)
 	if (info->tail == NULL)
 		error_exit(ERR_MSG_EMPTY, NULL, EXIT_FAILURE);
 	return (line_count);
+}
+
+void	read_map(const char *filepath, t_info *info, size_t *line_count)
+{
+	const int	fd = open(filepath, O_RDONLY);
+
+	if (fd == OPEN_ERROR)
+		error_exit(strerror(errno), NULL, EXIT_FAILURE);
+	*line_count = read_map_to_info(fd, info);
+	close(fd);
 }
