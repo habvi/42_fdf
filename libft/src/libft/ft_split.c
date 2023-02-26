@@ -43,7 +43,7 @@ static bool	set_split_str(char const *head, char c, char **list)
 			right++;
 		if (left != right)
 		{
-			list[i] = ft_substr(left, 0, right - left);
+			list[i] = ft_strndup(left, right - left);
 			if (list[i] == NULL)
 				return (false);
 			i++;

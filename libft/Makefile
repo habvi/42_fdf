@@ -25,7 +25,6 @@ SRC_LIBFT		:=	libft/ft_atoi.c \
 					libft/ft_strlen.c \
 					libft/ft_strndup.c \
 					libft/ft_strnlen.c \
-					libft/ft_substr.c \
 					libft/ft_toupper.c
 
 SRC_LIST		:=	list/ft_lstadd_back.c \
