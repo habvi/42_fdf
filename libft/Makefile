@@ -23,6 +23,7 @@ SRC_LIBFT		:=	libft/ft_atoi.c \
 					libft/ft_strlcpy_void.c \
 					libft/ft_strlcpy.c \
 					libft/ft_strlen.c \
+					libft/ft_strncmp.c \
 					libft/ft_strndup.c \
 					libft/ft_strnlen.c \
 					libft/ft_toupper.c

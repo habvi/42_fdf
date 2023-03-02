@@ -28,6 +28,7 @@ char	*ft_strdup(const char *s);
 void    ft_strlcpy_void(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char    *ft_strndup(const char *s, size_t maxlen);
 size_t  ft_strnlen(const char *s, size_t maxlen);
 int		ft_toupper(int c);
