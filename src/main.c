@@ -17,9 +17,12 @@ int	main(int argc, char *argv[])
 	t_map	map;
 	size_t	line_count;
 
+	// return error
 	check_args(argc, argv);
 	init_info(&info, &map);
+	// return error
 	read_map(argv[1], &info, &line_count);
+	// return error
 	parse_map(&info, line_count);
 	display_map(&info);
 	return (SUCCESS);
