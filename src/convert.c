@@ -76,6 +76,6 @@ void	convert_map_height_and_color(t_info *info, char **list, const size_t i)
 	if (!is_valid_num)
 	{
 		clear_split_list(list);
-		clear_before_exit(info, INVALID_MAP, i + 1);
+		clear_before_exit(info, i + 1, INVALID_MAP);
 	}
 }

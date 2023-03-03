@@ -14,7 +14,7 @@ static void	init_map(const t_info *info, const size_t line_count)
 	map->height_map = (int **)malloc(sizeof(int *) * map->height);
 	map->color_map = (int64_t **)malloc(sizeof(int64_t *) * map->height);
 	if (map->height_map == NULL || map->color_map == NULL)
-		clear_before_exit(info, ERROR_MALLOC_FDF, 0);
+		clear_before_exit(info, 0, ERROR_MALLOC_FDF);
 }
 
 void	parse_map(t_info *info, const size_t line_count)

@@ -76,7 +76,7 @@ typedef struct s_mlx {
 void	error_exit(const uint8_t error_code);
 void	error_exit_errno(const char *msg);
 void	clear_before_exit(\
-			const t_info *info, const uint8_t error_code, const size_t n);
+			const t_info *info, const size_t n, const uint8_t error_code);
 void	exit_mlx_p(const t_mlx *mlxs);
 void	exit_win_p(const t_mlx *mlxs);
 void	exit_img_p(const t_mlx *mlxs);

@@ -30,7 +30,7 @@ void	error_exit_errno(const char *msg)
 
 // convert, parse, set_data
 void	clear_before_exit(\
-			const t_info *info, const uint8_t error_code, const size_t n)
+			const t_info *info, const size_t n, const uint8_t error_code)
 {
 	clear_data(info->head);
 	clear_map_to_n(info->map, n);
