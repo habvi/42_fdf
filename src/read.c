@@ -44,8 +44,10 @@ static size_t	read_map_to_info(const int fd, t_info *info)
 
 void	read_map(const char *filepath, t_info *info, size_t *line_count)
 {
-	const int	fd = open(filepath, O_RDONLY);
+	int	fd;
 
+	errno = 0;
+	fd = open(filepath, O_RDONLY);
 	if (fd == OPEN_ERROR)
 		error_exit(strerror(errno), NULL, EXIT_FAILURE);
 	*line_count = read_map_to_info(fd, info);

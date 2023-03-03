@@ -1,6 +1,6 @@
 #include "libft.h"
 
-char    *ft_strndup(const char *s, size_t maxlen)
+char	*ft_strndup(const char *s, size_t maxlen)
 {
 	const size_t	len_s = ft_strnlen(s, maxlen);
 	char			*dst;

@@ -4,7 +4,8 @@
 #include "draw.h"
 #include <stdint.h>
 
-static bool	is_correct_extension_include(const char *filepath, const size_t len_filepath, char **index)
+static bool	is_correct_extension_include(\
+		const char *filepath, const size_t len_filepath, char **index)
 {
 	*index = ft_strnstr(filepath, FILE_EXTENSION, len_filepath);
 	if (*index == NULL)
@@ -21,7 +22,7 @@ static bool	is_valid_path(const char *filepath, char *index)
 	return (true);
 }
 
-static  bool	is_valid_extension(const char *filepath, const size_t len_filepath)
+static bool	is_valid_extension(const char *filepath, const size_t len_filepath)
 {
 	while (*filepath != '.')
 		filepath++;
