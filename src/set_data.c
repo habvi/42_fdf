@@ -12,7 +12,7 @@ static char	**split_map_line(\
 
 	list = ft_split(data->content, ' ', list_size);
 	if (list == NULL)
-		clear_before_exit(info, ERR_MSG_MALLOC, i);
+		clear_before_exit(info, ERROR_MALLOC_FDF, i);
 	return (list);
 }
 
@@ -39,7 +39,7 @@ static void	init_map_line(\
 	if (map->height_map[i] == NULL || map->color_map[i] == NULL)
 	{
 		clear_split_list(list);
-		clear_before_exit(info, ERR_MSG_MALLOC, i + 1);
+		clear_before_exit(info, ERROR_MALLOC_FDF, i + 1);
 	}
 	init_color_map(map->color_map[i], list_size);
 }
@@ -55,7 +55,7 @@ static void	check_map_line_width(\
 	else if (map->width != list_size)
 	{
 		clear_split_list(list);
-		clear_before_exit(info, ERR_MSG_MAP_WIDTH, i + 1);
+		clear_before_exit(info, ERROR_MAP_WIDTH, i + 1);
 	}
 }
 

@@ -14,7 +14,7 @@ static void	add_line_to_data(t_info *info, char *line, const size_t line_count)
 	if (node == NULL)
 	{
 		clear_data(info->head);
-		error_exit(ERR_MSG_MALLOC, NULL, EXIT_FAILURE);
+		error_exit(ERROR_MALLOC_FDF);
 	}
 	if (line_count >= 2)
 		info->tail = info->tail->next;
@@ -38,7 +38,7 @@ static size_t	read_map_to_info(const int fd, t_info *info)
 		line_count++;
 	}
 	if (info->tail == NULL)
-		error_exit(ERR_MSG_EMPTY, NULL, EXIT_FAILURE);
+		error_exit(ERROR_EMPTY_FILE);
 	return (line_count);
 }
 
@@ -49,7 +49,7 @@ void	read_map(const char *filepath, t_info *info, size_t *line_count)
 	errno = 0;
 	fd = open(filepath, O_RDONLY);
 	if (fd == OPEN_ERROR)
-		error_exit(strerror(errno), NULL, EXIT_FAILURE);
+		error_exit_errno(strerror(errno));
 	*line_count = read_map_to_info(fd, info);
 	close(fd);
 }

@@ -17,13 +17,17 @@ void	emphasize_height(t_mlx *mlxs, const t_key keycode)
 {
 	if (keycode == KEY_ONE)
 	{
+		// if (mlxs->height_emphasis < Z_UPPER_BOUNDS)
+			// mlxs->height_emphasis += Z_EMPHASIS_DELTA;
 		if (mlxs->height_emphasis < Z_UPPER_BOUNDS)
-			mlxs->height_emphasis += Z_EMPHASIS_DELTA;
+			mlxs->height_emphasis /= 0.95;
 	}
 	else if (keycode == KEY_TWO)
 	{
-		if (mlxs->height_emphasis > Z_LOWER_BOUNDS)
-			mlxs->height_emphasis -= Z_EMPHASIS_DELTA;
+		// if (mlxs->height_emphasis > Z_LOWER_BOUNDS)
+			// mlxs->height_emphasis -= Z_EMPHASIS_DELTA;
+		if (mlxs->height_emphasis > 0.1)
+			mlxs->height_emphasis *= 0.95;
 	}
 }
 

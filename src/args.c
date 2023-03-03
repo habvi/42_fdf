@@ -46,18 +46,16 @@ static uint8_t	check_filepath(const char *filepath)
 	return (SUCCESS);
 }
 
-void	check_args(const int argc, char *const argv[])
+bool	check_args(const int argc, char *const argv[], uint8_t *error_code)
 {
-	uint8_t	result;
-
 	if (argc != 2)
 	{
 		(void)argv;
-		error_exit(ERR_MSG_ARGS, NULL, EXIT_FAILURE);
+		*error_code = INVALID_ARGC;
+		return (false);
 	}
-	result = check_filepath(argv[1]);
-	if (result == INVALID_EXTENSION)
-		error_exit(ERR_MSG_FILE_EXTENSION, NULL, EXIT_FAILURE);
-	else if (result == INVALID_FILETYPE)
-		error_exit(ERR_MSG_FILETYPE, NULL, EXIT_FAILURE);
+	*error_code = check_filepath(argv[1]);
+	if (*error_code == INVALID_EXTENSION || *error_code == INVALID_FILETYPE)
+		return (false);
+	return (true);
 }

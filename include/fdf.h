@@ -73,14 +73,16 @@ typedef struct s_mlx {
 }	t_mlx;
 
 // exit.c
-void	error_exit(const char *msg, void *ptr, const int status);
-void	clear_before_exit(const t_info *info, const char *msg, const size_t n);
+void	error_exit(const uint8_t error_code);
+void	error_exit_errno(const char *msg);
+void	clear_before_exit(\
+			const t_info *info, const uint8_t error_code, const size_t n);
 void	exit_mlx_p(const t_mlx *mlxs);
 void	exit_win_p(const t_mlx *mlxs);
 void	exit_img_p(const t_mlx *mlxs);
 
 // args.c
-void	check_args(const int argc, char *const argv[]);
+bool	check_args(const int argc, char *const argv[], uint8_t *erorr_code);
 
 // read.c
 void	read_map(const char *filepath, t_info *info, size_t *line_count);
