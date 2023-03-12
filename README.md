@@ -22,5 +22,12 @@ External functions
 
 <br>
 
-## test_maps
+test_maps
 ![sample](image/FdF_sample.jpg)
+Mt.Fuji
+![mt_fuji](image/mt_fuji.png)
+
+Grand Canyon
+![garnd_canyon](image/grand_canyon.png)
+
+Credit：AW3D (JAXA)

@@ -22,9 +22,9 @@ int	main(int argc, char *argv[])
 	if (!check_args(argc, argv, &error_code))
 		error_exit(error_code);
 	init_info(&info, &map);
-	// return error
+	// to do: return error
 	read_map(argv[1], &info, &line_count);
-	// return error
+	// to do: return error
 	parse_map(&info, line_count);
 	display_map(&info);
 	return (SUCCESS);

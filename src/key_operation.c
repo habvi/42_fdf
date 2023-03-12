@@ -13,6 +13,7 @@ void	move_in_4_directions(t_mlx *mlxs, const t_key keycode)
 		mlxs->delta_y += SHIFT_WIDTH;
 }
 
+// to do
 void	emphasize_height(t_mlx *mlxs, const t_key keycode)
 {
 	if (keycode == KEY_ONE)

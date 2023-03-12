@@ -16,7 +16,8 @@ void	clear_split_list(char **list)
 		i++;
 	}
 	free(list);
-	list = NULL;
+	// to do
+	// list = NULL;
 }
 
 static void	del(void *content)
